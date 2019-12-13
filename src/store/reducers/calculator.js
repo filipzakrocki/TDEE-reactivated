@@ -1,15 +1,30 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
 
-// const initialState = {
-//   query: null,
-//   results: null,
-//   loading: false,
-//   modalOpen: false,
-//   zoomedCardIndex: null,
-//   loadedImages: 0,
-//   error: null
-// };
+const initialState = {
+    startDate: null,
+    startWeight: null,
+    weightChange: null,
+    weeksToGoal: 0,
+    Kg: true,
+    weekData: [
+        {week: 0,
+        weeksKcal: [0,0,0,0,0,0,0],
+        avgKcal: 0,
+        weeksWeight: [0,0,0,0,0,0,0],
+        avgWeight: 0
+    }
+    ],
+    alternativeWeekData: {
+        0: {
+            weeksKcal: [0,0,0,0,0,0,0],
+            avgKcal: 0,
+            weeksWeight: [0,0,0,0,0,0,0],
+            avgWeight: 0
+        }
+    }
+
+};
 
 // const setSearchQuery = (state, action) => {
 //   return updateObject(state, { query: action.query });
@@ -42,7 +57,7 @@ import { updateObject } from "../../shared/utility";
 //   });
 // };
 
-// const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case actionTypes.SET_SEARCH_QUERY:
 //       return setSearchQuery(state, action);
@@ -64,8 +79,8 @@ import { updateObject } from "../../shared/utility";
 //       return openModal(state, action);
 
 //     default:
-//       return state;
-//   }
+      return state;
+  }
 // };
 
-// export default reducer;
+export default reducer;
