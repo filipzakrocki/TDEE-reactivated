@@ -1,12 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
 
+import Input from "./components/Input/Input";
 
 function App() {
   return (
     <div className="App">
-hi
+      <Input />
     </div>
   );
 }
