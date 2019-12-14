@@ -1,12 +1,11 @@
 import React from "react";
-import "./Input.scss";
+import "./Result.scss";
 
 const Input = () => {
   return (
-    <div>
-      <h1>this will do</h1>
-      <p>color</p>
-    </div>
+    <section className='result'>
+      results
+    </section>
   );
 };
 
