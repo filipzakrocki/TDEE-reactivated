@@ -1,0 +1,35 @@
+@import "../../../styles/main.scss";
+
+
+.inputRow {
+    width: 100%;
+    height: 40px;
+}
+
+.inputRow-label {
+    text-align: left;
+    font-size: $default-font;
+}
+
+.inputRow-input {
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+.inputRow-input input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    line-height: 1.75;
+}
+
+.inputRow-units {
+}
+
+@media only screen and (max-width: 910px) {
+    .inputRow-label {
+        font-size: $default-font-mobile;
+    }
+  } 

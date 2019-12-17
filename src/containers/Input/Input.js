@@ -10,11 +10,12 @@ const Input = () => {
   return (
     <section className='input'>
        <InputColumn>
-       <InitialInput/>
-       </InputColumn>
-      <InputColumn>
-      <CurrentStats/>
+        <InitialInput/>
       </InputColumn>
+      <InputColumn>
+        <CurrentStats/>
+      </InputColumn>
+
     </section>
   );
 };
