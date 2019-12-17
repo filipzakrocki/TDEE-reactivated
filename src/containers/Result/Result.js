@@ -1,12 +1,44 @@
 import React from "react";
 import "./Result.scss";
 
-const Input = () => {
+import WeekRow from "./WeekRow/WeekRow";
+
+const Result = () => {
   return (
-    <section className='result'>
-      results
+    <section className="result">
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
+      <WeekRow />
     </section>
   );
 };
 
-export default Input;
+export default Result;

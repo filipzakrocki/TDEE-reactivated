@@ -2,12 +2,17 @@
 
 .input {
   width: 100%;
-  padding: 5vh 5vw;
   background-color: lightsteelblue;
-  display: inline-flex;
-  flex-wrap: wrap;
+
   position: sticky;
+  top: 0;
   z-index: 2;
+}
+
+.input-columns {
+  padding: 5vh 5vw;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .initialInput-table {
@@ -15,7 +20,7 @@
 }
 
 @media only screen and (max-width: 910px) {
-  .input {
-      flex-direction: column;
+  .input-columns {
+    flex-direction: column;
   }
-} 
+}

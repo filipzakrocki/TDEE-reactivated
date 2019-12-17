@@ -1,0 +1,32 @@
+@import "../../styles/main.scss";
+
+.weekLabel {
+  background: blueviolet;
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+.weekLabel-wrapper {
+  display: flex;
+  padding: 0 10%;
+  text-align: center;
+}
+
+.weekLabel-dayLabel {
+  flex: 1;
+}
+
+.weekLabel-label {
+  flex: 1;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 910px) {
+  .weekLabel-wrapper {
+    padding: 0;
+  }
+  .noMobile {
+    display: none;
+  }
+}
