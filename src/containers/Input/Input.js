@@ -3,21 +3,22 @@ import "./Input.scss";
 
 import CurrentStats from "./CurrentStats/CurrentStats";
 import InitialInput from "./IntitialInputs/InitialInput";
-import InputColumn from "../../components/InputColumns/InputColumn";
+import InputColumn from "../../components/Input/InputColumn/InputColumn";
 import WeekLabel from "../../components/WeekLabel/WeekLabel";
+import InputColumnWrapper from '../../components/Input/InputColumnWrapper/InputColumnWrapper'
 
 const Input = () => {
   return (
     <>
       <section className="input">
-        <div className="input-columns">
-          <InputColumn>
+        <InputColumnWrapper>
+        <InputColumn>
             <InitialInput />
           </InputColumn>
           <InputColumn>
             <CurrentStats />
           </InputColumn>
-        </div>
+        </InputColumnWrapper>
         <div className="input-labels">
           <WeekLabel />
         </div>

@@ -1,5 +1,7 @@
-.App {
+@import './styles/main.scss';
 
+.App {
+  color: $contrast-color;
 }
 
 .App-logo {

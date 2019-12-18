@@ -2,25 +2,14 @@
 
 .input {
   width: 100%;
-  background-color: lightsteelblue;
-
+  background-color: $main-background-color;
   position: sticky;
   top: 0;
   z-index: 2;
-}
-
-.input-columns {
-  padding: 5vh 5vw;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .initialInput-table {
   width: 100%;
 }
 
-@media only screen and (max-width: 910px) {
-  .input-columns {
-    flex-direction: column;
-  }
-}
+

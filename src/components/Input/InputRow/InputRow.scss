@@ -26,10 +26,14 @@
 }
 
 .inputRow-units {
+    font-size: $small-font;
 }
 
 @media only screen and (max-width: 910px) {
     .inputRow-label {
         font-size: $default-font-mobile;
+    }
+    .inputRow {
+        height: 20px;
     }
   } 

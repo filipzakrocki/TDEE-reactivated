@@ -1,8 +1,8 @@
 @import "../../../styles/main.scss";
 
 .weekRow {
-  background: rgba($color: #fffada, $alpha: 1);
-  border: 1px black solid;
+  background: $secondary-background-color;
+  border-top: 1px solid black;
 }
 
 .weekRow-wrapper {
@@ -20,7 +20,7 @@
   width: 100%;
   border: none;
   outline-color: black;
-  background: lightsteelblue;
+  background: $input-color;
   font-size: $default-font;
   margin: 0;
   padding: 4px;
@@ -30,6 +30,9 @@
 }
 
 @media only screen and (max-width: 910px) {
+  .weekRow {
+    font-size: $default-font-mobile;
+  }
   .weekRow-wrapper {
     padding: 0;
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import './CurrentStats.scss';
 
-import InputRowTitle from '../../../components/InputColumns/InputRowTitle/InputRowTitle'
-import InputRow from '../../../components/InputColumns/InputRow/InputRow'
-import InputTable from '../../../components/InputColumns/InputTable/InputTable'
+import InputRowTitle from '../../../components/Input/InputRowTitle/InputRowTitle'
+import InputRow from '../../../components/Input/InputRow/InputRow'
+import InputTable from '../../../components/Input/InputTable/InputTable'
 
 const CurrentStats = () => {
     return (

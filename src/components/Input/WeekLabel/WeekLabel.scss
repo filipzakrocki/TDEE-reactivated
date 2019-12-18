@@ -1,7 +1,8 @@
 @import "../../styles/main.scss";
 
 .weekLabel {
-  background: blueviolet;
+  background: $secondary-background-color;
+  height: 50px;
   position: relative;
   z-index: 2;
   display: block;
@@ -9,7 +10,7 @@
 
 .weekLabel-wrapper {
   display: flex;
-  padding: 0 10%;
+  padding: 10px 10%;
   text-align: center;
 }
 
@@ -23,8 +24,11 @@
 }
 
 @media only screen and (max-width: 910px) {
+  .weekLabel {
+    font-size: $default-font-mobile;
+  }
   .weekLabel-wrapper {
-    padding: 0;
+    padding: 10px 0;
   }
   .noMobile {
     display: none;
