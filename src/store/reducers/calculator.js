@@ -1,37 +1,44 @@
-// import * as actionTypes from "../actions/actionTypes";
-// import { updateObject } from "../../shared/utility";
+import * as actionTypes from "../actions/actionTypes";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
-    startDate: null,
-    startWeight: null,
-    weightChange: null,
-    weeksToGoal: 0,
-    Kg: true,
-    weekData: [
-        {week: 0,
-        weeksKcal: [0,0,0,0,0,0,0],
-        avgKcal: 0,
-        weeksWeight: [0,0,0,0,0,0,0],
-        avgWeight: 0
+  startDate: null,
+  startWeight: null,
+  goalWeight: null,
+  dailyDeficit: null,
+  weightChange: null,
+  weeksToGoal: 0,
+  Kg: true,
+  // week no is index
+  weekData: [
+    {
+      week: 0,
+      weeksKcal: [0, 0, 0, 0, 0, 0, 0],
+      avgKcal: 0,
+      weeksWeight: [0, 0, 0, 0, 0, 0, 0],
+      avgWeight: 0
     }
-    ],
-    alternativeWeekData: {
-        0: {
-            weeksKcal: [0,0,0,0,0,0,0],
-            avgKcal: 0,
-            weeksWeight: [0,0,0,0,0,0,0],
-            avgWeight: 0
-        }
+  ],
+  // objects propery is week no
+  alternativeWeekData: {
+    0: {
+      weeksKcal: [0, 0, 0, 0, 0, 0, 0],
+      avgKcal: 0,
+      weeksWeight: [0, 0, 0, 0, 0, 0, 0],
+      avgWeight: 0
     }
-
+  }
 };
 
-// const setSearchQuery = (state, action) => {
-//   return updateObject(state, { query: action.query });
-// };
-// const setResults = (state, action) => {
-//   return updateObject(state, { results: action.results });
-// };
+const setStartWeight = (state, action) => {
+  return updateObject(state, { startWeight: action.enteredWeight });
+};
+const setGoalWeight = (state, action) => {
+  return updateObject(state, { goalWeight: action.enteredGoal });
+};
+const setDailyDeficit = (state, action) => {
+  return updateObject(state, { dailyDeficit: action.dailyDeficit });
+};
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });
 // };
@@ -58,29 +65,16 @@ const initialState = {
 // };
 
 const reducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case actionTypes.SET_SEARCH_QUERY:
-//       return setSearchQuery(state, action);
-//     case actionTypes.SET_RESULTS:
-//       return setResults(state, action);
-//     case actionTypes.SET_ERROR:
-//       return setError(state, action);
-//     case actionTypes.SET_LOADED_IMAGES:
-//       return setLoadedImages(state, action);
-//     case actionTypes.CLEAR_LOADED_IMAGES:
-//       return clearLoadedImages(state, action);
-//     case actionTypes.FETCH_STARTED:
-//       return fetchStarted(state, action);
-//     case actionTypes.FETCH_FINISHED:
-//       return fetchFinished(state, action);
-//     case actionTypes.CLOSE_MODAL:
-//       return closeModal(state, action);
-//     case actionTypes.OPEN_MODAL:
-//       return openModal(state, action);
-
-//     default:
+  switch (action.type) {
+    case actionTypes.SET_START_WEIGHT:
+      return setStartWeight(state, action);
+    case actionTypes.SET_GOAL_WEIGHT:
+      return setGoalWeight(state, action);
+    case actionTypes.SET_DAILY_DEFICIT:
+      return setDailyDeficit(state, action);
+    default:
       return state;
   }
-// };
+};
 
 export default reducer;

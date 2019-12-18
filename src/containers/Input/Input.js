@@ -4,15 +4,15 @@ import "./Input.scss";
 import CurrentStats from "./CurrentStats/CurrentStats";
 import InitialInput from "./IntitialInputs/InitialInput";
 import InputColumn from "../../components/Input/InputColumn/InputColumn";
-import WeekLabel from "../../components/WeekLabel/WeekLabel";
-import InputColumnWrapper from '../../components/Input/InputColumnWrapper/InputColumnWrapper'
+import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
+import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
 const Input = () => {
   return (
     <>
       <section className="input">
         <InputColumnWrapper>
-        <InputColumn>
+          <InputColumn>
             <InitialInput />
           </InputColumn>
           <InputColumn>

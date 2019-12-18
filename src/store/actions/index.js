@@ -1,7 +1,6 @@
-// export {
-//   setSearchQuery,
-//   fetchPokemon,
-//   closeModal,
-//   openModal,
-//   setLoadedImages
-// } from "./search";
+export {
+  setStartWeight,
+  setGoalWeight,
+  setWeeklyChange,
+  setDailyDeficit
+} from "./calculator";

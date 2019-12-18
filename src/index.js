@@ -9,6 +9,8 @@ import calculatorReducer from "./store/reducers/calculator";
 
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+
+//thunk optional for now
 import ReduxThunk from "redux-thunk";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

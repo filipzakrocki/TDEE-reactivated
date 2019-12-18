@@ -1,12 +1,30 @@
-// import * as actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 // import axios from "axios";
 
-// export const setSearchQuery = query => {
-//   return {
-//     type: actionTypes.SET_SEARCH_QUERY,
-//     query: query
-//   };
-// };
+export const setStartWeight = enteredWeight => {
+  return {
+    type: actionTypes.SET_START_WEIGHT,
+    enteredWeight: Number(enteredWeight)
+  };
+};
+export const setGoalWeight = enteredGoal => {
+  return {
+    type: actionTypes.SET_GOAL_WEIGHT,
+    enteredGoal: Number(enteredGoal)
+  };
+};
+export const setWeeklyChange = weeklyChange => {
+  return {
+    type: actionTypes.SET_WEEKLY_CHANGE,
+    weeklyChange: weeklyChange
+  };
+};
+export const setDailyDeficit = dailyDeficit => {
+  return {
+    type: actionTypes.SET_DAILY_DEFICIT,
+    dailyDeficit: Number(dailyDeficit)
+  };
+};
 
 // export const setResults = data => {
 //   console.log(data);
