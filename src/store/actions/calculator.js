@@ -16,13 +16,19 @@ export const setGoalWeight = enteredGoal => {
 export const setWeeklyChange = weeklyChange => {
   return {
     type: actionTypes.SET_WEEKLY_CHANGE,
-    weeklyChange: weeklyChange
+    weeklyChange: Number(weeklyChange)
   };
 };
 export const setDailyDeficit = dailyDeficit => {
   return {
     type: actionTypes.SET_DAILY_DEFICIT,
     dailyDeficit: Number(dailyDeficit)
+  };
+};
+export const setStartDate = startDate => {
+  return {
+    type: actionTypes.SET_START_DATE,
+    startDate: startDate
   };
 };
 

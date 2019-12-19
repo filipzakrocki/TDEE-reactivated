@@ -2,6 +2,7 @@ export const SET_START_WEIGHT = "SET_START_WEIGHT";
 export const SET_GOAL_WEIGHT = "SET_GOAL_WEIGHT";
 export const SET_WEEKLY_CHANGE = "SET_WEEKLY_CHANGE";
 export const SET_DAILY_DEFICIT = "SET_DAILY_DEFICIT";
+export const SET_START_DATE = "SET_START_DATE";
 
 // export const SET_RESULTS = "SET_RESULTS";
 
