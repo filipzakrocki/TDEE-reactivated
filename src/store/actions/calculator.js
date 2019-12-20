@@ -20,15 +20,24 @@ export const setWeeklyChange = weeklyChange => {
   };
 };
 export const setDailyDeficit = dailyDeficit => {
+  let formattedDeficit = dailyDeficit.toFixed();
   return {
     type: actionTypes.SET_DAILY_DEFICIT,
-    dailyDeficit: Number(dailyDeficit)
+    dailyDeficit: formattedDeficit
   };
 };
 export const setStartDate = startDate => {
   return {
     type: actionTypes.SET_START_DATE,
     startDate: startDate
+  };
+};
+
+export const setGaining = gainingBool => {
+  let operator = gainingBool ? "+" : "-";
+  return {
+    type: actionTypes.SET_GAINING,
+    gaining: operator
   };
 };
 

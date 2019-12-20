@@ -10,6 +10,7 @@ const InputRow = props => {
           onChange={e => props.onChange(e.target.value)}
           disabled={props.disabled}
           value={props.value}
+          step={props.step}
           required
           type={props.type}
         />

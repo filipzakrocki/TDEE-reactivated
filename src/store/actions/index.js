@@ -3,5 +3,6 @@ export {
   setGoalWeight,
   setWeeklyChange,
   setDailyDeficit,
-  setStartDate
+  setStartDate,
+  setGaining
 } from "./calculator";

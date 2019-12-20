@@ -7,6 +7,7 @@ const initialState = {
   goalWeight: null,
   dailyDeficit: null,
   weeklyChange: null,
+  gaining: null,
   weeksToGoal: 0,
   Kg: true,
   // week no is index
@@ -45,6 +46,9 @@ const setWeeklyChange = (state, action) => {
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
+const setGaining = (state, action) => {
+  return updateObject(state, { gaining: action.gaining });
+};
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });
 // };
@@ -82,6 +86,8 @@ const reducer = (state = initialState, action) => {
       return setWeeklyChange(state, action);
     case actionTypes.SET_START_DATE:
       return setStartDate(state, action);
+    case actionTypes.SET_GAINING:
+      return setGaining(state, action);
     default:
       return state;
   }

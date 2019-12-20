@@ -21,6 +21,17 @@ const InitialInput = props => {
     }
   });
 
+  useEffect(() => {
+    let dailyDeficit = props.weeklyChange * 1101.42;
+    props.setDailyDeficit(dailyDeficit);
+    props.setGaining(props.goalWeight > (props.avgWeight || props.startWeight));
+  }, [
+    props.weeklyChange,
+    props.goalWeight,
+    props.avgWeight,
+    props.startWeight
+  ]);
+
   return (
     <div className="initialInput">
       <InputRowTitle children="Initial Input" />
@@ -46,6 +57,7 @@ const InitialInput = props => {
         />
         <InputRow
           onChange={props.setWeeklyChange}
+          step={0.1}
           value={props.weeklyChange}
           type="number"
           label="Weekly weight change"
@@ -68,7 +80,9 @@ const mapStateToProps = state => {
     startWeight: state.calculator.startWeight,
     dailyDeficit: state.calculator.dailyDeficit,
     startDate: state.calculator.startDate,
-    weeklyChange: state.calculator.weeklyChange
+    weeklyChange: state.calculator.weeklyChange,
+    goalWeight: state.calculator.goalWeight,
+    gaining: state.calculator.gaining
   };
 };
 
@@ -81,7 +95,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.setDailyDeficit(enteredDeficit)),
     setWeeklyChange: weeklyChange =>
       dispatch(actions.setWeeklyChange(weeklyChange)),
-    setStartDate: startDate => dispatch(actions.setStartDate(startDate))
+    setStartDate: startDate => dispatch(actions.setStartDate(startDate)),
+    setGaining: gainingBool => dispatch(actions.setGaining(gainingBool))
   };
 };
 
