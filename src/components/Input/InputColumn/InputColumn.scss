@@ -3,5 +3,17 @@
 .inputColumn {
   flex: 2;
   border-radius: 20px;
-  margin: 0 10px 10px;
+  padding: 10px;
+  border: lightsteelblue 1px solid;
+  background: lightsteelblue;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 0 20px;
+}
+
+@media only screen and (max-width: 910px) {
+  .inputColumn {
+    margin: 10px 20px;
+  }
 }

@@ -1,12 +1,12 @@
 .inputColumnWrapper {
-    padding: 5vh 5vw;
-    display: flex;
-    flex-wrap: wrap;   
+  padding: 5vh 5vw;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 910px) {
-    .inputColumnWrapper {
-      padding: 0 5vw 2vh;
-      flex-direction: column;
-    }
+  .inputColumnWrapper {
+    padding: 0 5vw 2vh;
+    flex-direction: column;
   }
+}
