@@ -75,7 +75,10 @@ const setGaining = (state, action) => {
 //   });
 // };
 
-const reducer = (state = initialState, action) => {
+const reducer = (
+  state = JSON.parse(window.localStorage.getItem("state")) || initialState,
+  action
+) => {
   switch (action.type) {
     case actionTypes.SET_START_WEIGHT:
       return setStartWeight(state, action);

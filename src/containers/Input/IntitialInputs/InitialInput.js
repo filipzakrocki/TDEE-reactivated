@@ -8,17 +8,10 @@ import InputRow from "../../../components/Input/InputRow/InputRow";
 import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const InitialInput = props => {
+  //TODO: DESTRUCTURE
+
   useEffect(() => {
-    if (!props.startDate) {
-      const now = new Date();
-      const dd = now.getDate();
-      const mm = now.getMonth() + 1;
-      const yyyy = now.getFullYear();
-      const today = `${yyyy}-${mm < 10 ? "0" + mm : mm}-${
-        dd < 10 ? "0" + dd : dd
-      }`;
-      props.setStartDate(today);
-    }
+    props.setStartDate(props.startDate);
   });
 
   useEffect(() => {

@@ -27,9 +27,20 @@ export const setDailyDeficit = dailyDeficit => {
   };
 };
 export const setStartDate = startDate => {
+  let date = startDate;
+  if (!startDate) {
+    const now = new Date();
+    const dd = now.getDate();
+    const mm = now.getMonth() + 1;
+    const yyyy = now.getFullYear();
+    const today = `${yyyy}-${mm < 10 ? "0" + mm : mm}-${
+      dd < 10 ? "0" + dd : dd
+    }`;
+    date = today;
+  }
   return {
     type: actionTypes.SET_START_DATE,
-    startDate: startDate
+    startDate: date
   };
 };
 

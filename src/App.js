@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
+
+import { connect } from "react-redux";
 
 import Input from "./containers/Input/Input";
 import Result from "./containers/Result/Result";
 
+function App(props) {
+  useEffect(() => {
+    window.localStorage.setItem("state", JSON.stringify(props.state));
+  }, [props]);
 
-function App() {
   return (
     <div className="App">
       <Input />
@@ -14,4 +19,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state: state.calculator
+  };
+};
+
+export default connect(mapStateToProps)(App);
