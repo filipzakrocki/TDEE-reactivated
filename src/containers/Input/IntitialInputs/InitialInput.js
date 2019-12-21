@@ -38,12 +38,14 @@ const InitialInput = props => {
         />
         <InputRow
           onChange={props.setStartWeight}
+          value={props.startWeight}
           type="number"
           label="Starting Weight"
           units="kg/lbs"
         />
         <InputRow
           onChange={props.setGoalWeight}
+          value={props.goalWeight}
           type="number"
           label="Goal Weight"
           units="kg/lbs"
