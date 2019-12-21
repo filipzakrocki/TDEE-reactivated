@@ -9,10 +9,11 @@ import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const InitialInput = props => {
   //TODO: DESTRUCTURE
+  const { startDate } = props;
 
-  useEffect(() => {
-    props.setStartDate(props.startDate);
-  });
+  // useEffect(() => {
+  //   props.setStartDate(startDate);
+  // }, [startDate]);
 
   useEffect(() => {
     let dailyDeficit = props.weeklyChange * 1101.42;
@@ -31,7 +32,7 @@ const InitialInput = props => {
       <InputTable>
         <InputRow
           onChange={props.setStartDate}
-          value={props.startDate}
+          value={startDate}
           type="date"
           label="Start Date"
           units=""

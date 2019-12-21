@@ -11,6 +11,7 @@ const initialState = {
   weeksToGoal: 0,
   avgWeight: 0,
   Kg: true,
+  tdee: 0,
   // week no is index
   weekData: [
     {

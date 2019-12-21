@@ -20,10 +20,9 @@ export const setWeeklyChange = weeklyChange => {
   };
 };
 export const setDailyDeficit = dailyDeficit => {
-  let formattedDeficit = dailyDeficit.toFixed();
   return {
     type: actionTypes.SET_DAILY_DEFICIT,
-    dailyDeficit: formattedDeficit
+    dailyDeficit: parseInt(dailyDeficit)
   };
 };
 export const setStartDate = startDate => {
