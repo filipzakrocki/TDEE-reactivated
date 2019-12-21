@@ -5,18 +5,18 @@ const WeekLabel = props => {
   return (
     <div className="weekLabel">
       <div className="weekLabel-wrapper">
-        <div class="weekLabel-label"> Week</div>
-        <div class="weekLabel-label noMobile"> Stats</div>
-        <div class="weekLabel-dayLabel"> Mon.</div>
-        <div class="weekLabel-dayLabel"> Tues.</div>
-        <div class="weekLabel-dayLabel"> Wed.</div>
-        <div class="weekLabel-dayLabel"> Thurs.</div>
-        <div class="weekLabel-dayLabel"> Fri.</div>
-        <div class="weekLabel-dayLabel"> Sat.</div>
-        <div class="weekLabel-dayLabel"> Sun.</div>
-        <div class="weekLabel-label noMobile"> Avg.</div>
-        <div class="weekLabel-label noMobile"> ∆</div>
-        <div class="weekLabel-label"> TDEE</div>
+        <div className="weekLabel-label"> Week</div>
+        <div className="weekLabel-label noMobile"> Stats</div>
+        <div className="weekLabel-dayLabel"> Mon.</div>
+        <div className="weekLabel-dayLabel"> Tues.</div>
+        <div className="weekLabel-dayLabel"> Wed.</div>
+        <div className="weekLabel-dayLabel"> Thurs.</div>
+        <div className="weekLabel-dayLabel"> Fri.</div>
+        <div className="weekLabel-dayLabel"> Sat.</div>
+        <div className="weekLabel-dayLabel"> Sun.</div>
+        <div className="weekLabel-label noMobile"> Avg.</div>
+        <div className="weekLabel-label noMobile"> ∆</div>
+        <div className="weekLabel-label"> TDEE</div>
       </div>
     </div>
   );

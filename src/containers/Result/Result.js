@@ -3,7 +3,7 @@ import "./Result.scss";
 
 import WeekRow from "./WeekRow/WeekRow";
 
-import AddWeekBtn from '../../components/AddWeekBtn/AddWeekBtn'
+import AddWeekBtn from "../../components/AddWeekBtn/AddWeekBtn";
 
 const Result = () => {
   return (
@@ -39,7 +39,7 @@ const Result = () => {
       <WeekRow />
       <WeekRow />
       <WeekRow />
-      <AddWeekBtn/>
+      <AddWeekBtn />
     </section>
   );
 };

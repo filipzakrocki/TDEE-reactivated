@@ -1,12 +1,12 @@
-import React from 'react';
-import './InputTable.scss'
+import React from "react";
+import "./InputTable.scss";
 
-const InputTable = (props) => {
-    return (
-        <table className='inputTable'>
-            {props.children}
-        </table>
-    );
-}
+const InputTable = props => {
+  return (
+    <table className="inputTable">
+      <tbody>{props.children}</tbody>
+    </table>
+  );
+};
 
 export default InputTable;

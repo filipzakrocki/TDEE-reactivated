@@ -2,13 +2,14 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
 
 const initialState = {
-  startDate: null,
-  startWeight: null,
-  goalWeight: null,
-  dailyDeficit: null,
-  weeklyChange: null,
+  startDate: "",
+  startWeight: 0,
+  goalWeight: 0,
+  dailyDeficit: 0,
+  weeklyChange: 0,
   gaining: null,
   weeksToGoal: 0,
+  avgWeight: 0,
   Kg: true,
   // week no is index
   weekData: [
