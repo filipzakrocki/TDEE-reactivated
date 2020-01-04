@@ -5,12 +5,13 @@ const initialState = {
   startDate: "",
   startWeight: 0,
   goalWeight: 0,
-  dailyDeficit: 0,
+  dailyKcalChange: 0,
   weeklyChange: 0,
-  gaining: null,
+  weeksForAvg: 2,
+  avgTdeeArray: [],
   weeksToGoal: 0,
   avgWeight: 0,
-  Kg: true,
+  kg: true,
   tdee: 0,
   // week no is index
   weekData: [
@@ -22,7 +23,7 @@ const initialState = {
       avgWeight: 0
     }
   ],
-  // objects propery is week no
+  // objects property is week no
   alternativeWeekData: [
     (0: {
       weeksKcal: [0, 0, 0, 0, 0, 0, 0],
@@ -34,13 +35,13 @@ const initialState = {
 };
 
 const setStartWeight = (state, action) => {
-  return updateObject(state, { startWeight: action.enteredWeight });
+  return updateObject(state, { startWeight: action.enteredWeight, avgWeight: action.enteredWeight, avgTdeeArray: [33 * action.enteredWeight] });
 };
 const setGoalWeight = (state, action) => {
   return updateObject(state, { goalWeight: action.enteredGoal });
 };
-const setDailyDeficit = (state, action) => {
-  return updateObject(state, { dailyDeficit: action.dailyDeficit });
+const setDailyKcalChange = (state, action) => {
+  return updateObject(state, { dailyKcalChange: action.dailyKcalChange });
 };
 const setWeeklyChange = (state, action) => {
   return updateObject(state, { weeklyChange: action.weeklyChange });
@@ -76,8 +77,11 @@ const setGaining = (state, action) => {
 //   });
 // };
 
+let localStorageState = null;
+// let localStorageState = JSON.parse(window.localStorage.getItem("state"));
+
 const reducer = (
-  state = JSON.parse(window.localStorage.getItem("state")) || initialState,
+  state = localStorageState || initialState,
   action
 ) => {
   switch (action.type) {
@@ -85,8 +89,8 @@ const reducer = (
       return setStartWeight(state, action);
     case actionTypes.SET_GOAL_WEIGHT:
       return setGoalWeight(state, action);
-    case actionTypes.SET_DAILY_DEFICIT:
-      return setDailyDeficit(state, action);
+    case actionTypes.SET_DAILY_KCAL_CHANGE:
+      return setDailyKcalChange(state, action);
     case actionTypes.SET_WEEKLY_CHANGE:
       return setWeeklyChange(state, action);
     case actionTypes.SET_START_DATE:

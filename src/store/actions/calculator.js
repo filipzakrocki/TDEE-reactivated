@@ -19,10 +19,11 @@ export const setWeeklyChange = weeklyChange => {
     weeklyChange: Number(weeklyChange)
   };
 };
-export const setDailyDeficit = dailyDeficit => {
+
+export const setDailyKcalChange = dailyChange => {
   return {
-    type: actionTypes.SET_DAILY_DEFICIT,
-    dailyDeficit: parseInt(dailyDeficit)
+    type: actionTypes.SET_DAILY_KCAL_CHANGE,
+    dailyKcalChange: parseInt(dailyChange)
   };
 };
 export const setStartDate = startDate => {

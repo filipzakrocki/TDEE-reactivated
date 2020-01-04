@@ -9,21 +9,21 @@ import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const InitialInput = props => {
   //TODO: DESTRUCTURE
-  const { startDate } = props;
+  const { startDate, startWeight, dailyKcalChange, weeklyChange, goalWeight, setStartWeight, setGoalWeight, setDailyKcalChange, setWeeklyChange, setStartDate } = props;
 
   // useEffect(() => {
-  //   props.setStartDate(startDate);
+  //   setStartDate(startDate);
   // }, [startDate]);
 
   useEffect(() => {
-    let dailyDeficit = props.weeklyChange * 1101.42;
-    props.setDailyDeficit(dailyDeficit);
-    props.setGaining(props.goalWeight > (props.avgWeight || props.startWeight));
+    let surplusOrDeficit = (startWeight > goalWeight) ? -1 : 1;
+    let dailyKcalChange = weeklyChange * 1101.42 * surplusOrDeficit;
+    setDailyKcalChange(dailyKcalChange);
   }, [
-    props.weeklyChange,
-    props.goalWeight,
-    props.avgWeight,
-    props.startWeight
+    weeklyChange,
+    goalWeight,
+    startWeight,
+    setDailyKcalChange
   ]);
 
   return (
@@ -31,40 +31,42 @@ const InitialInput = props => {
       <InputRowTitle children="Initial Input" />
       <InputTable>
         <InputRow
-          onChange={props.setStartDate}
+          onChange={setStartDate}
           value={startDate}
           type="date"
           label="Start Date"
           units=""
         />
         <InputRow
-          onChange={props.setStartWeight}
-          value={props.startWeight}
+          onChange={setStartWeight}
+          value={startWeight}
+          step={0.1}
           type="number"
           label="Starting Weight"
           units="kg/lbs"
         />
         <InputRow
-          onChange={props.setGoalWeight}
-          value={props.goalWeight}
+          onChange={setGoalWeight}
+          value={goalWeight}
           type="number"
+          step={0.1}
           label="Goal Weight"
           units="kg/lbs"
         />
         <InputRow
-          onChange={props.setWeeklyChange}
+          onChange={setWeeklyChange}
           step={0.1}
-          value={props.weeklyChange}
+          value={weeklyChange}
           type="number"
           label="Weekly weight change"
           units="kg/lbs"
         />
         <InputRow
-          value={props.dailyDeficit}
+          value={dailyKcalChange}
           type="number"
-          label="Target Daily Deficit"
+          label={`Target Daily ${goalWeight > startWeight ? 'Surplus' : 'Deficit'}`}
           units="kcal"
-          onChange={props.setDailyDeficit}
+          onChange={setDailyKcalChange}
         />
       </InputTable>
     </div>
@@ -74,11 +76,11 @@ const InitialInput = props => {
 const mapStateToProps = state => {
   return {
     startWeight: state.calculator.startWeight,
-    dailyDeficit: state.calculator.dailyDeficit,
+    dailyKcalChange: state.calculator.dailyKcalChange,
     startDate: state.calculator.startDate,
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
-    gaining: state.calculator.gaining
+
   };
 };
 
@@ -87,12 +89,12 @@ const mapDispatchToProps = dispatch => {
     setStartWeight: enteredWeight =>
       dispatch(actions.setStartWeight(enteredWeight)),
     setGoalWeight: enteredGoal => dispatch(actions.setGoalWeight(enteredGoal)),
-    setDailyDeficit: enteredDeficit =>
-      dispatch(actions.setDailyDeficit(enteredDeficit)),
+    setDailyKcalChange: kcalChange =>
+      dispatch(actions.setDailyKcalChange(kcalChange)),
     setWeeklyChange: weeklyChange =>
       dispatch(actions.setWeeklyChange(weeklyChange)),
     setStartDate: startDate => dispatch(actions.setStartDate(startDate)),
-    setGaining: gainingBool => dispatch(actions.setGaining(gainingBool))
+
   };
 };
 

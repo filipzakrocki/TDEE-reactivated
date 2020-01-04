@@ -11,6 +11,7 @@ const InputRow = props => {
           disabled={props.disabled}
           value={props.value}
           step={props.step}
+          readOnly={props.readOnly}
           required
           type={props.type}
         />
