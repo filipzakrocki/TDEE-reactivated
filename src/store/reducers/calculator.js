@@ -34,7 +34,7 @@ const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
 const addAnotherWeek = (state, action) => {
-  return updateObject(state, { weekData: [...state.weekData, action.weekEntry], weekNo: state.weekNo + 1, initialInputsLocked: true });
+  return updateObject(state, { weekData: [...state.weekData, action.weekEntry], weekNo: action.updatedWeekNo, initialInputsLocked: true });
 };
 
 

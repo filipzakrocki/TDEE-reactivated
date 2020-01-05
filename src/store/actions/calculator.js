@@ -40,7 +40,8 @@ export const addAnotherWeek = (weekNo) => {
 
   return {
     type: actionTypes.ADD_ANOTHER_WEEK,
-    weekEntry: weekEntry
+    weekEntry: weekEntry,
+    updatedWeekNo: weekNo + 1
   }
 }
 
