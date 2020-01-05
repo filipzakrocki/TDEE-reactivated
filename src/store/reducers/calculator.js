@@ -11,28 +11,11 @@ const initialState = {
   avgTdeeArray: [],
   weeksToGoal: 0,
   avgWeight: 0,
+  weekNo: 1,
   kg: true,
   initialInputsLocked: false,
   tdee: 0,
-  // week no is index
-  weekData: [
-    {
-      week: 0,
-      weeksKcal: [0, 0, 0, 0, 0, 0, 0],
-      avgKcal: 0,
-      weeksWeight: [0, 0, 0, 0, 0, 0, 0],
-      avgWeight: 0
-    }
-  ],
-  // objects property is week no
-  alternativeWeekData: [
-    (0: {
-      weeksKcal: [0, 0, 0, 0, 0, 0, 0],
-      avgKcal: 0,
-      weeksWeight: [0, 0, 0, 0, 0, 0, 0],
-      avgWeight: 0
-    })
-  ]
+  weekData: []
 };
 
 const setStartWeight = (state, action) => {
@@ -50,9 +33,10 @@ const setWeeklyChange = (state, action) => {
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
-const lockInitialInputs = (state, action) => {
-  return updateObject(state, { initialInputsLocked: true });
+const addAnotherWeek = (state, action) => {
+  return updateObject(state, { weekData: [...state.weekData, action.weekEntry], weekNo: state.weekNo + 1, initialInputsLocked: true });
 };
+
 
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });
@@ -97,9 +81,8 @@ const reducer = (
       return setWeeklyChange(state, action);
     case actionTypes.SET_START_DATE:
       return setStartDate(state, action);
-    case actionTypes.LOCK_INITIAL_INPUTS:
-      return lockInitialInputs(state, action);
-
+    case actionTypes.ADD_ANOTHER_WEEK:
+      return addAnotherWeek(state, action);
     default:
       return state;
   }

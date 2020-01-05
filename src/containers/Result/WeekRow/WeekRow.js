@@ -1,12 +1,16 @@
 import React from "react";
 import "./WeekRow.scss";
 
-const WeekRow = () => {
+const WeekRow = (props) => {
+
+  const {weekNo} = props;
+
+
   return (
     <div className="weekRow">
       <div className="weekRow-wrapper">
         <div className="weekRow-entry">
-          <p>Week 1</p>
+  <p>Week {weekNo}</p>
           <p>Date</p>
         </div>
         <div className="weekRow-entry noMobile">

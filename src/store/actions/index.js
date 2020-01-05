@@ -4,5 +4,6 @@ export {
   setWeeklyChange,
   setDailyKcalChange,
   setStartDate,
-  lockInitialInputs
+
+  addAnotherWeek
 } from "./calculator";

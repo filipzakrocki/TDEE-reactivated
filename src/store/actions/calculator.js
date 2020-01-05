@@ -27,9 +27,20 @@ export const setDailyKcalChange = dailyChange => {
   };
 };
 
-export const lockInitialInputs = () => {
+
+export const addAnotherWeek = (weekNo) => {
+  let weekEntry = {
+        week: weekNo,
+        weeksKcal: [0, 0, 0, 0, 0, 0, 0],
+        avgKcal: 0,
+        weeksWeight: [0, 0, 0, 0, 0, 0, 0],
+        avgWeight: 0,
+        locked: false
+      }
+
   return {
-    type: actionTypes.LOCK_INITIAL_INPUTS
+    type: actionTypes.ADD_ANOTHER_WEEK,
+    weekEntry: weekEntry
   }
 }
 
@@ -52,34 +63,6 @@ export const setStartDate = startDate => {
 };
 
 
-
-// export const setResults = data => {
-//   console.log(data);
-//   return {
-//     type: actionTypes.SET_RESULTS,
-//     results: data
-//   };
-// };
-
-// export const fetchStarted = data => {
-//   return {
-//     type: actionTypes.FETCH_STARTED
-//   };
-// };
-
-// export const fetchFinished = data => {
-//   return {
-//     type: actionTypes.FETCH_FINISHED
-//   };
-// };
-
-// export const setError = error => {
-//   console.log(error);
-//   return {
-//     type: actionTypes.SET_ERROR,
-//     error: error
-//   };
-// };
 
 // export const setLoadedImages = () => {
 //   return {
