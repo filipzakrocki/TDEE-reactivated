@@ -90,7 +90,7 @@ const CurrentStats = props => {
 
         />
         <InputRow
-          value={setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}
+          value={() => setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}
           onChange={null}
           type="number"
           label="Recommended daily KCAL"
