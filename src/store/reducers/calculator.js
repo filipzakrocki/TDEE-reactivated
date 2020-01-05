@@ -12,6 +12,7 @@ const initialState = {
   weeksToGoal: 0,
   avgWeight: 0,
   kg: true,
+  initialInputsLocked: false,
   tdee: 0,
   // week no is index
   weekData: [
@@ -49,9 +50,10 @@ const setWeeklyChange = (state, action) => {
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
-const setGaining = (state, action) => {
-  return updateObject(state, { gaining: action.gaining });
+const lockInitialInputs = (state, action) => {
+  return updateObject(state, { initialInputsLocked: true });
 };
+
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });
 // };
@@ -77,8 +79,8 @@ const setGaining = (state, action) => {
 //   });
 // };
 
-let localStorageState = null;
-// let localStorageState = JSON.parse(window.localStorage.getItem("state"));
+// let localStorageState = null;
+let localStorageState = JSON.parse(window.localStorage.getItem("state"));
 
 const reducer = (
   state = localStorageState || initialState,
@@ -95,8 +97,9 @@ const reducer = (
       return setWeeklyChange(state, action);
     case actionTypes.SET_START_DATE:
       return setStartDate(state, action);
-    case actionTypes.SET_GAINING:
-      return setGaining(state, action);
+    case actionTypes.LOCK_INITIAL_INPUTS:
+      return lockInitialInputs(state, action);
+
     default:
       return state;
   }

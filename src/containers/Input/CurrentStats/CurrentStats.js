@@ -1,4 +1,4 @@
-import React from "react";
+import React, {} from "react";
 import "./CurrentStats.scss";
 
 import { connect } from "react-redux";
@@ -10,9 +10,9 @@ import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const CurrentStats = props => {
 
+
   //deconstruct props
   const { avgWeight, startWeight, avgTdeeArray, dailyKcalChange, weeksForAvg, weeklyChange, goalWeight} = props;
-
 
   const setCurrentDate = () => {
       const now = new Date();
@@ -26,7 +26,7 @@ const CurrentStats = props => {
   }
 
   const setWeeksNeeded = () => {
-    let weeksNeeded = Math.round((startWeight - goalWeight) / weeklyChange)
+    let weeksNeeded = '' + Math.round(((avgWeight || startWeight) - goalWeight) /  weeklyChange)
   return weeksNeeded
   }
 
@@ -37,7 +37,7 @@ const CurrentStats = props => {
       return avgTdeeArray[0];
     }
     modifiedTdeeArray = avgTdeeArray.slice(avgTdeeArray.length - weeksForAvg, avgTdeeArray.length)
-    avgTdee = modifiedTdeeArray.reduce((a,b) => a+b,0) / weeksForAvg
+    avgTdee = modifiedTdeeArray.reduce((a,b) => a+b, 0) / weeksForAvg
     return avgTdee;
   }
 
@@ -53,7 +53,7 @@ const CurrentStats = props => {
       <InputRowTitle children={"Current Stats"} />
       <InputTable>
         <InputRow
-          value={() => setCurrentDate()}
+          value={setCurrentDate()}
           readOnly={true}
           type="date"
           label="Today's Date"
@@ -74,7 +74,7 @@ const CurrentStats = props => {
           units="kg/lbs"
         />
         <InputRow
-          value={() => setAvgTDEE(avgTdeeArray, weeksForAvg)}
+          value={setAvgTDEE(avgTdeeArray, weeksForAvg)}
           onChange={null}
           readOnly={true}
           type="number"
@@ -82,7 +82,7 @@ const CurrentStats = props => {
           units="kg/lbs"
         />
         <InputRow
-          value={() => setWeeksNeeded()}
+          value={setWeeksNeeded()}
           readOnly={true}
           onChange={null}
           type="number"
@@ -90,7 +90,7 @@ const CurrentStats = props => {
 
         />
         <InputRow
-          value={() => setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}
+          value={setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}
           onChange={null}
           type="number"
           label="Recommended daily KCAL"

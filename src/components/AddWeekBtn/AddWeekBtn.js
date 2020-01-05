@@ -1,10 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import './AddWeekBtn.scss'
 
-const AddWeekBtn = () => {
+import * as actions from '../../store/actions/index'
+
+const AddWeekBtn = (props) => {
     return (
-        <button className='addWeekBtn'>Add another week</button>
+        <button onClick={() => props.lockInitialInputs()} className='addWeekBtn'>Add another week</button>
     );
 }
 
-export default AddWeekBtn;
+const mapDispatchToProps = dispatch => {
+    return {
+        lockInitialInputs: () => dispatch(actions.lockInitialInputs())
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(AddWeekBtn);

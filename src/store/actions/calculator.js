@@ -26,6 +26,13 @@ export const setDailyKcalChange = dailyChange => {
     dailyKcalChange: parseInt(dailyChange)
   };
 };
+
+export const lockInitialInputs = () => {
+  return {
+    type: actionTypes.LOCK_INITIAL_INPUTS
+  }
+}
+
 export const setStartDate = startDate => {
   let date = startDate;
   if (!startDate) {
@@ -44,13 +51,7 @@ export const setStartDate = startDate => {
   };
 };
 
-export const setGaining = gainingBool => {
-  let operator = gainingBool ? "+" : "-";
-  return {
-    type: actionTypes.SET_GAINING,
-    gaining: operator
-  };
-};
+
 
 // export const setResults = data => {
 //   console.log(data);

@@ -9,7 +9,7 @@ import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const InitialInput = props => {
   //TODO: DESTRUCTURE
-  const { startDate, startWeight, dailyKcalChange, weeklyChange, goalWeight, setStartWeight, setGoalWeight, setDailyKcalChange, setWeeklyChange, setStartDate } = props;
+  const { initialInputsLocked, startDate, startWeight, dailyKcalChange, weeklyChange, goalWeight, setStartWeight, setGoalWeight, setDailyKcalChange, setWeeklyChange, setStartDate } = props;
 
   // useEffect(() => {
   //   setStartDate(startDate);
@@ -33,6 +33,7 @@ const InitialInput = props => {
         <InputRow
           onChange={setStartDate}
           value={startDate}
+          readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
           units=""
@@ -40,6 +41,7 @@ const InitialInput = props => {
         <InputRow
           onChange={setStartWeight}
           value={startWeight}
+          readOnly={initialInputsLocked}
           step={0.1}
           type="number"
           label="Starting Weight"
@@ -80,7 +82,7 @@ const mapStateToProps = state => {
     startDate: state.calculator.startDate,
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
-
+    initialInputsLocked: state.calculator.initialInputsLocked
   };
 };
 

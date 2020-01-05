@@ -8,37 +8,6 @@ import AddWeekBtn from "../../components/AddWeekBtn/AddWeekBtn";
 const Result = () => {
   return (
     <section className="result">
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
-      <WeekRow />
       <AddWeekBtn />
     </section>
   );
