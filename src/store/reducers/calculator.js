@@ -39,37 +39,20 @@ const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
 const setKcalAndKg = (state, action) => {
-  return produce(
-    state,
-    draft => {
-      draft.weekData[action.week].days[action.day] = {
-        kg: parseFloat(action.kg),
-        kcal: parseFloat(action.kcal)
-      };
-    }
-
-    // return produce(state, draft => {
-    //   draft.firstLevel.secondLevel.thirdLevel.property1 = action.data;
-
-    // bonus, you can do array updated as well!
-    // draft.firstLevel.secondLevel.thirdLevel.property2[index] = someData;
-  );
+  // let newState = { ...state };
+  // console.log(newState);
+  // newState.weekData[action.week].days[action.day] = {
+  //   kg: action.kg,
+  //   kcal: action.kcal
+  // };
+  // return newState;
+  return produce(state, draft => {
+    draft.weekData[action.week].days[action.day] = {
+      kg: Number(action.kg),
+      kcal: Number(action.kcal)
+    };
+  });
 };
-
-// const addIngredient = (state, action) => {
-//   const updatedIngredient = {
-//     [action.ingredientName]: state.ingredients[action.ingredientName] + 1
-//   };
-//   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
-//   const updatedState = {
-//     ingredients: updatedIngredients,
-//     totalKcal: state.totalKcal + INGREDIENT_KCAL[action.ingredientName],
-//     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
-//     purchasable: initialState.ingredients !== state.ingredients,
-//     building: true
-//   };
-//   return updateObject(state, updatedState);
-// };
 
 const addAnotherWeek = (state, action) => {
   return updateObject(state, {
