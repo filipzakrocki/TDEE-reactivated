@@ -5,7 +5,9 @@ export const SET_DAILY_KCAL_CHANGE = "SET_DAILY_KCAL_CHANGE";
 export const SET_START_DATE = "SET_START_DATE";
 export const SET_GAINING = "SET_GAINING";
 
-export const ADD_ANOTHER_WEEK = "ADD_ANOTHER_WEEK"
+export const SET_KCAL_AND_KG = "SET_KCAL_AND_KG";
+
+export const ADD_ANOTHER_WEEK = "ADD_ANOTHER_WEEK";
 
 // export const SET_RESULTS = "SET_RESULTS";
 

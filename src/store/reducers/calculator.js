@@ -1,5 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
+import produce from "immer";
 
 const initialState = {
   startDate: "",
@@ -19,7 +20,11 @@ const initialState = {
 };
 
 const setStartWeight = (state, action) => {
-  return updateObject(state, { startWeight: action.enteredWeight, avgWeight: action.enteredWeight, avgTdeeArray: [33 * action.enteredWeight] });
+  return updateObject(state, {
+    startWeight: action.enteredWeight,
+    avgWeight: action.enteredWeight,
+    avgTdeeArray: [33 * action.enteredWeight]
+  });
 };
 const setGoalWeight = (state, action) => {
   return updateObject(state, { goalWeight: action.enteredGoal });
@@ -33,10 +38,46 @@ const setWeeklyChange = (state, action) => {
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
-const addAnotherWeek = (state, action) => {
-  return updateObject(state, { weekData: [...state.weekData, action.weekEntry], weekNo: action.updatedWeekNo, initialInputsLocked: true });
+const setKcalAndKg = (state, action) => {
+  return produce(
+    state,
+    draft => {
+      draft.weekData[action.week].days[action.day] = {
+        kg: parseFloat(action.kg),
+        kcal: parseFloat(action.kcal)
+      };
+    }
+
+    // return produce(state, draft => {
+    //   draft.firstLevel.secondLevel.thirdLevel.property1 = action.data;
+
+    // bonus, you can do array updated as well!
+    // draft.firstLevel.secondLevel.thirdLevel.property2[index] = someData;
+  );
 };
 
+// const addIngredient = (state, action) => {
+//   const updatedIngredient = {
+//     [action.ingredientName]: state.ingredients[action.ingredientName] + 1
+//   };
+//   const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
+//   const updatedState = {
+//     ingredients: updatedIngredients,
+//     totalKcal: state.totalKcal + INGREDIENT_KCAL[action.ingredientName],
+//     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+//     purchasable: initialState.ingredients !== state.ingredients,
+//     building: true
+//   };
+//   return updateObject(state, updatedState);
+// };
+
+const addAnotherWeek = (state, action) => {
+  return updateObject(state, {
+    weekData: [...state.weekData, action.weekEntry],
+    weekNo: action.updatedWeekNo,
+    initialInputsLocked: true
+  });
+};
 
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });
@@ -63,13 +104,10 @@ const addAnotherWeek = (state, action) => {
 //   });
 // };
 
-// let localStorageState = null;
-let localStorageState = JSON.parse(window.localStorage.getItem("state"));
+let localStorageState = null;
+// let localStorageState = JSON.parse(window.localStorage.getItem("state"));
 
-const reducer = (
-  state = localStorageState || initialState,
-  action
-) => {
+const reducer = (state = localStorageState || initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_START_WEIGHT:
       return setStartWeight(state, action);
@@ -83,6 +121,8 @@ const reducer = (
       return setStartDate(state, action);
     case actionTypes.ADD_ANOTHER_WEEK:
       return addAnotherWeek(state, action);
+    case actionTypes.SET_KCAL_AND_KG:
+      return setKcalAndKg(state, action);
     default:
       return state;
   }

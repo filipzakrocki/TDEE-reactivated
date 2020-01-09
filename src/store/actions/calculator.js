@@ -19,6 +19,15 @@ export const setWeeklyChange = weeklyChange => {
     weeklyChange: Number(weeklyChange)
   };
 };
+export const setKcalAndKg = (kcal, kg, week, day) => {
+  return {
+    type: actionTypes.SET_KCAL_AND_KG,
+    kcal: kcal,
+    kg: kg,
+    week: week,
+    day: day
+  };
+};
 
 export const setDailyKcalChange = dailyChange => {
   return {
@@ -27,23 +36,29 @@ export const setDailyKcalChange = dailyChange => {
   };
 };
 
-
-export const addAnotherWeek = (weekNo) => {
+export const addAnotherWeek = weekNo => {
   let weekEntry = {
-        week: weekNo,
-        weeksKcal: [0, 0, 0, 0, 0, 0, 0],
-        avgKcal: 0,
-        weeksWeight: [0, 0, 0, 0, 0, 0, 0],
-        avgWeight: 0,
-        locked: false
-      }
+    week: weekNo,
+    days: [
+      { kg: null, kcal: null },
+      { kg: null, kcal: null },
+      { kg: null, kcal: null },
+      { kg: null, kcal: null },
+      { kg: null, kcal: null },
+      { kg: null, kcal: null },
+      { kg: null, kcal: null }
+    ],
+    avgKcal: 0,
+    avgWeight: 0,
+    locked: false
+  };
 
   return {
     type: actionTypes.ADD_ANOTHER_WEEK,
     weekEntry: weekEntry,
     updatedWeekNo: weekNo + 1
-  }
-}
+  };
+};
 
 export const setStartDate = startDate => {
   let date = startDate;
@@ -62,8 +77,6 @@ export const setStartDate = startDate => {
     startDate: date
   };
 };
-
-
 
 // export const setLoadedImages = () => {
 //   return {

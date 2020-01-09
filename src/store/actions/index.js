@@ -4,6 +4,6 @@ export {
   setWeeklyChange,
   setDailyKcalChange,
   setStartDate,
-
+  setKcalAndKg,
   addAnotherWeek
 } from "./calculator";

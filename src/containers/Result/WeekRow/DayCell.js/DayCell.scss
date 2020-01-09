@@ -1,0 +1,19 @@
+@import "../../../../styles/main.scss";
+
+.weekRow-entry {
+  flex: 1;
+  font-weight: 600;
+}
+.weekRow-entry input {
+  width: 100%;
+  border: none;
+  outline-color: black;
+  background: $input-color;
+  font-size: $default-font;
+  margin: 0;
+  padding: 4px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+}

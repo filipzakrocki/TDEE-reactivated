@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./WeekRow.scss";
 
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
+import DayCell from "./DayCell.js/DayCell";
 
 const WeekRow = props => {
-  const { weekNo, startDate } = props;
+  const { weekNo, startDate, weekData, weekIndex } = props;
 
   const generateDate = (date, weeksToAdd) => {
     let startDate, days, months, years, daysToAdd, outputDate, formattedDate;
@@ -25,49 +27,43 @@ const WeekRow = props => {
     <WeekRowWrapper>
       <div className="weekRow-entry">
         <p>Week {weekNo}</p>
-        <p>{generateDate(startDate, weekNo)}</p>
+        <p>{startDate && generateDate(startDate, weekNo)}</p>
       </div>
       <div className="weekRow-entry noMobile">
         <p>kg</p>
         <p>kcal</p>
       </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
-      <div className="weekRow-entry">
-        <input></input>
-        <input></input>
-      </div>
+      {weekData &&
+        weekData[weekIndex].days.map((day, dayNum) => {
+          return (
+            <DayCell
+              kg={day.kg}
+              kcal={day.kcal}
+              day={dayNum}
+              week={weekIndex}
+              key={weekIndex + dayNum}
+            />
+          );
+        })}
 
       <div className="weekRow-entry noMobile">
         <p>kg</p>
         <p>kcal</p>
       </div>
-      <div className="weekRow-entry noMobile"> ∆</div>
+      <div className="weekRow-entry noMobile">
+        <p>∆kg</p>
+        <p>∆kcal</p>
+      </div>
+
       <div className="weekRow-entry"> WEEK TDEE</div>
     </WeekRowWrapper>
   );
 };
 
-export default WeekRow;
+const mapStateToProps = state => {
+  return {
+    weekData: state.calculator.weekData
+  };
+};
+
+export default connect(mapStateToProps)(WeekRow);
