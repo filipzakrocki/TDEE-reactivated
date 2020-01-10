@@ -5,17 +5,11 @@
   border-top: 1px solid black;
 }
 
-.weekRow-wrapper {
-  display: flex;
-  padding: 0 10%;
-  text-align: center;
-  align-items: center;
-}
-
 .weekRow-entry {
   flex: 1;
   font-weight: 600;
 }
+
 .weekRow-entry input {
   width: 100%;
   border: none;

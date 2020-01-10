@@ -39,13 +39,6 @@ const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
 const setKcalAndKg = (state, action) => {
-  // let newState = { ...state };
-  // console.log(newState);
-  // newState.weekData[action.week].days[action.day] = {
-  //   kg: action.kg,
-  //   kcal: action.kcal
-  // };
-  // return newState;
   return produce(state, draft => {
     draft.weekData[action.week].days[action.day] = {
       kg: Number(action.kg),

@@ -1,0 +1,7 @@
+@import "../../../styles/main.scss";
+
+.WeekNumber {
+  @include weekRow;
+  @include weekRow-label;
+  font-size: $default-font;
+}

@@ -4,26 +4,31 @@ import * as actions from "../../../../store/actions/index";
 import "./DayCell.scss";
 
 const DayCell = props => {
-  const { kg, kcal, setKcalAndKg, week, day } = props;
+  const { week, day, setKcalAndKg, weekData } = props;
+  const dayData = weekData[week].days[day];
+
   return (
     <div className="weekRow-entry">
       <input
         type="number"
-        onChange={e => setKcalAndKg(kcal, e.target.value, week, day)}
-        value={kg}
+        onChange={e => setKcalAndKg(dayData.kcal, e.target.value, week, day)}
+        value={dayData.kg}
       ></input>
       <input
         type="number"
-        onChange={e => setKcalAndKg(e.target.value, kg, week, day)}
-        value={kcal}
+        onChange={e => setKcalAndKg(e.target.value, dayData.kg, week, day)}
+        value={dayData.kcal}
       ></input>
     </div>
   );
 };
 
-// const mapStateToProps = state => {
-//   return {};
-// };
+const mapStateToProps = state => {
+  return {
+    weekData: state.calculator.weekData
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     setKcalAndKg: (kal, kilo, weekIndex, dayIndex) =>
@@ -31,4 +36,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DayCell);
+export default connect(mapStateToProps, mapDispatchToProps)(DayCell);
