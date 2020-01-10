@@ -1,5 +1,13 @@
+// MEDIA QUERY MIXINS https://itnext.io/writing-media-queries-with-sass-mixins-3ea591ea3ea4
+
 @mixin noDisplay {
   display: none;
+}
+
+@mixin mobile-device {
+  @media (max-width: 910px) {
+    @content;
+  }
 }
 
 @mixin weekRow {
