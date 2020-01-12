@@ -25,7 +25,7 @@ const WeekRow = props => {
 
   return (
     <WeekRowWrapper>
-      {/* MAYBE MAYBE MAKE A COMPONENT FOR ALL LABELS?! */}
+
       <LabelCell
       top={`Week ${weekNo}`}
         bottom={startDate && generateDate(startDate, weekNo)}
