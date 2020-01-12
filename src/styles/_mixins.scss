@@ -1,12 +1,15 @@
 // MEDIA QUERY MIXINS https://itnext.io/writing-media-queries-with-sass-mixins-3ea591ea3ea4
 
-@mixin noDisplay {
-  display: none;
-}
 
 @mixin mobile-device {
   @media (max-width: 910px) {
     @content;
+  }
+}
+
+@mixin mobile-device-no-display {
+  @media (max-width: 910px) {
+    display: none;
   }
 }
 
@@ -23,7 +26,6 @@
   font-size: $default-font;
   margin: 0;
   padding: 4px;
-  font-size: 20px;
   text-align: center;
   font-weight: 700;
   line-height: 1.5;
@@ -37,7 +39,6 @@
   font-size: $default-font;
   margin: 0;
   padding: 4px;
-  font-size: 20px;
   text-align: center;
   font-weight: 700;
   line-height: 1.5;

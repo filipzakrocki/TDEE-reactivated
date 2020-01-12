@@ -1,7 +1,10 @@
 @import "../../../styles/main.scss";
 
-.WeekNumber {
+.LabelCell {
   @include weekRow;
   @include weekRow-label;
-  font-size: $default-font;
+}
+
+.noMobile {
+  @include mobile-device-no-display
 }

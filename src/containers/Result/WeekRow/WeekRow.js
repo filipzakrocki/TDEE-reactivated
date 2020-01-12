@@ -6,7 +6,7 @@ import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRo
 import DayCell from "./DayCell.js/DayCell";
 
 //cell components
-import WeekNumber from "../../../components/ResultRows/WeekRowCells/WeekNumber";
+import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
 
 const WeekRow = props => {
   const { weekNo, startDate, weekData, weekIndex } = props;
@@ -20,22 +20,23 @@ const WeekRow = props => {
     daysToAdd = weeksToAdd * 7 - 7;
     outputDate = new Date(years, months, days + daysToAdd);
     formattedDate = outputDate.toDateString().slice(3);
-
     return formattedDate;
   };
 
   return (
     <WeekRowWrapper>
       {/* MAYBE MAYBE MAKE A COMPONENT FOR ALL LABELS?! */}
-      <WeekNumber
-        weekNo={weekNo}
-        startDate={startDate && generateDate(startDate, weekNo)}
+      <LabelCell
+      top={`Week ${weekNo}`}
+        bottom={startDate && generateDate(startDate, weekNo)}
+      />
+      <LabelCell
+      top={'kg'}
+        bottom={'kcal'}
+        noMobile
       />
       {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
-      <div className="weekRow-entry noMobile">
-        <input value={`kg`} />
-        <input value={`kcal`} />
-      </div>
+
       {/* DUMB DOWN DAYCELL COMPONENT?! LINK TO DATA THROUGH PROPS?! */}
       {weekData &&
         weekData[weekIndex].days.map((day, dayNum) => {
@@ -44,18 +45,21 @@ const WeekRow = props => {
           );
         })}
 
-      <div className="weekRow-entry noMobile">
-        <input value={`kg`} />
-        <input value={`kcal`} />
-      </div>
-      <div className="weekRow-entry noMobile">
-        <input value={`∆kg`} />
-        <input value={`∆kcal`} />
-      </div>
+<LabelCell
+      top={'kg'}
+        bottom={'kcal'}
+        noMobile
+      />
+            <LabelCell
+      top={'∆kg'}
+        bottom={'∆kcal'}
+        noMobile
+      />
+      <LabelCell
+      top={`WEEK TDEE`}
 
-      <div className="weekRow-entry">
-        <input value={`WEEK TDEE`} />
-      </div>
+      />
+
     </WeekRowWrapper>
   );
 };
