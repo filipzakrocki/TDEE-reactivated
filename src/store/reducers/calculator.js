@@ -10,6 +10,7 @@ const initialState = {
   weeklyChange: 0,
   weeksForAvg: 2,
   avgTdeeArray: [],
+  avgWeightArray: [],
   weeksToGoal: 0,
   avgWeight: 0,
   weekNo: 1,
@@ -47,6 +48,13 @@ const setKcalAndKg = (state, action) => {
   });
 };
 
+const setWeeklyKcalAndKg = (state, action) => {
+  return produce(state, draft => {
+    draft.avgTdeeArray[action.weekIndex] = action.weeklyKcal;
+    draft.avgWeightArray[action.weekIndex] = action.weeklyWeight;
+})
+};
+
 const addAnotherWeek = (state, action) => {
   return updateObject(state, {
     weekData: [...state.weekData, action.weekEntry],
@@ -54,6 +62,8 @@ const addAnotherWeek = (state, action) => {
     initialInputsLocked: true
   });
 };
+
+
 
 // const setError = (state, action) => {
 //   return updateObject(state, { error: action.error });

@@ -59,6 +59,7 @@ const WeekRow = props => {
       top={`WEEK TDEE`}
 
       />
+      <button onChange={null}>KLIK</button>
 
     </WeekRowWrapper>
   );
@@ -69,5 +70,10 @@ const mapStateToProps = state => {
     weekData: state.calculator.weekData
   };
 };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setWeeklyK
+//   };
+// };
 
 export default connect(mapStateToProps)(WeekRow);

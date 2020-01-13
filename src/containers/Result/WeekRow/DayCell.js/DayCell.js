@@ -7,6 +7,7 @@ const DayCell = props => {
   const { week, day, setKcalAndKg, weekData } = props;
   const dayData = weekData[week].days[day];
 
+
   return (
     <div className="weekRow-entry">
       <input

@@ -12,7 +12,7 @@ const CurrentStats = props => {
 
 
   //deconstruct props
-  const { avgWeight, startWeight, avgTdeeArray, dailyKcalChange, weeksForAvg, weeklyChange, goalWeight} = props;
+  const { avgWeightArray, startWeight, avgTdeeArray, dailyKcalChange, weeksForAvg, weeklyChange, goalWeight} = props;
 
   const setCurrentDate = () => {
       const now = new Date();
@@ -26,7 +26,7 @@ const CurrentStats = props => {
   }
 
   const setWeeksNeeded = () => {
-    let weeksNeeded = '' + Math.round(((avgWeight || startWeight) - goalWeight) /  weeklyChange)
+    let weeksNeeded = '' + Math.round(((avgWeightArray[avgWeightArray.length-1] || startWeight) - goalWeight) /  weeklyChange)
   return weeksNeeded
   }
 
@@ -38,7 +38,7 @@ const CurrentStats = props => {
     }
     modifiedTdeeArray = avgTdeeArray.slice(avgTdeeArray.length - weeksForAvg, avgTdeeArray.length)
     avgTdee = modifiedTdeeArray.reduce((a,b) => a+b, 0) / weeksForAvg
-    return avgTdee;
+    return Math.ceil(avgTdee);
   }
 
   // add props from global state?
@@ -59,14 +59,14 @@ const CurrentStats = props => {
           label="Today's Date"
         />
         <InputRow
-          value={avgWeight}
+          value={avgWeightArray[avgWeightArray.length-1]}
           readOnly={true}
           type="number"
           label="Your AVG weight"
           units="kg/lbs"
         />
         <InputRow
-          value={startWeight - avgWeight}
+          value={startWeight - avgWeightArray[avgWeightArray.length-1]}
           onChange={null}
           readOnly={true}
           type="number"
@@ -79,7 +79,7 @@ const CurrentStats = props => {
           readOnly={true}
           type="number"
           label="Your AVG TDEE"
-          units="kg/lbs"
+          units="kcal"
         />
         <InputRow
           value={setWeeksNeeded()}
@@ -103,7 +103,7 @@ const CurrentStats = props => {
 
 const mapStateToProps = state => {
   return {
-    avgWeight: state.calculator.avgWeight,
+    avgWeightArray: state.calculator.avgWeightArray,
     startWeight: state.calculator.startWeight,
     avgTdeeArray: state.calculator.avgTdeeArray,
     dailyKcalChange: state.calculator.dailyKcalChange,
