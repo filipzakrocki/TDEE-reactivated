@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as actions from '../../../store/actions/index'
 import "./WeekRow.scss";
 
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
@@ -9,7 +10,10 @@ import DayCell from "./DayCell.js/DayCell";
 import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
 
 const WeekRow = props => {
-  const { weekNo, startDate, weekData, weekIndex } = props;
+  const { weekNo, startDate, weekData, weekIndex, setWeeklyKcalAndKg } = props;
+  const weeklyData = weekData[weekIndex].days
+
+  console.log(weeklyData)
 
   const generateDate = (date, weeksToAdd) => {
     let startDate, days, months, years, daysToAdd, outputDate, formattedDate;
@@ -41,7 +45,7 @@ const WeekRow = props => {
       {weekData &&
         weekData[weekIndex].days.map((day, dayNum) => {
           return (
-            <DayCell day={dayNum} week={weekIndex} key={weekIndex + dayNum} />
+            <DayCell day={dayNum} weekIndex={weekIndex} key={weekIndex + dayNum} />
           );
         })}
 
@@ -59,7 +63,7 @@ const WeekRow = props => {
       top={`WEEK TDEE`}
 
       />
-      <button onChange={null}>KLIK</button>
+      <button onClick={() => setWeeklyKcalAndKg(weeklyData, weekNo)}>KLIK</button>
 
     </WeekRowWrapper>
   );
@@ -70,10 +74,12 @@ const mapStateToProps = state => {
     weekData: state.calculator.weekData
   };
 };
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     setWeeklyK
-//   };
-// };
 
-export default connect(mapStateToProps)(WeekRow);
+const mapDispatchToProps = dispatch => {
+  return {
+    setWeeklyKcalAndKg: (week, index) =>
+      dispatch(actions.setWeeklyKcalAndKg(week, index))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeekRow);

@@ -29,21 +29,21 @@ export const setKcalAndKg = (kcal, kg, week, day) => {
   };
 };
 
-export const setWeeklyKcalAndKg = (weekData, weekIndex) => {
+export const setWeeklyKcalAndKg = (week, weekIndex) => {
   let weeklyKcal, weeklyWeight;
 
   const getAverage = (array, unit) => {
     return array.reduce((prev, day) => prev + day[unit], 0) / array.length
   }
 
-  weeklyKcal = getAverage(weekData, 'kcal')
-  weeklyWeight = getAverage(weekData, 'kg')
+  weeklyKcal = getAverage(week, 'kcal')
+  weeklyWeight = getAverage(week, 'kg')
 
   return {
-    type: actionTypes.SET_KCAL_AND_KG,
+    type: actionTypes.SET_WEEKLY_KCAL_AND_KG,
     weekIndex: weekIndex,
     weeklyKcal: weeklyKcal,
-    weeklyWeight: weeklyWeight
+    weeklyWeight: weeklyWeight,
   };
 };
 

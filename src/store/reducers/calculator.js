@@ -23,7 +23,7 @@ const initialState = {
 const setStartWeight = (state, action) => {
   return updateObject(state, {
     startWeight: action.enteredWeight,
-    avgWeight: action.enteredWeight,
+    avgWeightArray: [action.enteredWeight],
     avgTdeeArray: [33 * action.enteredWeight]
   });
 };
@@ -39,6 +39,7 @@ const setWeeklyChange = (state, action) => {
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
+
 const setKcalAndKg = (state, action) => {
   return produce(state, draft => {
     draft.weekData[action.week].days[action.day] = {
@@ -109,6 +110,8 @@ const reducer = (state = localStorageState || initialState, action) => {
       return addAnotherWeek(state, action);
     case actionTypes.SET_KCAL_AND_KG:
       return setKcalAndKg(state, action);
+    case actionTypes.SET_WEEKLY_KCAL_AND_KG:
+      return setWeeklyKcalAndKg(state, action);
     default:
       return state;
   }

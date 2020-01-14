@@ -4,20 +4,20 @@ import * as actions from "../../../../store/actions/index";
 import "./DayCell.scss";
 
 const DayCell = props => {
-  const { week, day, setKcalAndKg, weekData } = props;
-  const dayData = weekData[week].days[day];
+  const { weekIndex, day, setKcalAndKg, weekData } = props;
+  const dayData = weekData[weekIndex].days[day];
 
 
   return (
     <div className="weekRow-entry">
       <input
         type="number"
-        onChange={e => setKcalAndKg(dayData.kcal, e.target.value, week, day)}
+        onChange={e => setKcalAndKg(dayData.kcal, e.target.value, weekIndex, day)}
         value={dayData.kg}
       ></input>
       <input
         type="number"
-        onChange={e => setKcalAndKg(e.target.value, dayData.kg, week, day)}
+        onChange={e => setKcalAndKg(e.target.value, dayData.kg, weekIndex, day)}
         value={dayData.kcal}
       ></input>
     </div>
