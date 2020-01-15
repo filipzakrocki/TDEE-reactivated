@@ -1,4 +1,4 @@
-import React, {} from "react";
+import React from "react";
 import "./CurrentStats.scss";
 
 import { connect } from "react-redux";
@@ -9,44 +9,57 @@ import InputRow from "../../../components/Input/InputRow/InputRow";
 import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const CurrentStats = props => {
-
-
   //deconstruct props
-  const { avgWeightArray, startWeight, avgTdeeArray, dailyKcalChange, weeksForAvg, weeklyChange, goalWeight} = props;
+  const {
+    avgWeightArray,
+    startWeight,
+    avgTdeeArray,
+    dailyKcalChange,
+    weeksForAvg,
+    weeklyChange,
+    goalWeight
+  } = props;
 
   const setCurrentDate = () => {
-      const now = new Date();
-      const dd = now.getDate();
-      const mm = now.getMonth() + 1;
-      const yyyy = now.getFullYear();
-      const today = `${yyyy}-${mm < 10 ? "0" + mm : mm}-${
-        dd < 10 ? "0" + dd : dd
-      }`;
-      return today;
-  }
+    const now = new Date();
+    const dd = now.getDate();
+    const mm = now.getMonth() + 1;
+    const yyyy = now.getFullYear();
+    const today = `${yyyy}-${mm < 10 ? "0" + mm : mm}-${
+      dd < 10 ? "0" + dd : dd
+    }`;
+    return today;
+  };
 
   const setWeeksNeeded = () => {
-    let weeksNeeded = '' + Math.round(((avgWeightArray[avgWeightArray.length-1] || startWeight) - goalWeight) /  weeklyChange)
-  return weeksNeeded
-  }
+    let weeksNeeded =
+      "" +
+      Math.round(
+        ((avgWeightArray[avgWeightArray.length - 1] || startWeight) -
+          goalWeight) /
+          weeklyChange
+      );
+    return weeksNeeded;
+  };
 
   // delegate to global state?
   const setAvgTDEE = (avgTdeeArray, weeksForAvg) => {
     let avgTdee, modifiedTdeeArray;
-    if (avgTdeeArray.length === 1 ) {
+    if (avgTdeeArray.length === 1) {
       return avgTdeeArray[0];
     }
-    modifiedTdeeArray = avgTdeeArray.slice(avgTdeeArray.length - weeksForAvg, avgTdeeArray.length)
-    avgTdee = modifiedTdeeArray.reduce((a,b) => a+b, 0) / weeksForAvg
+    modifiedTdeeArray = avgTdeeArray.slice(
+      avgTdeeArray.length - weeksForAvg,
+      avgTdeeArray.length
+    );
+    avgTdee = modifiedTdeeArray.reduce((a, b) => a + b, 0) / weeksForAvg;
     return Math.ceil(avgTdee);
-  }
+  };
 
   // add props from global state?
   // const setFinalTdee = () => {
 
   // }
-
-
 
   return (
     <div className="currentStats">
@@ -59,14 +72,14 @@ const CurrentStats = props => {
           label="Today's Date"
         />
         <InputRow
-          value={avgWeightArray[avgWeightArray.length-1]}
+          value={avgWeightArray[avgWeightArray.length - 1]}
           readOnly={true}
           type="number"
           label="Your AVG weight"
           units="kg/lbs"
         />
         <InputRow
-          value={startWeight - avgWeightArray[avgWeightArray.length-1]}
+          value={startWeight - avgWeightArray[avgWeightArray.length - 1]}
           onChange={null}
           readOnly={true}
           type="number"
@@ -87,7 +100,6 @@ const CurrentStats = props => {
           onChange={null}
           type="number"
           label="Weeks to goal"
-
         />
         <InputRow
           value={setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}

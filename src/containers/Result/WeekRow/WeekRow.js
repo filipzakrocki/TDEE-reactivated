@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import * as actions from '../../../store/actions/index'
+import * as actions from "../../../store/actions/index";
 import "./WeekRow.scss";
 
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
@@ -11,9 +11,11 @@ import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
 
 const WeekRow = props => {
   const { weekNo, startDate, weekData, weekIndex, setWeeklyKcalAndKg } = props;
-  const weeklyData = weekData[weekIndex].days
+  const weekDays = weekData[weekIndex].days;
 
-  console.log(weeklyData)
+  useEffect(() => {
+    setWeeklyKcalAndKg(weekDays, weekIndex);
+  });
 
   const generateDate = (date, weeksToAdd) => {
     let startDate, days, months, years, daysToAdd, outputDate, formattedDate;
@@ -29,42 +31,33 @@ const WeekRow = props => {
 
   return (
     <WeekRowWrapper>
-
       <LabelCell
-      top={`Week ${weekNo}`}
+        top={`Week ${weekNo}`}
         bottom={startDate && generateDate(startDate, weekNo)}
       />
-      <LabelCell
-      top={'kg'}
-        bottom={'kcal'}
-        noMobile
-      />
+      <LabelCell top={"kg"} bottom={"kcal"} noMobile />
       {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
 
       {/* DUMB DOWN DAYCELL COMPONENT?! LINK TO DATA THROUGH PROPS?! */}
       {weekData &&
         weekData[weekIndex].days.map((day, dayNum) => {
           return (
-            <DayCell day={dayNum} weekIndex={weekIndex} key={weekIndex + dayNum} />
+            <DayCell
+              day={dayNum}
+              weekIndex={weekIndex}
+              key={weekIndex + dayNum}
+            />
           );
         })}
 
-<LabelCell
-      top={'kg'}
-        bottom={'kcal'}
-        noMobile
-      />
-            <LabelCell
-      top={'∆kg'}
-        bottom={'∆kcal'}
-        noMobile
-      />
       <LabelCell
-      top={`WEEK TDEE`}
-
+        top={`${weekData[weekIndex].avgWeight || ""} kg`}
+        bottom={`${weekData[weekIndex].avgKcal || ""} kcal`}
+        noMobile
       />
-      <button onClick={() => setWeeklyKcalAndKg(weeklyData, weekNo)}>KLIK</button>
-
+      <LabelCell top={"∆kg"} bottom={"∆kcal"} noMobile />
+      <LabelCell top={`WEEK TDEE`} />
+      <button onClick={() => setWeeklyKcalAndKg(weekDays, weekNo)}>KLIK</button>
     </WeekRowWrapper>
   );
 };

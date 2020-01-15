@@ -2,9 +2,12 @@ import * as actionTypes from "./actionTypes";
 // import axios from "axios";
 
 export const setStartWeight = enteredWeight => {
+  const weightToTdee = 33 * enteredWeight;
+
   return {
     type: actionTypes.SET_START_WEIGHT,
-    enteredWeight: Number(enteredWeight)
+    enteredWeight: Number(enteredWeight),
+    startingTdee: weightToTdee
   };
 };
 export const setGoalWeight = enteredGoal => {
@@ -33,17 +36,21 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
   let weeklyKcal, weeklyWeight;
 
   const getAverage = (array, unit) => {
-    return array.reduce((prev, day) => prev + day[unit], 0) / array.length
-  }
+    let filteredArray = array.filter(el => el[unit] > 0);
+    return (
+      filteredArray.reduce((prev, day) => prev + day[unit], 0) /
+      filteredArray.length
+    );
+  };
 
-  weeklyKcal = getAverage(week, 'kcal')
-  weeklyWeight = getAverage(week, 'kg')
+  weeklyKcal = Math.ceil(getAverage(week, "kcal"));
+  weeklyWeight = Math.ceil(getAverage(week, "kg"));
 
   return {
     type: actionTypes.SET_WEEKLY_KCAL_AND_KG,
     weekIndex: weekIndex,
     weeklyKcal: weeklyKcal,
-    weeklyWeight: weeklyWeight,
+    weeklyWeight: weeklyWeight
   };
 };
 
@@ -58,13 +65,13 @@ export const addAnotherWeek = weekNo => {
   let weekEntry = {
     week: weekNo,
     days: [
-      { kg: null, kcal: null },
-      { kg: null, kcal: null },
-      { kg: null, kcal: null },
-      { kg: null, kcal: null },
-      { kg: null, kcal: null },
-      { kg: null, kcal: null },
-      { kg: null, kcal: null }
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" },
+      { kg: "", kcal: "" }
     ],
     avgKcal: 0,
     avgWeight: 0,
