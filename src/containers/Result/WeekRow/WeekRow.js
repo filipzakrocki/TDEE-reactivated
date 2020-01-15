@@ -57,7 +57,6 @@ const WeekRow = props => {
       />
       <LabelCell top={"∆kg"} bottom={"∆kcal"} noMobile />
       <LabelCell top={`WEEK TDEE`} />
-      <button onClick={() => setWeeklyKcalAndKg(weekDays, weekNo)}>KLIK</button>
     </WeekRowWrapper>
   );
 };

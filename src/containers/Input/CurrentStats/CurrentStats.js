@@ -55,7 +55,6 @@ const CurrentStats = props => {
     avgTdee = modifiedTdeeArray.reduce((a, b) => a + b, 0) / weeksForAvg;
     return Math.ceil(avgTdee);
   };
-
   // add props from global state?
   // const setFinalTdee = () => {
 
@@ -72,19 +71,19 @@ const CurrentStats = props => {
           label="Today's Date"
         />
         <InputRow
-          value={avgWeightArray[avgWeightArray.length - 1]}
+          value={avgWeightArray[avgWeightArray.length - 1] || startWeight}
           readOnly={true}
           type="number"
           label="Your AVG weight"
           units="kg/lbs"
         />
         <InputRow
-          value={startWeight - avgWeightArray[avgWeightArray.length - 1]}
+          value={startWeight - avgWeightArray[avgWeightArray.length - 1] || "0"}
           onChange={null}
           readOnly={true}
           type="number"
           label="You have lost"
-          units="kg/lbs"
+          units="kg"
         />
         <InputRow
           value={setAvgTDEE(avgTdeeArray, weeksForAvg)}

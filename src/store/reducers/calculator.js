@@ -51,8 +51,7 @@ const setKcalAndKg = (state, action) => {
 
 const setWeeklyKcalAndKg = (state, action) => {
   return produce(state, draft => {
-    draft.avgTdeeArray[action.weekIndex] = action.weeklyKcal;
-    draft.avgWeightArray[action.weekIndex] = action.weeklyWeight;
+    draft.avgWeightArray[action.weekIndex + 1] = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
   });

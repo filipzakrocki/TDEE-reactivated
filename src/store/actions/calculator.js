@@ -43,14 +43,14 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
     );
   };
 
+  weeklyWeight = getAverage(week, "kg").toFixed(1);
   weeklyKcal = Math.ceil(getAverage(week, "kcal"));
-  weeklyWeight = Math.ceil(getAverage(week, "kg"));
 
   return {
     type: actionTypes.SET_WEEKLY_KCAL_AND_KG,
     weekIndex: weekIndex,
     weeklyKcal: weeklyKcal,
-    weeklyWeight: weeklyWeight
+    weeklyWeight: Number(weeklyWeight)
   };
 };
 
