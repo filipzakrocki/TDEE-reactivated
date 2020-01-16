@@ -10,7 +10,16 @@ import DayCell from "./DayCell.js/DayCell";
 import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
 
 const WeekRow = props => {
-  const { weekNo, startDate, weekData, weekIndex, setWeeklyKcalAndKg } = props;
+  const {
+    weekNo,
+    startDate,
+    startWeight,
+    weekData,
+    avgTdeeArray,
+    weekIndex,
+    setWeeklyKcalAndKg
+  } = props;
+
   const weekDays = weekData[weekIndex].days;
 
   useEffect(() => {
@@ -29,12 +38,38 @@ const WeekRow = props => {
     return formattedDate;
   };
 
+  const firstDateofTheWeek = startDate && generateDate(startDate, weekNo);
+  const avgKcalForWeek = weekData[weekIndex].avgKcal;
+  const avgWeightForWeek = weekData[weekIndex].avgWeight;
+  const avgKcalForPreviousWeek =
+    weekIndex > 0 ? weekData[weekIndex - 1].avgKcal : avgTdeeArray[0];
+  const avgWeightForPreviousWeek =
+    weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
+  const kcalChange = avgKcalForWeek - avgKcalForPreviousWeek;
+  const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
+
+  console.log(weightChange * 1100);
+
+  //   TDEE CALCULATIONS
+
+  //   var change = -0.2;
+  // var kcal = 2000;
+
+  // const calculateTDEE = (changeWeekly, weeklyKcal) => {
+  //   return weeklyKcal - (changeWeekly * 1100)
+  // }
+
+  // console.log(calculateTDEE(change, kcal))
+
+  // weekly change = 0.2 kg
+
+  // that is 0.2 x 7700 of extra kcalories = 1540 kcal
+
+  // per day that gives 220;
+
   return (
     <WeekRowWrapper>
-      <LabelCell
-        top={`Week ${weekNo}`}
-        bottom={startDate && generateDate(startDate, weekNo)}
-      />
+      <LabelCell top={`Week ${weekNo}`} bottom={firstDateofTheWeek} />
       <LabelCell top={"kg"} bottom={"kcal"} noMobile />
       {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
 
@@ -51,11 +86,17 @@ const WeekRow = props => {
         })}
 
       <LabelCell
-        top={`${weekData[weekIndex].avgWeight || ""} kg`}
-        bottom={`${weekData[weekIndex].avgKcal || ""} kcal`}
+        top={`${avgWeightForWeek.toFixed(2)} kg`}
+        bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         noMobile
       />
-      <LabelCell top={"∆kg"} bottom={"∆kcal"} noMobile />
+      {/* CONSIDER NOT HAVING KCAL CHANGE */}
+      <LabelCell
+        top={`${weightChange.toFixed(2)} kg`}
+        bottom={`${kcalChange} kcal`}
+        noMobile
+      />
+
       <LabelCell top={`WEEK TDEE`} />
     </WeekRowWrapper>
   );
@@ -63,7 +104,9 @@ const WeekRow = props => {
 
 const mapStateToProps = state => {
   return {
-    weekData: state.calculator.weekData
+    weekData: state.calculator.weekData,
+    startWeight: state.calculator.startWeight,
+    avgTdeeArray: state.calculator.avgTdeeArray
   };
 };
 
