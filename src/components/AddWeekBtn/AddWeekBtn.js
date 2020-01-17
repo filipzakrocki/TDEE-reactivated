@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./AddWeekBtn.scss";
 
-import * as actions from "../../store/actions/index";
+import { addAnotherWeek } from "../../store/actions/index";
 
 const AddWeekBtn = props => {
   const { weekNo, addAnotherWeek } = props;
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAnotherWeek: weekNo => dispatch(actions.addAnotherWeek(weekNo))
+    addAnotherWeek: weekNo => dispatch(addAnotherWeek(weekNo))
   };
 };
 

@@ -1,12 +1,10 @@
-import React from 'react';
-import './InputColumn.scss';
+import React from "react";
+import "./InputColumn.scss";
 
-const InputColumn = (props) => {
-    return (
-        <div className='inputColumn'>
-            {props.children}
-        </div>
-    );
-}
+const InputColumn = props => {
+  const { children } = props;
+
+  return <div className="inputColumn">{children}</div>;
+};
 
 export default InputColumn;

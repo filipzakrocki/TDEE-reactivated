@@ -2,10 +2,10 @@ import React from "react";
 import "./LabelCell.scss";
 
 const WeekNumber = props => {
-  let { top, bottom, noMobile } = props;
+  let { top, bottom, hiddenInMobileView } = props;
 
   return (
-    <div className={`LabelCell ${noMobile ? 'noMobile' : ''}`}>
+    <div className={`LabelCell ${hiddenInMobileView ? "mobileView" : ""}`}>
       <p>{top}</p>
       <p>{bottom}</p>
     </div>

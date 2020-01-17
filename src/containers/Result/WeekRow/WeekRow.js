@@ -4,10 +4,10 @@ import * as actions from "../../../store/actions/index";
 import "./WeekRow.scss";
 
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
-import DayCell from "./DayCell.js/DayCell";
 
 //cell components
 import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
+import DayCell from "./DayCell.js/DayCell";
 
 const WeekRow = props => {
   const {
@@ -47,6 +47,7 @@ const WeekRow = props => {
     weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
   const kcalChange = avgKcalForWeek - avgKcalForPreviousWeek;
   const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
+  const weeklyTDEE = avgKcalForWeek - weightChange * 1100;
 
   console.log(weightChange * 1100);
 
@@ -70,7 +71,7 @@ const WeekRow = props => {
   return (
     <WeekRowWrapper>
       <LabelCell top={`Week ${weekNo}`} bottom={firstDateofTheWeek} />
-      <LabelCell top={"kg"} bottom={"kcal"} noMobile />
+      <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView />
       {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
 
       {/* DUMB DOWN DAYCELL COMPONENT?! LINK TO DATA THROUGH PROPS?! */}
@@ -88,16 +89,16 @@ const WeekRow = props => {
       <LabelCell
         top={`${avgWeightForWeek.toFixed(2)} kg`}
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
-        noMobile
+        hiddenInMobileView
       />
       {/* CONSIDER NOT HAVING KCAL CHANGE */}
       <LabelCell
         top={`${weightChange.toFixed(2)} kg`}
-        bottom={`${kcalChange} kcal`}
-        noMobile
+        bottom={`${Math.ceil(kcalChange)} kcal`}
+        hiddenInMobileView
       />
 
-      <LabelCell top={`WEEK TDEE`} />
+      <LabelCell top={`${Math.ceil(weeklyTDEE)} KCAL`} />
     </WeekRowWrapper>
   );
 };

@@ -79,7 +79,6 @@ const CurrentStats = props => {
         />
         <InputRow
           value={startWeight - avgWeightArray[avgWeightArray.length - 1] || "0"}
-          onChange={null}
           readOnly={true}
           type="number"
           label="You have lost"
@@ -87,7 +86,6 @@ const CurrentStats = props => {
         />
         <InputRow
           value={setAvgTDEE(avgTdeeArray, weeksForAvg)}
-          onChange={null}
           readOnly={true}
           type="number"
           label="Your AVG TDEE"
@@ -96,7 +94,6 @@ const CurrentStats = props => {
         <InputRow
           value={setWeeksNeeded()}
           readOnly={true}
-          onChange={null}
           type="number"
           label="Weeks to goal"
         />

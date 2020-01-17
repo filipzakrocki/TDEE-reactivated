@@ -1,12 +1,13 @@
-import React from 'react';
-import './InputRowTitle.scss'
+import React from "react";
+import "./InputRowTitle.scss";
 
-const InputRowTitle = (props) => {
-    return (
-        <div className='inputRowTitle'>
-            <h1>{props.children}</h1>
-        </div>
-    );
-}
+const InputRowTitle = props => {
+  const { children } = props;
+  return (
+    <div className="inputRowTitle">
+      <h1>{children}</h1>
+    </div>
+  );
+};
 
 export default InputRowTitle;

@@ -24,37 +24,18 @@ const WeekLabel = props => {
     "Sat."
   ];
 
+  const daysToShow = startDate
+    ? DAYS.slice(startingDayOfTheWeek, startingDayOfTheWeek + 7)
+    : ["", "", "", "", "", "", ""];
+
   return (
     <div className="weekLabel">
       <div className="weekLabel-wrapper">
         <div className="weekLabel-label"> Week</div>
         <div className="weekLabel-label noMobile"> Stats</div>
-
-        <div className="weekLabel-dayLabel"> {DAYS[startingDayOfTheWeek]}</div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 1]}
-        </div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 2]}
-        </div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 3]}
-        </div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 4]}
-        </div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 5]}
-        </div>
-        <div className="weekLabel-dayLabel">
-          {" "}
-          {DAYS[startingDayOfTheWeek + 6]}
-        </div>
+        {daysToShow.map(day => (
+          <div className="weekLabel-dayLabel">{" " + day}</div>
+        ))}
         <div className="weekLabel-label noMobile"> Avg.</div>
         <div className="weekLabel-label noMobile"> ∆</div>
         <div className="weekLabel-label"> TDEE</div>

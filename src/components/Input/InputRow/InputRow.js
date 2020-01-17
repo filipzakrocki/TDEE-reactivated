@@ -2,21 +2,32 @@ import React from "react";
 import "./InputRow.scss";
 
 const InputRow = props => {
+  const {
+    disabled,
+    value,
+    step,
+    readOnly,
+    onChange,
+    type,
+    label,
+    units
+  } = props;
+
   return (
     <tr className="inputRow">
-      <td className="inputRow-label">{props.label}</td>
+      <td className="inputRow-label">{label}</td>
       <td className="inputRow-input">
         <input
-          onChange={e => props.onChange(e.target.value)}
-          disabled={props.disabled}
-          value={props.value}
-          step={props.step}
-          readOnly={props.readOnly}
+          onChange={e => onChange(e.target.value)}
+          disabled={disabled}
+          value={value}
+          step={step}
+          readOnly={readOnly}
           required
-          type={props.type}
+          type={type}
         />
       </td>
-      <td className="inputRow-units">{props.units}</td>
+      <td className="inputRow-units">{units}</td>
     </tr>
   );
 };
