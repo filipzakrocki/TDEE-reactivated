@@ -33,8 +33,10 @@ const WeekLabel = props => {
       <div className="weekLabel-wrapper">
         <div className="weekLabel-label"> Week</div>
         <div className="weekLabel-label noMobile"> Stats</div>
-        {daysToShow.map(day => (
-          <div className="weekLabel-dayLabel">{" " + day}</div>
+        {daysToShow.map((day, index) => (
+          <div key={index} className="weekLabel-dayLabel">
+            {" " + day}
+          </div>
         ))}
         <div className="weekLabel-label noMobile"> Avg.</div>
         <div className="weekLabel-label noMobile"> ∆</div>
