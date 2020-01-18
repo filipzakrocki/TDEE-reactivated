@@ -15,10 +15,14 @@ const CurrentStats = props => {
     startWeight,
     avgTdeeArray,
     dailyKcalChange,
+    avgWeight,
     weeksForAvg,
     weeklyChange,
-    goalWeight
+    goalWeight,
+    weekData
   } = props;
+
+  const totalLoss = startWeight - avgWeight;
 
   const setCurrentDate = () => {
     const now = new Date();
@@ -42,23 +46,22 @@ const CurrentStats = props => {
     return weeksNeeded;
   };
 
-  // delegate to global state?
   const setAvgTDEE = (avgTdeeArray, weeksForAvg) => {
-    let avgTdee, modifiedTdeeArray;
+    let avgTdee, modifiedTdeeArray, filteredArray;
     if (avgTdeeArray.length === 1) {
       return avgTdeeArray[0];
     }
-    modifiedTdeeArray = avgTdeeArray.slice(
-      avgTdeeArray.length - weeksForAvg,
-      avgTdeeArray.length
+
+    filteredArray = avgTdeeArray.filter(el => el);
+
+    modifiedTdeeArray = filteredArray.slice(
+      filteredArray.length - weeksForAvg,
+      filteredArray.length
     );
-    avgTdee = modifiedTdeeArray.reduce((a, b) => a + b, 0) / weeksForAvg;
+    avgTdee =
+      modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
     return Math.ceil(avgTdee);
   };
-  // add props from global state?
-  // const setFinalTdee = () => {
-
-  // }
 
   return (
     <div className="currentStats">
@@ -71,14 +74,14 @@ const CurrentStats = props => {
           label="Today's Date"
         />
         <InputRow
-          value={avgWeightArray[avgWeightArray.length - 1] || startWeight}
+          value={avgWeight || startWeight}
           readOnly={true}
           type="number"
           label="Your AVG weight"
           units="kg/lbs"
         />
         <InputRow
-          value={startWeight - avgWeightArray[avgWeightArray.length - 1] || "0"}
+          value={totalLoss.toFixed(2)}
           readOnly={true}
           type="number"
           label="You have lost"
@@ -119,7 +122,9 @@ const mapStateToProps = state => {
     weeksForAvg: state.calculator.weeksForAvg,
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
-    tdee: state.calculator.tdee
+    tdee: state.calculator.tdee,
+    weekData: state.calculator.weekData,
+    avgWeight: state.calculator.avgWeight
   };
 };
 

@@ -43,7 +43,7 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
     );
   };
 
-  weeklyWeight = getAverage(week, "kg").toFixed(1);
+  weeklyWeight = getAverage(week, "kg").toFixed(2);
   weeklyKcal = Math.ceil(getAverage(week, "kcal"));
 
   return {
@@ -51,6 +51,16 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
     weekIndex: weekIndex,
     weeklyKcal: weeklyKcal,
     weeklyWeight: Number(weeklyWeight)
+  };
+};
+
+export const setWeeklyTdee = (weeklyTdee, weekIndex) => {
+  console.log("RECEIVED TDEE", weeklyTdee);
+
+  return {
+    type: actionTypes.SET_WEEKLY_TDEE,
+    weekIndex: weekIndex,
+    tdee: Math.ceil(weeklyTdee)
   };
 };
 

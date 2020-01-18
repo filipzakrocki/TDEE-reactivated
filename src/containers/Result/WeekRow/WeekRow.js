@@ -15,15 +15,16 @@ const WeekRow = props => {
     startDate,
     startWeight,
     weekData,
-    avgTdeeArray,
     weekIndex,
-    setWeeklyKcalAndKg
+    setWeeklyKcalAndKg,
+    setWeeklyTdee
   } = props;
 
   const weekDays = weekData[weekIndex].days;
 
   useEffect(() => {
     setWeeklyKcalAndKg(weekDays, weekIndex);
+    setWeeklyTdee(weeklyTDEE, weekIndex);
   });
 
   const generateDate = (date, weeksToAdd) => {
@@ -41,15 +42,11 @@ const WeekRow = props => {
   const firstDateofTheWeek = startDate && generateDate(startDate, weekNo);
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
-  const avgKcalForPreviousWeek =
-    weekIndex > 0 ? weekData[weekIndex - 1].avgKcal : avgTdeeArray[0];
+
   const avgWeightForPreviousWeek =
     weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
-  const kcalChange = avgKcalForWeek - avgKcalForPreviousWeek;
   const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
   const weeklyTDEE = avgKcalForWeek - weightChange * 1100;
-
-  console.log(weightChange * 1100);
 
   //   TDEE CALCULATIONS
 
@@ -92,11 +89,7 @@ const WeekRow = props => {
         hiddenInMobileView
       />
       {/* CONSIDER NOT HAVING KCAL CHANGE */}
-      <LabelCell
-        top={`${weightChange.toFixed(2)} kg`}
-        bottom={`${Math.ceil(kcalChange)} kcal`}
-        hiddenInMobileView
-      />
+      <LabelCell top={`${weightChange.toFixed(2)} kg`} hiddenInMobileView />
 
       <LabelCell top={`${Math.ceil(weeklyTDEE)} KCAL`} />
     </WeekRowWrapper>
@@ -114,7 +107,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setWeeklyKcalAndKg: (week, index) =>
-      dispatch(actions.setWeeklyKcalAndKg(week, index))
+      dispatch(actions.setWeeklyKcalAndKg(week, index)),
+    setWeeklyTdee: (weeklyTdee, weekIndex) =>
+      dispatch(actions.setWeeklyTdee(weeklyTdee, weekIndex))
   };
 };
 

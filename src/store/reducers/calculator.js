@@ -54,6 +54,15 @@ const setWeeklyKcalAndKg = (state, action) => {
     draft.avgWeightArray[action.weekIndex + 1] = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
+    if (action.weeklyWeight) {
+      draft.avgWeight = action.weeklyWeight;
+    }
+  });
+};
+
+const setWeeklyTdee = (state, action) => {
+  return produce(state, draft => {
+    draft.avgTdeeArray[action.weekIndex + 1] = action.tdee;
   });
 };
 
@@ -65,33 +74,8 @@ const addAnotherWeek = (state, action) => {
   });
 };
 
-// const setError = (state, action) => {
-//   return updateObject(state, { error: action.error });
-// };
-// const setLoadedImages = (state, action) => {
-//   return updateObject(state, { loadedImages: state.loadedImages + 1 });
-// };
-// const clearLoadedImages = (state, action) => {
-//   return updateObject(state, { loadedImages: 0 });
-// };
-// const fetchStarted = (state, action) => {
-//   return updateObject(state, { loading: true });
-// };
-// const fetchFinished = (state, action) => {
-//   return updateObject(state, { loading: false });
-// };
-// const closeModal = (state, action) => {
-//   return updateObject(state, { modalOpen: false, zoomedCardIndex: null });
-// };
-// const openModal = (state, action) => {
-//   return updateObject(state, {
-//     modalOpen: true,
-//     zoomedCardIndex: action.selectedCard
-//   });
-// };
-
 let localStorageState = null;
-// let localStorageState = JSON.parse(window.localStorage.getItem("state"));
+localStorageState = JSON.parse(window.localStorage.getItem("state"));
 
 const reducer = (state = localStorageState || initialState, action) => {
   switch (action.type) {
@@ -111,6 +95,8 @@ const reducer = (state = localStorageState || initialState, action) => {
       return setKcalAndKg(state, action);
     case actionTypes.SET_WEEKLY_KCAL_AND_KG:
       return setWeeklyKcalAndKg(state, action);
+    case actionTypes.SET_WEEKLY_TDEE:
+      return setWeeklyTdee(state, action);
     default:
       return state;
   }
