@@ -51,9 +51,7 @@ const CurrentStats = props => {
     if (avgTdeeArray.length === 1) {
       return avgTdeeArray[0];
     }
-
     filteredArray = avgTdeeArray.filter(el => el);
-
     modifiedTdeeArray = filteredArray.slice(
       filteredArray.length - weeksForAvg,
       filteredArray.length
