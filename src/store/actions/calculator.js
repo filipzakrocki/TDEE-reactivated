@@ -36,12 +36,14 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
   let weeklyKcal, weeklyWeight;
 
   const getAverage = (array, unit) => {
-    let filteredArray = array.filter(el => el[unit] > 0);
+    let filteredArray = array.filter(el => el[unit]);
+
     return (
       filteredArray.reduce((prev, day) => prev + day[unit], 0) /
       filteredArray.length
     );
   };
+
 
   weeklyWeight = getAverage(week, "kg").toFixed(2);
   weeklyKcal = Math.ceil(getAverage(week, "kcal"));
@@ -55,7 +57,7 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
 };
 
 export const setWeeklyTdee = (weeklyTdee, weekIndex) => {
-  console.log("RECEIVED TDEE", weeklyTdee);
+
 
   return {
     type: actionTypes.SET_WEEKLY_TDEE,

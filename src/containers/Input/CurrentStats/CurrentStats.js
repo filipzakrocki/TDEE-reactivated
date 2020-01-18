@@ -2,14 +2,13 @@ import React from "react";
 import "./CurrentStats.scss";
 
 import { connect } from "react-redux";
-// import * as actions from "../../../store/actions/index";
 
 import InputRowTitle from "../../../components/Input/InputRowTitle/InputRowTitle";
 import InputRow from "../../../components/Input/InputRow/InputRow";
 import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const CurrentStats = props => {
-  //deconstruct props
+
   const {
     avgWeightArray,
     startWeight,
@@ -19,7 +18,6 @@ const CurrentStats = props => {
     weeksForAvg,
     weeklyChange,
     goalWeight,
-    weekData
   } = props;
 
   const totalLoss = startWeight - avgWeight;
@@ -86,7 +84,7 @@ const CurrentStats = props => {
           units="kg"
         />
         <InputRow
-          value={setAvgTDEE(avgTdeeArray, weeksForAvg)}
+          value={`${setAvgTDEE(avgTdeeArray, weeksForAvg)}`}
           readOnly={true}
           type="number"
           label="Your AVG TDEE"
@@ -99,7 +97,7 @@ const CurrentStats = props => {
           label="Weeks to goal"
         />
         <InputRow
-          value={setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}
+          value={`${setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}`}
           onChange={null}
           type="number"
           label="Recommended daily KCAL"
