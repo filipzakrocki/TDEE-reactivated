@@ -88,10 +88,10 @@ const WeekRow = props => {
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         hiddenInMobileView
       />
-      {/* CONSIDER NOT HAVING KCAL CHANGE */}
+      {/* {Delegate values to functions} */}
       <LabelCell top={`${weightChange.toFixed(2)} kg`} hiddenInMobileView />
 
-      <LabelCell top={`${Math.ceil(weeklyTDEE)} KCAL`} />
+      <LabelCell top={Math.ceil(weeklyTDEE) + ' KCAL'} />
     </WeekRowWrapper>
   );
 };
