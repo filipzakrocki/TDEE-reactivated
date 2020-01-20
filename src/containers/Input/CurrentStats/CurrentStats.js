@@ -24,11 +24,11 @@ const CurrentStats = props => {
 
   const setCurrentDate = () => {
     const now = new Date();
-    const dd = now.getDate();
-    const mm = now.getMonth() + 1;
-    const yyyy = now.getFullYear();
-    const today = `${yyyy}-${mm < 10 ? "0" + mm : mm}-${
-      dd < 10 ? "0" + dd : dd
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    const today = `${year}-${month < 10 ? "0" + month : month}-${
+      day < 10 ? "0" + day : day
     }`;
     return today;
   };

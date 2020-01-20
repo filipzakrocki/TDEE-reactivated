@@ -9,8 +9,8 @@ const initialState = {
   dailyKcalChange: 0,
   weeklyChange: 0,
   weeksForAvg: 2,
-  avgTdeeArray: [],
-  avgWeightArray: [],
+  avgTdeeOverTime: [],
+  avgWeightOverTime: [],
   weeksToGoal: 0,
   avgWeight: 0,
   weekNo: 1,
@@ -23,8 +23,8 @@ const initialState = {
 const setStartWeight = (state, action) => {
   return updateObject(state, {
     startWeight: action.enteredWeight,
-    avgWeightArray: [action.enteredWeight],
-    avgTdeeArray: [action.startingTdee]
+    avgWeightOverTime: [action.enteredWeight],
+    avgTdeeOverTime: [action.startingTdee]
   });
 };
 const setGoalWeight = (state, action) => {
@@ -51,7 +51,7 @@ const setKcalAndKg = (state, action) => {
 
 const setWeeklyKcalAndKg = (state, action) => {
   return produce(state, draft => {
-    draft.avgWeightArray[action.weekIndex + 1] = action.weeklyWeight;
+    draft.avgWeightOverTime[action.weekIndex + 1] = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
     if (action.weeklyWeight) {
@@ -62,7 +62,7 @@ const setWeeklyKcalAndKg = (state, action) => {
 
 const setWeeklyTdee = (state, action) => {
   return produce(state, draft => {
-    draft.avgTdeeArray[action.weekIndex + 1] = action.tdee;
+    draft.avgTdeeOverTime[action.weekIndex + 1] = action.tdee;
   });
 };
 

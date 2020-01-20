@@ -28,7 +28,9 @@ const InitialInput = props => {
 
   return (
     <div className="initialInput">
-      <InputRowTitle children="Initial Input" />
+      <InputRowTitle>
+      Initial Input
+      <InputRowTitle/>
       <InputTable>
         <InputRow
           onChange={setStartDate}
