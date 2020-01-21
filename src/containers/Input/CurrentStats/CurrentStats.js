@@ -40,7 +40,7 @@ const CurrentStats = props => {
           goalWeight) /
           weeklyChange
       );
-    return weeksNeeded;
+    return Math.abs(weeksNeeded);
   };
 
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {

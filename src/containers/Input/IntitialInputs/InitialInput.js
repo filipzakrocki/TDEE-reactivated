@@ -35,7 +35,7 @@ const InitialInput = props => {
     const dietOrBulkModifier = isWeightLoss ? -1 : 1;
     const dailyKcalChange = weeklyChange * 1101.42 * dietOrBulkModifier;
     setDailyKcalChange(dailyKcalChange);
-  }, [weeklyChange, goalWeight, startWeight, setDailyKcalChange]);
+  }, [weeklyChange, goalWeight, startWeight, setDailyKcalChange, isWeightLoss]);
 
   return (
     <div className="initialInput">
@@ -71,15 +71,17 @@ const InitialInput = props => {
           step={0.1}
           value={weeklyChange}
           type="number"
-          label="Weekly weight change"
+          label={`Weekly Weight ${isWeightLoss ? "Loss" : "Gain"}`}
           units="kg/lbs"
         />
         <InputRow
           value={dailyKcalChange}
           type="number"
+          step={10}
           label={`Target Daily ${isWeightLoss ? "Deficit" : "Surplus"}`}
           units="kcal"
-          onChange={setDailyKcalChange}
+          onChange={e => setDailyKcalChange(e)}
+          // DELEGATE TO ACTIONS ^^^^^^
         />
       </InputTable>
     </div>

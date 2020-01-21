@@ -6,7 +6,7 @@ export const setStartWeight = enteredWeight => {
   return {
     type: actionTypes.SET_START_WEIGHT,
     enteredWeight: Number(enteredWeight),
-    startingTdee: weightToTdee
+    startingTdee: Math.ceil(weightToTdee)
   };
 };
 
