@@ -3,25 +3,34 @@ import * as actionTypes from "./actionTypes";
 
 export const setStartWeight = enteredWeight => {
   const weightToTdee = 33 * enteredWeight;
-
   return {
     type: actionTypes.SET_START_WEIGHT,
     enteredWeight: Number(enteredWeight),
     startingTdee: weightToTdee
   };
 };
+
 export const setGoalWeight = enteredGoal => {
   return {
     type: actionTypes.SET_GOAL_WEIGHT,
     enteredGoal: Number(enteredGoal)
   };
 };
+
 export const setWeeklyChange = weeklyChange => {
   return {
     type: actionTypes.SET_WEEKLY_CHANGE,
     weeklyChange: Number(weeklyChange)
   };
 };
+
+export const setDailyKcalChange = dailyChange => {
+  return {
+    type: actionTypes.SET_DAILY_KCAL_CHANGE,
+    dailyKcalChange: parseInt(dailyChange)
+  };
+};
+
 export const setKcalAndKg = (kcal, kg, week, day) => {
   return {
     type: actionTypes.SET_KCAL_AND_KG,
@@ -44,7 +53,6 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
     );
   };
 
-
   weeklyWeight = getAverage(week, "kg").toFixed(2);
   weeklyKcal = Math.ceil(getAverage(week, "kcal"));
 
@@ -57,19 +65,10 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
 };
 
 export const setWeeklyTdee = (weeklyTdee, weekIndex) => {
-
-
   return {
     type: actionTypes.SET_WEEKLY_TDEE,
     weekIndex: weekIndex,
     tdee: Math.ceil(weeklyTdee)
-  };
-};
-
-export const setDailyKcalChange = dailyChange => {
-  return {
-    type: actionTypes.SET_DAILY_KCAL_CHANGE,
-    dailyKcalChange: parseInt(dailyChange)
   };
 };
 

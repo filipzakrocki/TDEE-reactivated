@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions/index";
+import {
+  setWeeklyKcalAndKg,
+  setWeeklyTdee
+} from "../../../store/actions/index";
 import "./WeekRow.scss";
 
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
@@ -91,7 +94,7 @@ const WeekRow = props => {
       {/* {Delegate values to functions} */}
       <LabelCell top={`${weightChange.toFixed(2)} kg`} hiddenInMobileView />
 
-      <LabelCell top={Math.ceil(weeklyTDEE) + ' KCAL'} />
+      <LabelCell top={Math.ceil(weeklyTDEE) + " KCAL"} />
     </WeekRowWrapper>
   );
 };
@@ -107,9 +110,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setWeeklyKcalAndKg: (week, index) =>
-      dispatch(actions.setWeeklyKcalAndKg(week, index)),
+      dispatch(setWeeklyKcalAndKg(week, index)),
     setWeeklyTdee: (weeklyTdee, weekIndex) =>
-      dispatch(actions.setWeeklyTdee(weeklyTdee, weekIndex))
+      dispatch(setWeeklyTdee(weeklyTdee, weekIndex))
   };
 };
 

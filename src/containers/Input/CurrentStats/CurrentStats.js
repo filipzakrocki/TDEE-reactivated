@@ -8,16 +8,15 @@ import InputRow from "../../../components/Input/InputRow/InputRow";
 import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const CurrentStats = props => {
-
   const {
-    avgWeightArray,
+    avgWeightOverTime,
     startWeight,
-    avgTdeeArray,
+    avgTdeeOverTime,
     dailyKcalChange,
     avgWeight,
     weeksForAvg,
     weeklyChange,
-    goalWeight,
+    goalWeight
   } = props;
 
   const totalLoss = startWeight - avgWeight;
@@ -37,19 +36,19 @@ const CurrentStats = props => {
     let weeksNeeded =
       "" +
       Math.round(
-        ((avgWeightArray[avgWeightArray.length - 1] || startWeight) -
+        ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
           goalWeight) /
           weeklyChange
       );
     return weeksNeeded;
   };
 
-  const setAvgTDEE = (avgTdeeArray, weeksForAvg) => {
+  const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
     let avgTdee, modifiedTdeeArray, filteredArray;
-    if (avgTdeeArray.length === 1) {
-      return avgTdeeArray[0];
+    if (avgTdeeOverTime.length === 1) {
+      return avgTdeeOverTime[0];
     }
-    filteredArray = avgTdeeArray.filter(el => el);
+    filteredArray = avgTdeeOverTime.filter(el => el);
     modifiedTdeeArray = filteredArray.slice(
       filteredArray.length - weeksForAvg,
       filteredArray.length
@@ -84,7 +83,7 @@ const CurrentStats = props => {
           units="kg"
         />
         <InputRow
-          value={`${setAvgTDEE(avgTdeeArray, weeksForAvg)}`}
+          value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg)}`}
           readOnly={true}
           type="number"
           label="Your AVG TDEE"
@@ -97,7 +96,8 @@ const CurrentStats = props => {
           label="Weeks to goal"
         />
         <InputRow
-          value={`${setAvgTDEE(avgTdeeArray, weeksForAvg) + dailyKcalChange}`}
+          value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg) +
+            dailyKcalChange}`}
           onChange={null}
           type="number"
           label="Recommended daily KCAL"
@@ -110,9 +110,9 @@ const CurrentStats = props => {
 
 const mapStateToProps = state => {
   return {
-    avgWeightArray: state.calculator.avgWeightArray,
+    avgWeightOverTime: state.calculator.avgWeightOverTime,
     startWeight: state.calculator.startWeight,
-    avgTdeeArray: state.calculator.avgTdeeArray,
+    avgTdeeOverTime: state.calculator.avgTdeeOverTime,
     dailyKcalChange: state.calculator.dailyKcalChange,
     startDate: state.calculator.startDate,
     weeksForAvg: state.calculator.weeksForAvg,

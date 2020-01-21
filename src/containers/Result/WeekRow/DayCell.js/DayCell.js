@@ -1,18 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../../store/actions/index";
+import { setKcalAndKg } from "../../../../store/actions/index";
 import "./DayCell.scss";
 
 const DayCell = props => {
   const { weekIndex, day, setKcalAndKg, weekData } = props;
   const dayData = weekData[weekIndex].days[day];
 
-
   return (
     <div className="weekRow-entry">
       <input
         type="number"
-        onChange={e => setKcalAndKg(dayData.kcal, e.target.value, weekIndex, day)}
+        onChange={e =>
+          setKcalAndKg(dayData.kcal, e.target.value, weekIndex, day)
+        }
         value={dayData.kg}
       ></input>
       <input
@@ -33,7 +34,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setKcalAndKg: (kal, kilo, weekIndex, dayIndex) =>
-      dispatch(actions.setKcalAndKg(kal, kilo, weekIndex, dayIndex))
+      dispatch(setKcalAndKg(kal, kilo, weekIndex, dayIndex))
   };
 };
 
