@@ -33,14 +33,12 @@ const CurrentStats = props => {
   };
 
   const setWeeksNeeded = () => {
-    let weeksNeeded =
-      "" +
-      Math.round(
-        ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
-          goalWeight) /
-          weeklyChange
-      );
-    return Math.abs(weeksNeeded);
+    let weeksNeeded = Math.round(
+      ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
+        goalWeight) /
+        Math.abs(weeklyChange)
+    );
+    return weeksNeeded;
   };
 
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
