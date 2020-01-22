@@ -62,6 +62,7 @@ const InitialInput = props => {
           value={startWeight}
           readOnly={initialInputsLocked}
           step={0.1}
+          minValue={1}
           type="number"
           label="Starting Weight"
           units="kg/lbs"
@@ -71,6 +72,7 @@ const InitialInput = props => {
           value={goalWeight}
           type="number"
           step={0.5}
+          minValue={1}
           label="Goal Weight"
           units="kg/lbs"
         />
@@ -78,6 +80,7 @@ const InitialInput = props => {
           changeHandler={setWeeklyChangeHandler}
           step={0.05}
           value={weeklyChange}
+          isWeightLoss={isWeightLoss}
           type="number"
           label={`Weekly Weight ${isWeightLoss ? "Loss" : "Gain"}`}
           units="kg/lbs"
@@ -85,6 +88,7 @@ const InitialInput = props => {
         <InputRow
           changeHandler={setDailyKcalChangeHandler}
           value={dailyKcalChange}
+          isWeightLoss={isWeightLoss}
           type="number"
           step={10}
           label={`Target Daily ${isWeightLoss ? "Deficit" : "Surplus"}`}

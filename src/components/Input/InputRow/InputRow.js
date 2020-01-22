@@ -10,7 +10,8 @@ const InputRow = props => {
     changeHandler,
     type,
     label,
-    units
+    units,
+    isWeightLoss
   } = props;
 
   return (
@@ -21,6 +22,8 @@ const InputRow = props => {
           onChange={changeHandler}
           disabled={disabled}
           value={value}
+          min={isWeightLoss ? null : 0}
+          max={isWeightLoss ? 0 : null}
           step={step}
           readOnly={readOnly}
           required
