@@ -11,8 +11,13 @@ const InputRow = props => {
     type,
     label,
     units,
-    isWeightLoss
+    isWeightLoss,
+
   } = props;
+
+  // const handleChange = (e) => {
+  //   changeHandler(e.target.value)
+  // }
 
   return (
     <tr className="inputRow">

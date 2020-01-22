@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   setStartWeight,
@@ -45,6 +45,11 @@ const InitialInput = props => {
   const setDailyKcalChangeHandler = e => {
     setDailyKcalChange(e.target.value);
   };
+
+  // Possible solution
+  // const setValue = (value, callback) => {
+  //   callback(value);
+  // }
 
   return (
     <div className="initialInput">
