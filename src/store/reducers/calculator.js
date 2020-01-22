@@ -31,10 +31,16 @@ const setGoalWeight = (state, action) => {
   return updateObject(state, { goalWeight: action.enteredGoal });
 };
 const setDailyKcalChange = (state, action) => {
-  return updateObject(state, { dailyKcalChange: action.dailyKcalChange });
+  return updateObject(state, {
+    dailyKcalChange: action.dailyKcalChange,
+    weeklyChange: action.weeklyChange
+  });
 };
 const setWeeklyChange = (state, action) => {
-  return updateObject(state, { weeklyChange: action.weeklyChange });
+  return updateObject(state, {
+    weeklyChange: action.weeklyChange,
+    dailyKcalChange: action.dailyKcalChange
+  });
 };
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });

@@ -18,16 +18,22 @@ export const setGoalWeight = enteredGoal => {
 };
 
 export const setWeeklyChange = weeklyChange => {
+  const kcalChange = weeklyChange * 1100;
+
   return {
     type: actionTypes.SET_WEEKLY_CHANGE,
-    weeklyChange: Number(weeklyChange)
+    weeklyChange: Number(weeklyChange),
+    dailyKcalChange: Number(kcalChange)
   };
 };
 
 export const setDailyKcalChange = dailyChange => {
+  const weeklyWeightChange = dailyChange / 1100;
+
   return {
     type: actionTypes.SET_DAILY_KCAL_CHANGE,
-    dailyKcalChange: parseInt(dailyChange)
+    dailyKcalChange: parseInt(dailyChange),
+    weeklyChange: weeklyWeightChange.toFixed(2)
   };
 };
 

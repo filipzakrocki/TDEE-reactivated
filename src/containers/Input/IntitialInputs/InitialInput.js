@@ -30,12 +30,6 @@ const InitialInput = props => {
 
   const isWeightLoss = startWeight > goalWeight;
 
-  // move it to actions?!
-  useEffect(() => {
-    const dietOrBulkModifier = isWeightLoss ? -1 : 1;
-    const dailyKcalChange = weeklyChange * 1101.42 * dietOrBulkModifier;
-    setDailyKcalChange(dailyKcalChange);
-  }, [weeklyChange, goalWeight, startWeight, setDailyKcalChange, isWeightLoss]);
 
   return (
     <div className="initialInput">
@@ -47,7 +41,6 @@ const InitialInput = props => {
           readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
-          units=""
         />
         <InputRow
           onChange={setStartWeight}
@@ -68,7 +61,7 @@ const InitialInput = props => {
         />
         <InputRow
           onChange={setWeeklyChange}
-          step={0.1}
+          step={0.05}
           value={weeklyChange}
           type="number"
           label={`Weekly Weight ${isWeightLoss ? "Loss" : "Gain"}`}
@@ -80,7 +73,7 @@ const InitialInput = props => {
           step={10}
           label={`Target Daily ${isWeightLoss ? "Deficit" : "Surplus"}`}
           units="kcal"
-          onChange={e => setDailyKcalChange(e)}
+          onChange={setDailyKcalChange}
           // DELEGATE TO ACTIONS ^^^^^^
         />
       </InputTable>
