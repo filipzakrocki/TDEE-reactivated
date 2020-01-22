@@ -30,20 +30,35 @@ const InitialInput = props => {
 
   const isWeightLoss = startWeight > goalWeight;
 
+  const setStartDateHandler = e => {
+    setStartDate(e.target.value);
+  };
+  const setStartWeightHandler = e => {
+    setStartWeight(e.target.value);
+  };
+  const setGoalWeightHandler = e => {
+    setGoalWeight(e.target.value);
+  };
+  const setWeeklyChangeHandler = e => {
+    setWeeklyChange(e.target.value);
+  };
+  const setDailyKcalChangeHandler = e => {
+    setDailyKcalChange(e.target.value);
+  };
 
   return (
     <div className="initialInput">
       <InputRowTitle>Initial Input</InputRowTitle>
       <InputTable>
         <InputRow
-          onChange={setStartDate}
+          changeHandler={setStartDateHandler}
           value={startDate}
           readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
         />
         <InputRow
-          onChange={setStartWeight}
+          changeHandler={setStartWeightHandler}
           value={startWeight}
           readOnly={initialInputsLocked}
           step={0.1}
@@ -52,15 +67,15 @@ const InitialInput = props => {
           units="kg/lbs"
         />
         <InputRow
-          onChange={setGoalWeight}
+          changeHandler={setGoalWeightHandler}
           value={goalWeight}
           type="number"
-          step={0.1}
+          step={0.5}
           label="Goal Weight"
           units="kg/lbs"
         />
         <InputRow
-          onChange={setWeeklyChange}
+          changeHandler={setWeeklyChangeHandler}
           step={0.05}
           value={weeklyChange}
           type="number"
@@ -68,13 +83,12 @@ const InitialInput = props => {
           units="kg/lbs"
         />
         <InputRow
+          changeHandler={setDailyKcalChangeHandler}
           value={dailyKcalChange}
           type="number"
           step={10}
           label={`Target Daily ${isWeightLoss ? "Deficit" : "Surplus"}`}
           units="kcal"
-          onChange={setDailyKcalChange}
-          // DELEGATE TO ACTIONS ^^^^^^
         />
       </InputTable>
     </div>

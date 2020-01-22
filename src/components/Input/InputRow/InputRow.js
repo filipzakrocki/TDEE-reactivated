@@ -7,7 +7,7 @@ const InputRow = props => {
     value,
     step,
     readOnly,
-    onChange,
+    changeHandler,
     type,
     label,
     units
@@ -18,7 +18,7 @@ const InputRow = props => {
       <td className="inputRow-label">{label}</td>
       <td className="inputRow-input">
         <input
-          onChange={e => onChange(e.target.value)}
+          onChange={changeHandler}
           disabled={disabled}
           value={value}
           step={step}
