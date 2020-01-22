@@ -9,8 +9,8 @@ import "./WeekRow.scss";
 import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRowWrapper";
 
 //cell components
-import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell";
-import DayCell from "./DayCell.js/DayCell";
+import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell/LabelCell";
+import DayCell from "./DayCell/DayCell";
 
 const WeekRow = props => {
   const {
@@ -27,7 +27,7 @@ const WeekRow = props => {
 
   useEffect(() => {
     setWeeklyKcalAndKg(weekDays, weekIndex);
-    setWeeklyTdee(weeklyTDEE, weekIndex);
+    setWeeklyTdee(weeklyTdee, weekIndex);
   });
 
   const generateDate = (date, weeksToAdd) => {
@@ -42,35 +42,20 @@ const WeekRow = props => {
     return formattedDate;
   };
 
-  const firstDateofTheWeek = startDate && generateDate(startDate, weekNo);
+  const firstDateOfTheWeek = startDate && generateDate(startDate, weekNo);
+
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
 
   const avgWeightForPreviousWeek =
     weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
   const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
-  const weeklyTDEE = avgKcalForWeek - weightChange * 1100;
+  const weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
-  //   TDEE CALCULATIONS
-
-  //   var change = -0.2;
-  // var kcal = 2000;
-
-  // const calculateTDEE = (changeWeekly, weeklyKcal) => {
-  //   return weeklyKcal - (changeWeekly * 1100)
-  // }
-
-  // console.log(calculateTDEE(change, kcal))
-
-  // weekly change = 0.2 kg
-
-  // that is 0.2 x 7700 of extra kcalories = 1540 kcal
-
-  // per day that gives 220;
 
   return (
     <WeekRowWrapper>
-      <LabelCell top={`Week ${weekNo}`} bottom={firstDateofTheWeek} />
+      <LabelCell top={`Week ${weekNo}`} bottom={firstDateOfTheWeek} />
       <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView />
       {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
 
@@ -91,10 +76,9 @@ const WeekRow = props => {
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         hiddenInMobileView
       />
-      {/* {Delegate values to functions} */}
       <LabelCell top={`${weightChange.toFixed(2)} kg`} hiddenInMobileView />
 
-      <LabelCell top={Math.ceil(weeklyTDEE) + " KCAL"} />
+      <LabelCell top={Math.ceil(weeklyTdee) + " KCAL"} />
     </WeekRowWrapper>
   );
 };
