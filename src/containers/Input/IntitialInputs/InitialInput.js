@@ -30,21 +30,21 @@ const InitialInput = props => {
 
   const isWeightLoss = startWeight > goalWeight;
 
-  const setStartDateHandler = e => {
-    setStartDate(e.target.value);
-  };
-  const setStartWeightHandler = e => {
-    setStartWeight(e.target.value);
-  };
-  const setGoalWeightHandler = e => {
-    setGoalWeight(e.target.value);
-  };
-  const setWeeklyChangeHandler = e => {
-    setWeeklyChange(e.target.value);
-  };
-  const setDailyKcalChangeHandler = e => {
-    setDailyKcalChange(e.target.value);
-  };
+  // const setStartDateHandler = e => {
+  //   setStartDate(e.target.value);
+  // };
+  // const setStartWeightHandler = e => {
+  //   setStartWeight(e.target.value);
+  // };
+  // const setGoalWeightHandler = e => {
+  //   setGoalWeight(e.target.value);
+  // };
+  // const setWeeklyChangeHandler = e => {
+  //   setWeeklyChange(e.target.value);
+  // };
+  // const setDailyKcalChangeHandler = e => {
+  //   setDailyKcalChange(e.target.value);
+  // };
 
   // Possible solution
   // const setValue = (value, callback) => {
@@ -56,14 +56,14 @@ const InitialInput = props => {
       <InputRowTitle>Initial Input</InputRowTitle>
       <InputTable>
         <InputRow
-          changeHandler={setStartDateHandler}
+          changeHandler={setStartDate}
           value={startDate}
           readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
         />
         <InputRow
-          changeHandler={setStartWeightHandler}
+          changeHandler={setStartWeight}
           value={startWeight}
           readOnly={initialInputsLocked}
           step={0.1}
@@ -73,7 +73,7 @@ const InitialInput = props => {
           units="kg/lbs"
         />
         <InputRow
-          changeHandler={setGoalWeightHandler}
+          changeHandler={setGoalWeight}
           value={goalWeight}
           type="number"
           step={0.5}
@@ -82,7 +82,7 @@ const InitialInput = props => {
           units="kg/lbs"
         />
         <InputRow
-          changeHandler={setWeeklyChangeHandler}
+          changeHandler={setWeeklyChange}
           step={0.05}
           value={weeklyChange}
           isWeightLoss={isWeightLoss}
@@ -91,7 +91,7 @@ const InitialInput = props => {
           units="kg/lbs"
         />
         <InputRow
-          changeHandler={setDailyKcalChangeHandler}
+          changeHandler={setDailyKcalChange}
           value={dailyKcalChange}
           isWeightLoss={isWeightLoss}
           type="number"

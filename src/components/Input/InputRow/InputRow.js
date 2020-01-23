@@ -15,16 +15,16 @@ const InputRow = props => {
 
   } = props;
 
-  // const handleChange = (e) => {
-  //   changeHandler(e.target.value)
-  // }
+  const handleChange = (e) => {
+    changeHandler(e.target.value)
+  }
 
   return (
     <tr className="inputRow">
       <td className="inputRow-label">{label}</td>
       <td className="inputRow-input">
         <input
-          onChange={changeHandler}
+          onChange={handleChange}
           disabled={disabled}
           value={value}
           min={isWeightLoss ? null : 0}
