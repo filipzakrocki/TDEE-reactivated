@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   setWeeklyKcalAndKg,
-  setWeeklyTdee
+  setWeeklyTdee,
+  setKcalAndKg
 } from "../../../store/actions/index";
 import "./WeekRow.scss";
 
@@ -10,7 +11,7 @@ import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRo
 
 //cell components
 import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell/LabelCell";
-import DayCell from "./DayCell/DayCell";
+import DayCell from "../../../components/ResultRows/WeekRowCells/DayCell/DayCell";
 
 const WeekRow = props => {
   const {
@@ -20,7 +21,8 @@ const WeekRow = props => {
     weekData,
     weekIndex,
     setWeeklyKcalAndKg,
-    setWeeklyTdee
+    setWeeklyTdee,
+    setKcalAndKg
   } = props;
 
   const weekDays = weekData[weekIndex].days;
@@ -52,25 +54,24 @@ const WeekRow = props => {
   const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
   const weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
+  const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {
+    return (
+      <DayCell
+        key={weekIndex + dayIndex}
+        dayIndex={dayIndex}
+        weekIndex={weekIndex}
+        dayWeight={day.kg}
+        dayKcal={day.kcal}
+        changeHandler={setKcalAndKg}
+      />
+    );
+  });
 
   return (
     <WeekRowWrapper>
       <LabelCell top={`Week ${weekNo}`} bottom={firstDateOfTheWeek} />
       <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView />
-      {/* TODO: separate columns into their own components, make them dumb with weekRow as Container and data link */}
-
-      {/* DUMB DOWN DAYCELL COMPONENT?! LINK TO DATA THROUGH PROPS?! */}
-      {weekData &&
-        weekData[weekIndex].days.map((day, dayNum) => {
-          return (
-            <DayCell
-              day={dayNum}
-              weekIndex={weekIndex}
-              key={weekIndex + dayNum}
-            />
-          );
-        })}
-
+      {weekData && listOfDays}
       <LabelCell
         top={`${avgWeightForWeek.toFixed(2)} kg`}
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
@@ -96,7 +97,9 @@ const mapDispatchToProps = dispatch => {
     setWeeklyKcalAndKg: (week, index) =>
       dispatch(setWeeklyKcalAndKg(week, index)),
     setWeeklyTdee: (weeklyTdee, weekIndex) =>
-      dispatch(setWeeklyTdee(weeklyTdee, weekIndex))
+      dispatch(setWeeklyTdee(weeklyTdee, weekIndex)),
+    setKcalAndKg: (kal, kilo, weekIndex, dayIndex) =>
+      dispatch(setKcalAndKg(kal, kilo, weekIndex, dayIndex))
   };
 };
 

@@ -1,41 +1,27 @@
 import React from "react";
-import { connect } from "react-redux";
-import { setKcalAndKg } from "../../../../store/actions/index";
 import "./DayCell.scss";
 
 const DayCell = props => {
-  const { weekIndex, day, setKcalAndKg, weekData } = props;
-  const dayData = weekData[weekIndex].days[day];
+  const { weekIndex, dayIndex, dayWeight, dayKcal, changeHandler } = props;
+
+  const handleWeightChange = e => {
+    changeHandler(dayKcal, e.target.value, weekIndex, dayIndex);
+  };
+
+  const handleKcalChange = e => {
+    changeHandler(e.target.value, dayWeight, weekIndex, dayIndex);
+  };
 
   return (
     <div className="weekRow-entry">
       <input
         type="number"
-        onChange={e =>
-          setKcalAndKg(dayData.kcal, e.target.value, weekIndex, day)
-        }
-        value={dayData.kg}
+        onChange={handleWeightChange}
+        value={dayWeight}
       ></input>
-      <input
-        type="number"
-        onChange={e => setKcalAndKg(e.target.value, dayData.kg, weekIndex, day)}
-        value={dayData.kcal}
-      ></input>
+      <input type="number" onChange={handleKcalChange} value={dayKcal}></input>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    weekData: state.calculator.weekData
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setKcalAndKg: (kal, kilo, weekIndex, dayIndex) =>
-      dispatch(setKcalAndKg(kal, kilo, weekIndex, dayIndex))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DayCell);
+export default DayCell;
