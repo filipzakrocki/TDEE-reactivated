@@ -23,7 +23,7 @@ export const setWeeklyChange = weeklyChange => {
   return {
     type: actionTypes.SET_WEEKLY_CHANGE,
     weeklyChange: Number(weeklyChange),
-    dailyKcalChange: Number(kcalChange)
+    dailyKcalChange: Math.ceil(kcalChange)
   };
 };
 

@@ -6,6 +6,7 @@ const initialState = {
   startDate: "",
   startWeight: 0,
   goalWeight: 0,
+  isWeightLoss: null,
   dailyKcalChange: 0,
   weeklyChange: 0,
   weeksForAvg: 2,
@@ -24,11 +25,15 @@ const setStartWeight = (state, action) => {
   return updateObject(state, {
     startWeight: action.enteredWeight,
     avgWeightOverTime: [action.enteredWeight],
-    avgTdeeOverTime: [action.startingTdee]
+    avgTdeeOverTime: [action.startingTdee],
+    isWeightLoss: action.enteredWeight > state.goalWeight
   });
 };
 const setGoalWeight = (state, action) => {
-  return updateObject(state, { goalWeight: action.enteredGoal });
+  return updateObject(state, {
+    goalWeight: action.enteredGoal,
+    isWeightLoss: state.startWeight > action.enteredGoal
+  });
 };
 const setDailyKcalChange = (state, action) => {
   return updateObject(state, {

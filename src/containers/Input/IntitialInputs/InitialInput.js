@@ -25,10 +25,9 @@ const InitialInput = props => {
     setGoalWeight,
     setDailyKcalChange,
     setWeeklyChange,
-    setStartDate
+    setStartDate,
+    isWeightLoss
   } = props;
-
-  const isWeightLoss = startWeight > goalWeight;
 
   // const setStartDateHandler = e => {
   //   setStartDate(e.target.value);
@@ -111,7 +110,8 @@ const mapStateToProps = state => {
     startDate: state.calculator.startDate,
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
-    initialInputsLocked: state.calculator.initialInputsLocked
+    initialInputsLocked: state.calculator.initialInputsLocked,
+    isWeightLoss: state.calculator.isWeightLoss
   };
 };
 

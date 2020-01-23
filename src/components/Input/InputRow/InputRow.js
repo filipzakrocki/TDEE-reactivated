@@ -15,7 +15,10 @@ const InputRow = props => {
   } = props;
 
   const handleChange = e => {
-    if (isWeightLoss && e.target.value > 0) || (!isWeightLoss && e.target.value < 0) {
+    if (
+      (isWeightLoss && e.target.value > 0) ||
+      (!isWeightLoss && e.target.value < 0)
+    ) {
       e.target.value = 0;
     }
     changeHandler(e.target.value);

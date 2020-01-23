@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./Input.scss";
 
 import CurrentStats from "./CurrentStats/CurrentStats";
@@ -8,28 +8,28 @@ import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
 const Input = () => {
+  const [show, setShow] = useState(true);
 
+  const controls = show ? (
+    <InputColumnWrapper>
+      <InputColumn>
+        <InitialInput />
+      </InputColumn>
+      <InputColumn>
+        <CurrentStats />
+      </InputColumn>
+    </InputColumnWrapper>
+  ) : (
+    <p>HIDDEN</p>
+  );
 
-  const [show, setShow] = useState(true)
-
-  const controls = show ?        (<InputColumnWrapper>
-  <InputColumn>
-    <InitialInput />
-  </InputColumn>
-  <InputColumn>
-    <CurrentStats />
-  </InputColumn>
-</InputColumnWrapper> ): <p>HIDDEN</p>; 
-
-// Hidden should be a compact data showing: recommended daily intake + weeks to go
-
-
+  // Hidden should be a compact data showing: recommended daily intake + weeks to go
 
   return (
     <>
       <section className="input">
-      <button onClick={() => setShow(!show)} >Hello</button>
-{controls}
+        <button onClick={() => setShow(!show)}>HIDE THE CONTROLS</button>
+        {controls}
         <div className="input-labels">
           <WeekLabel />
         </div>
