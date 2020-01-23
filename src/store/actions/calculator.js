@@ -52,7 +52,9 @@ export const setWeeklyKcalAndKg = (week, weekIndex) => {
 
   const getAverage = (array, unit) => {
     let filteredArray = array.filter(el => el[unit]);
-
+    if (filteredArray.length === 0) {
+      return 0;
+    }
     return (
       filteredArray.reduce((prev, day) => prev + day[unit], 0) /
       filteredArray.length
