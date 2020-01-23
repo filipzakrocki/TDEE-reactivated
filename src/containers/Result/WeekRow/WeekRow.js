@@ -49,6 +49,7 @@ const WeekRow = props => {
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
 
+  // POTENTIALLY USE THE AVG WEIGHT FROM REDUX STATE?!
   const avgWeightForPreviousWeek =
     weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
   const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
