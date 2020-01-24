@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   setWeeklyKcalAndKg,
@@ -20,17 +20,24 @@ const WeekRow = props => {
     startWeight,
     weekData,
     weekIndex,
+    weekDays,
     setWeeklyKcalAndKg,
     setWeeklyTdee,
     setKcalAndKg
   } = props;
 
-  const weekDays = weekData[weekIndex].days;
+  // const weekDays = weekData[weekIndex].days;
+  let weeklyTdee;
 
   useEffect(() => {
     setWeeklyKcalAndKg(weekDays, weekIndex);
+  }, [setWeeklyKcalAndKg, weekDays, weekIndex]);
+
+  useEffect(() => {
     setWeeklyTdee(weeklyTdee, weekIndex);
-  });
+  }, [setWeeklyTdee, weeklyTdee, weekIndex]);
+
+  const [locked, setLocked] = useState(false);
 
   const generateDate = (date, weeksToAdd) => {
     let startDate, days, months, years, daysToAdd, outputDate, formattedDate;
@@ -44,27 +51,25 @@ const WeekRow = props => {
     return formattedDate;
   };
 
-
   const findLastWeight = (index, allWeeksData) => {
-    let modifiedWeekData = allWeeksData.slice(0, index)
-    for (var i = modifiedWeekData.length-1; i >= 0; i--) {
+    let modifiedWeekData = allWeeksData.slice(0, index);
+    for (var i = modifiedWeekData.length - 1; i >= 0; i--) {
       if (modifiedWeekData[i].avgWeight) {
         return modifiedWeekData[i].avgWeight;
       }
     }
-    }
-
-
+  };
 
   const firstDateOfTheWeek = startDate && generateDate(startDate, weekNo);
-
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
 
-  // POTENTIALLY USE THE AVG WEIGHT FROM REDUX STATE?!
-  const avgWeightForPreviousWeek = weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight 
-  const weightChange = avgWeightForWeek ? avgWeightForWeek - avgWeightForPreviousWeek : 0;
-  const weeklyTdee = avgKcalForWeek - weightChange * 1100;
+  const avgWeightForPreviousWeek =
+    weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight;
+  const weightChange = avgWeightForWeek
+    ? avgWeightForWeek - avgWeightForPreviousWeek
+    : 0;
+  weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
   const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {
     return (
@@ -75,6 +80,7 @@ const WeekRow = props => {
         dayWeight={day.kg}
         dayKcal={day.kcal}
         changeHandler={setKcalAndKg}
+        locked={locked}
       />
     );
   });
@@ -82,15 +88,21 @@ const WeekRow = props => {
   return (
     <WeekRowWrapper>
       <LabelCell top={`Week ${weekNo}`} bottom={firstDateOfTheWeek} />
-      <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView />
+      <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView>
+        <button
+          style={{ border: "none", background: "white" }}
+          onClick={() => setLocked(!locked)}
+        >
+          {locked ? "🔒" : "✔️"}
+        </button>
+      </LabelCell>
       {weekData && listOfDays}
       <LabelCell
         top={`${avgWeightForWeek.toFixed(2)} kg`}
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         hiddenInMobileView
       />
-      <LabelCell top={`${weightChange.toFixed(2)} kg`} hiddenInMobileView />
-
+      <LabelCell top={`${weightChange.toFixed(2)} kg`} />
       <LabelCell top={Math.ceil(weeklyTdee) + " KCAL"} />
     </WeekRowWrapper>
   );

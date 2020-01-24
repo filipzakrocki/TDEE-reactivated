@@ -28,7 +28,7 @@ const Input = () => {
   return (
     <>
       <section className="input">
-        <button onClick={() => setShow(!show)}>HIDE THE CONTROLS</button>
+        <button onClick={() => localStorage.clear()}>CLEAR THE STORAGE</button>
         {controls}
         <div className="input-labels">
           <WeekLabel />

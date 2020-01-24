@@ -78,11 +78,17 @@ const setWeeklyTdee = (state, action) => {
 };
 
 const addAnotherWeek = (state, action) => {
-  return updateObject(state, {
-    weekData: [...state.weekData, action.weekEntry],
-    weekNo: action.updatedWeekNo,
-    initialInputsLocked: true
+  return produce(state, draft => {
+    draft.weekData = [...state.weekData, action.weekEntry];
+    draft.weekNo = action.updatedWeekNo;
+    draft.initialInputsLocked = true;
   });
+
+  // return updateObject(state, {
+  //   weekData: [...state.weekData, action.weekEntry],
+  //   weekNo: action.updatedWeekNo,
+  //   initialInputsLocked: true
+  // });
 };
 
 let localStorageState = null;

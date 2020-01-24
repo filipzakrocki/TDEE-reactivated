@@ -17,6 +17,7 @@ const Result = props => {
           weekNo={week.week}
           startDate={startDate}
           weekIndex={weekIndex}
+          weekDays={week.days}
         />
       ))}
       <AddWeekBtn />
