@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Input.scss";
 
 import CurrentStats from "./CurrentStats/CurrentStats";
@@ -8,9 +8,7 @@ import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
 const Input = () => {
-  const [show, setShow] = useState(true);
-
-  const controls = show ? (
+  const controls = (
     <InputColumnWrapper>
       <InputColumn>
         <InitialInput />
@@ -19,8 +17,6 @@ const Input = () => {
         <CurrentStats />
       </InputColumn>
     </InputColumnWrapper>
-  ) : (
-    <p>HIDDEN</p>
   );
 
   // Hidden should be a compact data showing: recommended daily intake + weeks to go
