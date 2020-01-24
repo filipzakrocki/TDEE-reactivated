@@ -44,15 +44,26 @@ const WeekRow = props => {
     return formattedDate;
   };
 
+
+  const findLastWeight = (index, allWeeksData) => {
+    let modifiedWeekData = allWeeksData.slice(0, index)
+    for (var i = modifiedWeekData.length-1; i >= 0; i--) {
+      if (modifiedWeekData[i].avgWeight) {
+        return modifiedWeekData[i].avgWeight;
+      }
+    }
+    }
+
+
+
   const firstDateOfTheWeek = startDate && generateDate(startDate, weekNo);
 
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
 
   // POTENTIALLY USE THE AVG WEIGHT FROM REDUX STATE?!
-  const avgWeightForPreviousWeek =
-    weekIndex > 0 ? weekData[weekIndex - 1].avgWeight : startWeight;
-  const weightChange = avgWeightForWeek - avgWeightForPreviousWeek;
+  const avgWeightForPreviousWeek = weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight 
+  const weightChange = avgWeightForWeek ? avgWeightForWeek - avgWeightForPreviousWeek : 0;
   const weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
   const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {
