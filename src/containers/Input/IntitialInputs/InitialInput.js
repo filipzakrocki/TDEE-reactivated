@@ -5,7 +5,8 @@ import {
   setGoalWeight,
   setDailyKcalChange,
   setWeeklyChange,
-  setStartDate
+  setStartDate,
+  setWeeksForAverage
 } from "../../../store/actions/index";
 import "./InitialInput.scss";
 
@@ -21,34 +22,15 @@ const InitialInput = props => {
     dailyKcalChange,
     weeklyChange,
     goalWeight,
+    weeksForAvg,
+    isWeightLoss,
     setStartWeight,
     setGoalWeight,
     setDailyKcalChange,
     setWeeklyChange,
     setStartDate,
-    isWeightLoss
+    setWeeksForAverage
   } = props;
-
-  // const setStartDateHandler = e => {
-  //   setStartDate(e.target.value);
-  // };
-  // const setStartWeightHandler = e => {
-  //   setStartWeight(e.target.value);
-  // };
-  // const setGoalWeightHandler = e => {
-  //   setGoalWeight(e.target.value);
-  // };
-  // const setWeeklyChangeHandler = e => {
-  //   setWeeklyChange(e.target.value);
-  // };
-  // const setDailyKcalChangeHandler = e => {
-  //   setDailyKcalChange(e.target.value);
-  // };
-
-  // Possible solution
-  // const setValue = (value, callback) => {
-  //   callback(value);
-  // }
 
   return (
     <div className="initialInput">
@@ -86,7 +68,7 @@ const InitialInput = props => {
           value={weeklyChange}
           isWeightLoss={isWeightLoss}
           type="number"
-          label={`Weekly Weight ${isWeightLoss ? "Loss" : "Gain"}`}
+          label={"Weekly Weight Change"}
           units="kg/lbs"
         />
         <InputRow
@@ -95,8 +77,18 @@ const InitialInput = props => {
           isWeightLoss={isWeightLoss}
           type="number"
           step={10}
-          label={`Target Daily ${isWeightLoss ? "Deficit" : "Surplus"}`}
+          label={`Rquired Daily Kcal change`}
           units="kcal"
+        />
+        <InputRow
+          changeHandler={setWeeksForAverage}
+          value={weeksForAvg}
+          type="number"
+          step={1}
+          min={1}
+          max={4}
+          label={`Calculate last # weeks`}
+          units="weeks"
         />
       </InputTable>
     </div>
@@ -111,7 +103,8 @@ const mapStateToProps = state => {
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
     initialInputsLocked: state.calculator.initialInputsLocked,
-    isWeightLoss: state.calculator.isWeightLoss
+    isWeightLoss: state.calculator.isWeightLoss,
+    weeksForAvg: state.calculator.weeksForAvg
   };
 };
 
@@ -121,7 +114,9 @@ const mapDispatchToProps = dispatch => {
     setGoalWeight: enteredGoal => dispatch(setGoalWeight(enteredGoal)),
     setDailyKcalChange: kcalChange => dispatch(setDailyKcalChange(kcalChange)),
     setWeeklyChange: weeklyChange => dispatch(setWeeklyChange(weeklyChange)),
-    setStartDate: startDate => dispatch(setStartDate(startDate))
+    setStartDate: startDate => dispatch(setStartDate(startDate)),
+    setWeeksForAverage: numberOfWeeks =>
+      dispatch(setWeeksForAverage(numberOfWeeks))
   };
 };
 

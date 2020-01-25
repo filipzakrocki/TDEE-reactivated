@@ -17,6 +17,19 @@ export const setGoalWeight = enteredGoal => {
   };
 };
 
+export const setWeeksForAverage = numberOfWeeks => {
+  if (numberOfWeeks > 4) {
+    numberOfWeeks = 4;
+  } else if (numberOfWeeks < 1) {
+    numberOfWeeks = 1;
+  }
+
+  return {
+    type: actionTypes.SET_WEEKS_FOR_AVG,
+    numberOfWeeks: Math.floor(numberOfWeeks)
+  };
+};
+
 export const setWeeklyChange = weeklyChange => {
   const kcalChange = weeklyChange * 1100;
 
@@ -101,6 +114,13 @@ export const addAnotherWeek = weekNo => {
     type: actionTypes.ADD_ANOTHER_WEEK,
     weekEntry: weekEntry,
     updatedWeekNo: weekNo + 1
+  };
+};
+
+export const lockWeek = weekIndex => {
+  return {
+    type: actionTypes.LOCK_WEEK,
+    weekIndex: weekIndex
   };
 };
 

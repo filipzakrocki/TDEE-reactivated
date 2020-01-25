@@ -4,8 +4,10 @@ export {
   setWeeklyChange,
   setDailyKcalChange,
   setStartDate,
+  setWeeksForAverage,
   setKcalAndKg,
   setWeeklyKcalAndKg,
   addAnotherWeek,
-  setWeeklyTdee
+  setWeeklyTdee,
+  lockWeek
 } from "./calculator";

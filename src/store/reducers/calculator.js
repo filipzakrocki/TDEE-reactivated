@@ -47,6 +47,13 @@ const setWeeklyChange = (state, action) => {
     dailyKcalChange: action.dailyKcalChange
   });
 };
+
+const setWeeksForAverage = (state, action) => {
+  return produce(state, draft => {
+    draft.weeksForAvg = action.numberOfWeeks;
+  });
+};
+
 const setStartDate = (state, action) => {
   return updateObject(state, { startDate: action.startDate });
 };
@@ -83,12 +90,13 @@ const addAnotherWeek = (state, action) => {
     draft.weekNo = action.updatedWeekNo;
     draft.initialInputsLocked = true;
   });
+};
 
-  // return updateObject(state, {
-  //   weekData: [...state.weekData, action.weekEntry],
-  //   weekNo: action.updatedWeekNo,
-  //   initialInputsLocked: true
-  // });
+const lockWeek = (state, action) => {
+  return produce(state, draft => {
+    draft.weekData[action.weekIndex].locked = !state.weekData[action.weekIndex]
+      .locked;
+  });
 };
 
 let localStorageState = null;
@@ -106,8 +114,12 @@ const reducer = (state = localStorageState || initialState, action) => {
       return setWeeklyChange(state, action);
     case actionTypes.SET_START_DATE:
       return setStartDate(state, action);
+    case actionTypes.SET_WEEKS_FOR_AVG:
+      return setWeeksForAverage(state, action);
     case actionTypes.ADD_ANOTHER_WEEK:
       return addAnotherWeek(state, action);
+    case actionTypes.LOCK_WEEK:
+      return lockWeek(state, action);
     case actionTypes.SET_KCAL_AND_KG:
       return setKcalAndKg(state, action);
     case actionTypes.SET_WEEKLY_KCAL_AND_KG:

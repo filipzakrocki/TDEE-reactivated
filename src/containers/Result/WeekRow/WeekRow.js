@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   setWeeklyKcalAndKg,
   setWeeklyTdee,
-  setKcalAndKg
+  setKcalAndKg,
+  lockWeek
 } from "../../../store/actions/index";
 import "./WeekRow.scss";
 
@@ -12,6 +13,7 @@ import WeekRowWrapper from "../../../components/ResultRows/WeekRowWrapper/WeekRo
 //cell components
 import LabelCell from "../../../components/ResultRows/WeekRowCells/LabelCell/LabelCell";
 import DayCell from "../../../components/ResultRows/WeekRowCells/DayCell/DayCell";
+import LockWeekButton from "../../../components/ResultRows/WeekRowCells/LockWeekButton/LockWeekButton";
 
 const WeekRow = props => {
   const {
@@ -21,23 +23,20 @@ const WeekRow = props => {
     weekData,
     weekIndex,
     weekDays,
+    locked,
     setWeeklyKcalAndKg,
     setWeeklyTdee,
-    setKcalAndKg
+    setKcalAndKg,
+    lockWeek
   } = props;
-
-  // const weekDays = weekData[weekIndex].days;
-  let weeklyTdee;
 
   useEffect(() => {
     setWeeklyKcalAndKg(weekDays, weekIndex);
-  }, [setWeeklyKcalAndKg, weekDays, weekIndex]);
+  });
 
   useEffect(() => {
     setWeeklyTdee(weeklyTdee, weekIndex);
-  }, [setWeeklyTdee, weeklyTdee, weekIndex]);
-
-  const [locked, setLocked] = useState(false);
+  });
 
   const generateDate = (date, weeksToAdd) => {
     let startDate, days, months, years, daysToAdd, outputDate, formattedDate;
@@ -63,13 +62,12 @@ const WeekRow = props => {
   const firstDateOfTheWeek = startDate && generateDate(startDate, weekNo);
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
-
-  const avgWeightForPreviousWeek =
+  const avgPreviousWeight =
     weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight;
   const weightChange = avgWeightForWeek
-    ? avgWeightForWeek - avgWeightForPreviousWeek
+    ? avgWeightForWeek - avgPreviousWeight
     : 0;
-  weeklyTdee = avgKcalForWeek - weightChange * 1100;
+  const weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
   const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {
     return (
@@ -89,12 +87,10 @@ const WeekRow = props => {
     <WeekRowWrapper>
       <LabelCell top={`Week ${weekNo}`} bottom={firstDateOfTheWeek} />
       <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView>
-        <button
-          style={{ border: "none", background: "white" }}
-          onClick={() => setLocked(!locked)}
-        >
-          {locked ? "🔒" : "✔️"}
-        </button>
+        <LockWeekButton
+          locked={locked}
+          clickHandler={() => lockWeek(weekIndex)}
+        />
       </LabelCell>
       {weekData && listOfDays}
       <LabelCell
@@ -123,7 +119,8 @@ const mapDispatchToProps = dispatch => {
     setWeeklyTdee: (weeklyTdee, weekIndex) =>
       dispatch(setWeeklyTdee(weeklyTdee, weekIndex)),
     setKcalAndKg: (kal, kilo, weekIndex, dayIndex) =>
-      dispatch(setKcalAndKg(kal, kilo, weekIndex, dayIndex))
+      dispatch(setKcalAndKg(kal, kilo, weekIndex, dayIndex)),
+    lockWeek: weekIndex => dispatch(lockWeek(weekIndex))
   };
 };
 

@@ -16,8 +16,7 @@ const CurrentStats = props => {
     avgWeight,
     weeksForAvg,
     weeklyChange,
-    goalWeight,
-    isWeightLoss
+    goalWeight
   } = props;
 
   const totalLoss = startWeight - avgWeight;
@@ -71,21 +70,21 @@ const CurrentStats = props => {
           value={avgWeight || startWeight}
           readOnly={true}
           type="number"
-          label="Your AVG weight"
+          label="Your average weight"
           units="kg/lbs"
         />
         <InputRow
           value={Math.abs(totalLoss.toFixed(2))}
           readOnly={true}
           type="number"
-          label={`You have ${isWeightLoss ? "lost" : "gained"}`}
+          label={`You have ${avgWeight > startWeight ? "lost" : "gained"}`}
           units="kg"
         />
         <InputRow
           value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg)}`}
           readOnly={true}
           type="number"
-          label="Your AVG TDEE"
+          label="Your average TDEE"
           units="kcal"
         />
         <InputRow
@@ -99,7 +98,7 @@ const CurrentStats = props => {
             dailyKcalChange}`}
           onChange={null}
           type="number"
-          label="Recommended daily KCAL"
+          label="Recommended daily intake"
           units="kcal"
         />
       </InputTable>
@@ -119,8 +118,7 @@ const mapStateToProps = state => {
     goalWeight: state.calculator.goalWeight,
     tdee: state.calculator.tdee,
     weekData: state.calculator.weekData,
-    avgWeight: state.calculator.avgWeight,
-    isWeightLoss: state.calculator.isWeightLoss
+    avgWeight: state.calculator.avgWeight
   };
 };
 
