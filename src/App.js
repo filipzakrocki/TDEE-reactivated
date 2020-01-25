@@ -6,12 +6,15 @@ import { connect } from "react-redux";
 import Input from "./containers/Input/Input";
 import Result from "./containers/Result/Result";
 
-function App(props) {
+function App (props) {
 
   //saving to localStorage on any state change
   useEffect(() => {
     window.localStorage.setItem("state", JSON.stringify(props.state));
   }, [props.state]);
+
+
+  document.title = 'TDEE.fit'
 
   return (
     <div className="App">
