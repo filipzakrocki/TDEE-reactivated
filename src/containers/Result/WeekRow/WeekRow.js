@@ -60,13 +60,17 @@ const WeekRow = props => {
   };
 
   const firstDateOfTheWeek = startDate && generateDate(startDate, weekNo);
+
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
+
   const avgPreviousWeight =
     weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight;
+
   const weightChange = avgWeightForWeek
     ? avgWeightForWeek - avgPreviousWeight
     : 0;
+
   const weeklyTdee = avgKcalForWeek - weightChange * 1100;
 
   const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {

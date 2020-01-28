@@ -77,7 +77,7 @@ const CurrentStats = props => {
           value={Math.abs(totalLoss.toFixed(2))}
           readOnly={true}
           type="number"
-          label={`You have ${avgWeight > startWeight ? "lost" : "gained"}`}
+          label={`You have ${avgWeight < startWeight ? "lost" : "gained"}`}
           units="kg"
         />
         <InputRow
@@ -122,6 +122,4 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispatch => {};
-
-export default connect(mapStateToProps, null)(CurrentStats);
+export default connect(mapStateToProps)(CurrentStats);

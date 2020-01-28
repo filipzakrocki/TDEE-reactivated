@@ -23,6 +23,7 @@ const InitialInput = props => {
     weeklyChange,
     goalWeight,
     weeksForAvg,
+    metricSystem,
     isWeightLoss,
     setStartWeight,
     setGoalWeight,
@@ -51,7 +52,7 @@ const InitialInput = props => {
           minValue={1}
           type="number"
           label="Starting Weight"
-          units="kg/lbs"
+          units={metricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setGoalWeight}
@@ -60,7 +61,7 @@ const InitialInput = props => {
           step={0.5}
           minValue={1}
           label="Goal Weight"
-          units="kg/lbs"
+          units={metricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setWeeklyChange}
@@ -69,7 +70,7 @@ const InitialInput = props => {
           isWeightLoss={isWeightLoss}
           type="number"
           label={"Weekly Weight Change"}
-          units="kg/lbs"
+          units={metricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setDailyKcalChange}
@@ -104,7 +105,8 @@ const mapStateToProps = state => {
     goalWeight: state.calculator.goalWeight,
     initialInputsLocked: state.calculator.initialInputsLocked,
     isWeightLoss: state.calculator.isWeightLoss,
-    weeksForAvg: state.calculator.weeksForAvg
+    weeksForAvg: state.calculator.weeksForAvg,
+    metricSystem: state.calculator.metricSystem
   };
 };
 
