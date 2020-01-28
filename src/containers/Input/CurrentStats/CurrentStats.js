@@ -14,6 +14,7 @@ const CurrentStats = props => {
     avgTdeeOverTime,
     dailyKcalChange,
     avgWeight,
+    isMetricSystem,
     weeksForAvg,
     weeklyChange,
     goalWeight
@@ -71,14 +72,14 @@ const CurrentStats = props => {
           readOnly={true}
           type="number"
           label="Your average weight"
-          units="kg/lbs"
+          units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
           value={Math.abs(totalLoss.toFixed(2))}
           readOnly={true}
           type="number"
           label={`You have ${avgWeight < startWeight ? "lost" : "gained"}`}
-          units="kg"
+          units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
           value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg)}`}
@@ -116,6 +117,7 @@ const mapStateToProps = state => {
     weeksForAvg: state.calculator.weeksForAvg,
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
+    isMetricSystem: state.calculator.isMetricSystem,
     tdee: state.calculator.tdee,
     weekData: state.calculator.weekData,
     avgWeight: state.calculator.avgWeight

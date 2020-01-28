@@ -15,7 +15,7 @@ const initialState = {
   weeksToGoal: 0,
   avgWeight: 0,
   weekNo: 1,
-  metricSystem: true,
+  isMetricSystem: true,
   initialInputsLocked: false,
   tdee: 0,
   weekData: []

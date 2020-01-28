@@ -23,7 +23,7 @@ const InitialInput = props => {
     weeklyChange,
     goalWeight,
     weeksForAvg,
-    metricSystem,
+    isMetricSystem,
     isWeightLoss,
     setStartWeight,
     setGoalWeight,
@@ -52,8 +52,8 @@ const InitialInput = props => {
           minValue={1}
           type="number"
           label="Starting Weight"
-          metricSystem={metricSystem}
-          units={metricSystem ? "kg" : "lbs"}
+          isMetricSystem={isMetricSystem}
+          units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setGoalWeight}
@@ -62,7 +62,7 @@ const InitialInput = props => {
           step={0.5}
           minValue={1}
           label="Goal Weight"
-          units={metricSystem ? "kg" : "lbs"}
+          units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setWeeklyChange}
@@ -71,7 +71,7 @@ const InitialInput = props => {
           isWeightLoss={isWeightLoss}
           type="number"
           label={"Weekly Weight Change"}
-          units={metricSystem ? "kg" : "lbs"}
+          units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
           changeHandler={setDailyKcalChange}
@@ -106,15 +106,15 @@ const mapStateToProps = state => {
     goalWeight: state.calculator.goalWeight,
     initialInputsLocked: state.calculator.initialInputsLocked,
     isWeightLoss: state.calculator.isWeightLoss,
-    weeksForAvg: state.calculator.weeksForAvg,
-    metricSystem: state.calculator.metricSystem
+    isMetricSystem: state.calculator.isMetricSystem,
+    weeksForAvg: state.calculator.weeksForAvg
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStartWeight: (enteredWeight, metricSystem) =>
-      dispatch(setStartWeight(enteredWeight, metricSystem)),
+    setStartWeight: (enteredWeight, isMetricSystem) =>
+      dispatch(setStartWeight(enteredWeight, isMetricSystem)),
     setGoalWeight: enteredGoal => dispatch(setGoalWeight(enteredGoal)),
     setDailyKcalChange: kcalChange => dispatch(setDailyKcalChange(kcalChange)),
     setWeeklyChange: weeklyChange => dispatch(setWeeklyChange(weeklyChange)),

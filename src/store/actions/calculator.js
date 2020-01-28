@@ -1,8 +1,8 @@
 import * as actionTypes from "./actionTypes";
 // import axios from "axios";
 
-export const setStartWeight = (enteredWeight, metricSystem) => {
-  let modifier = metricSystem ? 33 : 15;
+export const setStartWeight = (enteredWeight, isMetricSystem) => {
+  let modifier = isMetricSystem ? 33 : 15;
   const weightToTdee = modifier * enteredWeight;
   return {
     type: actionTypes.SET_START_WEIGHT,

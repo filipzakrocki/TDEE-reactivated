@@ -10,7 +10,7 @@ const InputRow = props => {
     changeHandler,
     type,
     label,
-    metricSystem,
+    isMetricSystem,
     units,
     isWeightLoss
   } = props;
@@ -22,7 +22,7 @@ const InputRow = props => {
     ) {
       e.target.value = 0;
     }
-    changeHandler(e.target.value, metricSystem);
+    changeHandler(e.target.value, isMetricSystem);
   };
 
   return (
