@@ -52,6 +52,7 @@ const InitialInput = props => {
           minValue={1}
           type="number"
           label="Starting Weight"
+          metricSystem={metricSystem}
           units={metricSystem ? "kg" : "lbs"}
         />
         <InputRow
@@ -112,7 +113,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStartWeight: enteredWeight => dispatch(setStartWeight(enteredWeight)),
+    setStartWeight: (enteredWeight, metricSystem) =>
+      dispatch(setStartWeight(enteredWeight, metricSystem)),
     setGoalWeight: enteredGoal => dispatch(setGoalWeight(enteredGoal)),
     setDailyKcalChange: kcalChange => dispatch(setDailyKcalChange(kcalChange)),
     setWeeklyChange: weeklyChange => dispatch(setWeeklyChange(weeklyChange)),
