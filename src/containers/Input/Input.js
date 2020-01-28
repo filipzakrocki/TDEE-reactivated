@@ -7,11 +7,13 @@ import InputColumn from "../../components/Input/InputColumn/InputColumn";
 import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
+import Debug from '../../debug/debug'
+
 const Input = () => {
   return (
     <>
       <section className="input">
-        <button onClick={() => localStorage.clear()}>CLEAR THE STORAGE</button>
+        <Debug/>
         <InputColumnWrapper>
           <InputColumn>
             <InitialInput />
