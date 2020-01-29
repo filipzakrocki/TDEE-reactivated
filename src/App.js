@@ -14,7 +14,6 @@ function App (props) {
   }, [props.state]);
 
 
-  document.title = 'TDEE.fit'
 
   return (
     <div className="App">

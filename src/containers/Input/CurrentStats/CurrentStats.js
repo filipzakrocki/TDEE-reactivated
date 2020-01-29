@@ -89,7 +89,7 @@ const CurrentStats = props => {
           units="kcal"
         />
         <InputRow
-          value={setWeeksNeeded()}
+          value={`${setWeeksNeeded()}`}
           readOnly={true}
           type="number"
           label="Weeks to goal"

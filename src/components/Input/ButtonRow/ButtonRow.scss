@@ -1,22 +1,29 @@
 @import "../../../styles/main.scss";
 
 
-.inputRow {
+.toggleRow {
     width: 100%;
     height: 40px;
 }
 
-.inputRow-label {
+.toggleRow-label {
     text-align: left;
     font-size: $default-font;
 }
 
-.inputRow-input {
+.toggleRow-input {
     text-align: left;
     padding: 0 0 0 10px;
 }
 
-.inputRow-input input {
+.toggleRow-button {
+    width: 100%;
+    line-height: 1.75;
+    border: none;
+    outline: none;
+}
+
+.toggleRow-input input {
     width: 100%;
     text-align: center;
     border: none;
@@ -25,15 +32,15 @@
     line-height: 1.75;
 }
 
-.inputRow-units {
+.toggleRow-units {
     font-size: $small-font;
 }
 
 @media only screen and (max-width: 910px) {
-    .inputRow-label {
+    .toggleRow-label {
         font-size: $default-font-mobile;
     }
-    .inputRow {
+    .toggleRow {
         height: 20px;
     }
   } 

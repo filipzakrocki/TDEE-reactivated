@@ -9,5 +9,6 @@ export {
   setWeeklyKcalAndKg,
   addAnotherWeek,
   setWeeklyTdee,
-  lockWeek
+  lockWeek,
+  toggleMeasurementSystem
 } from "./calculator";

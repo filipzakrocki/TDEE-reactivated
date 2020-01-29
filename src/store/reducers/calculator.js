@@ -99,6 +99,12 @@ const lockWeek = (state, action) => {
   });
 };
 
+const toggleMeasurementSystem = (state, action) => {
+  return produce(state, draft => {
+    draft.isMetricSystem = !state.isMetricSystem;
+  })
+}
+
 let localStorageState = null;
 localStorageState = JSON.parse(window.localStorage.getItem("state"));
 
@@ -126,6 +132,8 @@ const reducer = (state = localStorageState || initialState, action) => {
       return setWeeklyKcalAndKg(state, action);
     case actionTypes.SET_WEEKLY_TDEE:
       return setWeeklyTdee(state, action);
+    case actionTypes.TOGGLE_MEASUREMENT_SYSTEM:
+      return toggleMeasurementSystem(state, action);
     default:
       return state;
   }

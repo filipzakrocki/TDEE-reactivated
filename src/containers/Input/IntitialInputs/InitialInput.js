@@ -6,14 +6,15 @@ import {
   setDailyKcalChange,
   setWeeklyChange,
   setStartDate,
-  setWeeksForAverage
+  setWeeksForAverage,
+  toggleMeasurementSystem
 } from "../../../store/actions/index";
 import "./InitialInput.scss";
 
 import InputTable from "../../../components/Input/InputTable/InputTable";
 import InputRowTitle from "../../../components/Input/InputRowTitle/InputRowTitle";
 import InputRow from "../../../components/Input/InputRow/InputRow";
-import SelectRow from "../../../components/Input/SelectRow/SelectRow";
+import ButtonRow from "../../../components/Input/ButtonRow/ButtonRow";
 
 const InitialInput = props => {
   const {
@@ -31,6 +32,7 @@ const InitialInput = props => {
     setDailyKcalChange,
     setWeeklyChange,
     setStartDate,
+    toggleMeasurementSystem,
     setWeeksForAverage
   } = props;
 
@@ -45,9 +47,11 @@ const InitialInput = props => {
           type="date"
           label="Start Date"
         />
-        <SelectRow
+        <ButtonRow
+          disabled={initialInputsLocked}
           label={"Measurement System"}
-          changeHandler={e => console.log(e.target.value)}
+          changeHandler={toggleMeasurementSystem}
+          value={isMetricSystem}
         />
         <InputRow
           changeHandler={setStartWeight}
@@ -67,6 +71,7 @@ const InitialInput = props => {
           step={0.5}
           minValue={1}
           label="Goal Weight"
+          isMetricSystem={isMetricSystem}
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
@@ -76,6 +81,7 @@ const InitialInput = props => {
           isWeightLoss={isWeightLoss}
           type="number"
           label={"Weekly Weight Change"}
+          isMetricSystem={isMetricSystem}
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
@@ -121,11 +127,12 @@ const mapDispatchToProps = dispatch => {
     setStartWeight: (enteredWeight, isMetricSystem) =>
       dispatch(setStartWeight(enteredWeight, isMetricSystem)),
     setGoalWeight: enteredGoal => dispatch(setGoalWeight(enteredGoal)),
-    setDailyKcalChange: kcalChange => dispatch(setDailyKcalChange(kcalChange)),
-    setWeeklyChange: weeklyChange => dispatch(setWeeklyChange(weeklyChange)),
+    setDailyKcalChange: (kcalChange, isMetricSystem) => dispatch(setDailyKcalChange(kcalChange, isMetricSystem)),
+    setWeeklyChange: (weeklyChange, isMetricSystem )=> dispatch(setWeeklyChange(weeklyChange, isMetricSystem )),
     setStartDate: startDate => dispatch(setStartDate(startDate)),
     setWeeksForAverage: numberOfWeeks =>
-      dispatch(setWeeksForAverage(numberOfWeeks))
+      dispatch(setWeeksForAverage(numberOfWeeks)),
+    toggleMeasurementSystem: () => dispatch(toggleMeasurementSystem())
   };
 };
 

@@ -32,6 +32,7 @@ export const setWeeksForAverage = numberOfWeeks => {
 };
 
 export const setWeeklyChange = (weeklyChange, isMetricSystem) => {
+
   let modifier = isMetricSystem ? 1100 : 500;
   const kcalChange = weeklyChange * modifier;
 
@@ -52,6 +53,12 @@ export const setDailyKcalChange = (dailyChange, isMetricSystem) => {
     weeklyChange: weeklyWeightChange.toFixed(2)
   };
 };
+
+export const toggleMeasurementSystem = () => {
+  return {
+    type: actionTypes.TOGGLE_MEASUREMENT_SYSTEM,
+  }
+}
 
 export const setKcalAndKg = (kcal, kg, week, day) => {
   return {
