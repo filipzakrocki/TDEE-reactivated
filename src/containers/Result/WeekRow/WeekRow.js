@@ -20,6 +20,7 @@ const WeekRow = props => {
     weekNo,
     startDate,
     startWeight,
+    isMetricSystem,
     weekData,
     weekIndex,
     weekDays,
@@ -71,7 +72,8 @@ const WeekRow = props => {
     ? avgWeightForWeek - avgPreviousWeight
     : 0;
 
-  const weeklyTdee = avgKcalForWeek - weightChange * 1100;
+  const metricModifier = isMetricSystem ? 1100 : 500;
+  const weeklyTdee = avgKcalForWeek - weightChange * metricModifier;
 
   const listOfDays = weekData[weekIndex].days.map((day, dayIndex) => {
     return (
@@ -90,7 +92,11 @@ const WeekRow = props => {
   return (
     <WeekRowWrapper>
       <LabelCell top={`Week ${weekNo}`} bottom={firstDateOfTheWeek} />
-      <LabelCell top={"kg"} bottom={"kcal"} hiddenInMobileView>
+      <LabelCell
+        top={isMetricSystem ? "kg" : "lbs"}
+        bottom={"kcal"}
+        hiddenInMobileView
+      >
         <LockWeekButton
           locked={locked}
           clickHandler={() => lockWeek(weekIndex)}
@@ -98,11 +104,13 @@ const WeekRow = props => {
       </LabelCell>
       {weekData && listOfDays}
       <LabelCell
-        top={`${avgWeightForWeek.toFixed(2)} kg`}
+        top={`${avgWeightForWeek.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`}
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         hiddenInMobileView
       />
-      <LabelCell top={`${weightChange.toFixed(2)} kg`} />
+      <LabelCell
+        top={`${weightChange.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`}
+      />
       <LabelCell top={Math.ceil(weeklyTdee) + " KCAL"} />
     </WeekRowWrapper>
   );
@@ -112,7 +120,8 @@ const mapStateToProps = state => {
   return {
     weekData: state.calculator.weekData,
     startWeight: state.calculator.startWeight,
-    avgTdeeArray: state.calculator.avgTdeeArray
+    avgTdeeArray: state.calculator.avgTdeeArray,
+    isMetricSystem: state.calculator.isMetricSystem
   };
 };
 

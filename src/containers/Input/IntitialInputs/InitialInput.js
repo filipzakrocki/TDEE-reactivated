@@ -10,9 +10,10 @@ import {
 } from "../../../store/actions/index";
 import "./InitialInput.scss";
 
+import InputTable from "../../../components/Input/InputTable/InputTable";
 import InputRowTitle from "../../../components/Input/InputRowTitle/InputRowTitle";
 import InputRow from "../../../components/Input/InputRow/InputRow";
-import InputTable from "../../../components/Input/InputTable/InputTable";
+import SelectRow from "../../../components/Input/SelectRow/SelectRow";
 
 const InitialInput = props => {
   const {
@@ -43,6 +44,10 @@ const InitialInput = props => {
           readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
+        />
+        <SelectRow
+          label={"Measurement System"}
+          changeHandler={e => console.log(e.target.value)}
         />
         <InputRow
           changeHandler={setStartWeight}
