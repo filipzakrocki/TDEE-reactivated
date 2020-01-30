@@ -27,6 +27,7 @@ const DayCell = props => {
         value={dayWeight ? dayWeight : null}
         readOnly={locked}
         step={0.1}
+        min={0}
       ></input>
       <input
         type="number"
@@ -34,6 +35,7 @@ const DayCell = props => {
         value={dayKcal ? dayKcal : null}
         readOnly={locked}
         step={10}
+        min={0}
       ></input>
     </div>
   );
