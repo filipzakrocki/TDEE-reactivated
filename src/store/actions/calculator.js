@@ -32,7 +32,6 @@ export const setWeeksForAverage = numberOfWeeks => {
 };
 
 export const setWeeklyChange = (weeklyChange, isMetricSystem) => {
-
   let modifier = isMetricSystem ? 1100 : 500;
   const kcalChange = weeklyChange * modifier;
 
@@ -56,9 +55,9 @@ export const setDailyKcalChange = (dailyChange, isMetricSystem) => {
 
 export const toggleMeasurementSystem = () => {
   return {
-    type: actionTypes.TOGGLE_MEASUREMENT_SYSTEM,
-  }
-}
+    type: actionTypes.TOGGLE_MEASUREMENT_SYSTEM
+  };
+};
 
 export const setKcalAndKg = (kcal, kg, week, day) => {
   return {
@@ -152,17 +151,6 @@ export const setStartDate = startDate => {
   };
 };
 
-// export const setLoadedImages = () => {
-//   return {
-//     type: actionTypes.SET_LOADED_IMAGES
-//   };
-// };
-// export const clearLoadedImages = () => {
-//   return {
-//     type: actionTypes.CLEAR_LOADED_IMAGES
-//   };
-// };
-
 // export const fetchPokemon = pokemonQuery => {
 //   return async dispatch => {
 //     let params;
@@ -198,18 +186,5 @@ export const setStartDate = startDate => {
 //       dispatch(setError(error));
 //       dispatch(fetchFinished());
 //     }
-//   };
-// };
-
-// export const closeModal = () => {
-//   return {
-//     type: actionTypes.CLOSE_MODAL
-//   };
-// };
-
-// export const openModal = clickedCardIndex => {
-//   return {
-//     type: actionTypes.OPEN_MODAL,
-//     selectedCard: clickedCardIndex
 //   };
 // };

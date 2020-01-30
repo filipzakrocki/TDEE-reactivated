@@ -1,6 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
-import produce from "immer";
+import { produce } from "immer";
 
 const initialState = {
   startDate: "",
@@ -102,11 +102,17 @@ const lockWeek = (state, action) => {
 const toggleMeasurementSystem = (state, action) => {
   return produce(state, draft => {
     draft.isMetricSystem = !state.isMetricSystem;
-    draft.startWeight = (state.startWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)).toFixed(2)
-    draft.goalWeight = (state.goalWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)).toFixed(2)
-    draft.weeklyChange = (state.weeklyChange * (state.isMetricSystem ? 2.20462262 : 0.45359237)).toFixed(2)
-  })
-}
+    draft.startWeight = (
+      state.startWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+    ).toFixed(2);
+    draft.goalWeight = (
+      state.goalWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+    ).toFixed(2);
+    draft.weeklyChange = (
+      state.weeklyChange * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+    ).toFixed(2);
+  });
+};
 
 let localStorageState = null;
 localStorageState = JSON.parse(window.localStorage.getItem("state"));

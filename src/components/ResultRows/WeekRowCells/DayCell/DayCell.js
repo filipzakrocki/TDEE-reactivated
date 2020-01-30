@@ -24,15 +24,14 @@ const DayCell = props => {
       <input
         type="number"
         onChange={handleWeightChange}
-        value={dayWeight ? dayWeight : null}
+        value={dayWeight ? dayWeight : ""}
         readOnly={locked}
         step={0.1}
-        min={0}
       />
       <input
         type="number"
         onChange={handleKcalChange}
-        value={dayKcal ? dayKcal : null}
+        value={dayKcal ? dayKcal : ""}
         readOnly={locked}
         step={10}
         min={0}
