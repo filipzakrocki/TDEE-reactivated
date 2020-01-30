@@ -28,7 +28,7 @@ const DayCell = props => {
         readOnly={locked}
         step={0.1}
         min={0}
-      ></input>
+      />
       <input
         type="number"
         onChange={handleKcalChange}
@@ -36,7 +36,7 @@ const DayCell = props => {
         readOnly={locked}
         step={10}
         min={0}
-      ></input>
+      />
     </div>
   );
 };
