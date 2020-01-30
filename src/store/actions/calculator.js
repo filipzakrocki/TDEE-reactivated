@@ -63,8 +63,8 @@ export const toggleMeasurementSystem = () => {
 export const setKcalAndKg = (kcal, kg, week, day) => {
   return {
     type: actionTypes.SET_KCAL_AND_KG,
-    kcal: kcal,
-    kg: kg,
+    kcal: parseInt(kcal, 10),
+    kg: parseFloat(kg, 10),
     week: week,
     day: day
   };
