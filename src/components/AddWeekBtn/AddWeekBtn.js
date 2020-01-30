@@ -7,16 +7,15 @@ import { addAnotherWeek, lockWeek } from "../../store/actions/index";
 const AddWeekBtn = props => {
   const { weekNo, addAnotherWeek, lockWeek } = props;
 
+  const addWeekButtonHandler = weekNo => {
+    addAnotherWeek(weekNo);
+    if (weekNo > 1) {
+      lockWeek(weekNo - 2);
+    }
+  };
+
   return (
-    <button
-      onClick={() => {
-        addAnotherWeek(weekNo);
-        if (weekNo > 1) {
-          lockWeek(weekNo - 2);
-        }
-      }}
-      className="addWeekBtn"
-    >
+    <button onClick={() => addWeekButtonHandler(weekNo)} className="addWeekBtn">
       Start another week
     </button>
   );
