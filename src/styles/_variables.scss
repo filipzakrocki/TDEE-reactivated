@@ -6,7 +6,10 @@ $small-font: 0.6em;
 
 $main-background-color: white;
 $secondary-background-color: white;
-$input-color: lightsteelblue;
+// $input-color: linear-gradient(to bottom, #7f53ac 0, #657ced 100%);
+$input-color: #659dbd;
 $contrast-color: black;
 
 $font-color: #000000;
+
+$purple-gradient: linear-gradient(to bottom, #7f53ac 0, #657ced 100%);

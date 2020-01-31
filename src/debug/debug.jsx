@@ -22,7 +22,14 @@ const Debugg = props => {
   return (
     <div>
       <input type="text" value={user} onChange={e => setUser(e.target.value)} />
-      <button onClick={() => localStorage.clear()}>CLEAR THE STORAGE</button>
+      <button
+        onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+      >
+        CLEAR THE STORAGE
+      </button>
       <button onClick={() => console.log(state)}>CONSOLE.LOG THE STATE</button>
       <button onClick={() => saveState(state, user)}>
         SAVE STATE TO FIREBASE

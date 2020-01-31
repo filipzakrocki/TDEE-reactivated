@@ -7,13 +7,10 @@ import InputColumn from "../../components/Input/InputColumn/InputColumn";
 import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
-import Debug from '../../debug/debug'
-
 const Input = () => {
   return (
     <>
       <section className="input">
-        <Debug/>
         <InputColumnWrapper>
           <InputColumn>
             <InitialInput />

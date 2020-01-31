@@ -5,20 +5,23 @@ import { connect } from "react-redux";
 
 import Input from "./containers/Input/Input";
 import Result from "./containers/Result/Result";
+import SideBar from "./containers/SideBar/SideBar";
 
-function App (props) {
-
+function App(props) {
   //saving to localStorage on any state change
   useEffect(() => {
     window.localStorage.setItem("state", JSON.stringify(props.state));
   }, [props.state]);
 
-
-
   return (
     <div className="App">
-      <Input />
-      <Result />
+      <div className="side-bar">
+        <SideBar />
+      </div>
+      <div className="main-window">
+        <Input />
+        <Result />
+      </div>
     </div>
   );
 }
