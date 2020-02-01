@@ -1,6 +1,5 @@
 // MEDIA QUERY MIXINS https://itnext.io/writing-media-queries-with-sass-mixins-3ea591ea3ea4
 
-
 @mixin mobile-device {
   @media (max-width: 910px) {
     @content;
@@ -23,7 +22,7 @@
   border: none;
   outline-color: none;
   background: $main-background-color;
-  font-size: $default-font;
+  font-size: $default-font-size;
   margin: 0;
   padding: 4px;
   text-align: center;
@@ -36,7 +35,7 @@
   border: none;
   outline-color: black;
   background: $input-color;
-  font-size: $default-font;
+  font-size: $default-font-size;
   margin: 0;
   padding: 4px;
   text-align: center;

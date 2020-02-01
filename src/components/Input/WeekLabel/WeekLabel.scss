@@ -1,7 +1,7 @@
 @import "../../../styles/main.scss";
 
 .weekLabel {
-  background: $secondary-background-color;
+  background: $main-background-color;
   height: 50px;
   position: relative;
   z-index: 2;
@@ -24,7 +24,7 @@
 
 @media only screen and (max-width: 910px) {
   .weekLabel {
-    font-size: $default-font-mobile;
+    font-size: $default-font-size-mobile;
   }
   .weekLabel-wrapper {
     padding: 10px 0;

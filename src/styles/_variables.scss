@@ -1,14 +1,15 @@
-$default-font: 1em;
-$default-font-mobile: 0.8em;
-$title-font: 1.2em;
-$title-font-mobile: 1em;
-$small-font: 0.6em;
+$default-font-size: 1em;
+$default-font-size-mobile: 0.8em;
+$title-font-size: 1.2em;
+$title-font-size-mobile: 1em;
+$small-font-size: 0.6em;
 
 $main-background-color: white;
-$secondary-background-color: white;
+$secondary-background-color: #659dbd;
 // $input-color: linear-gradient(to bottom, #7f53ac 0, #657ced 100%);
-$input-color: #659dbd;
-$contrast-color: black;
+$cell-background-color: #659dbd;
+$font-color: black;
+$button-color: lightgray;
 
 $font-color: #000000;
 

@@ -1,7 +1,7 @@
 @import "../../../styles/main.scss";
 
 .weekRow {
-  background: $secondary-background-color;
+  background: $main-background-color;
   border-top: 1px solid black;
 }
 
@@ -14,7 +14,7 @@
 
 @media only screen and (max-width: 910px) {
   .weekRow {
-    font-size: $default-font-mobile;
+    font-size: $default-font-size-mobile;
   }
   .weekRow-wrapper {
     padding: 0;

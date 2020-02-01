@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Input.scss";
 
 import CurrentStats from "./CurrentStats/CurrentStats";
@@ -8,20 +8,28 @@ import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 
 const Input = () => {
+  //delegate to redux??
+  const [controls, setControls] = useState(true);
+
+  const controlsPanel = controls ? (
+    <InputColumnWrapper>
+      <InputColumn>
+        <InitialInput />
+      </InputColumn>
+      <InputColumn>
+        <CurrentStats />
+      </InputColumn>
+    </InputColumnWrapper>
+  ) : null;
+
   return (
-    <>
-      <section className="input">
-        <InputColumnWrapper>
-          <InputColumn>
-            <InitialInput />
-          </InputColumn>
-          <InputColumn>
-            <CurrentStats />
-          </InputColumn>
-        </InputColumnWrapper>
-        <WeekLabel />
-      </section>
-    </>
+    <section className="input">
+      {controlsPanel}
+      <button onClick={() => setControls(!controls)}>
+        {controls ? "Hide" : "Show"} the panels
+      </button>
+      <WeekLabel />
+    </section>
   );
 };
 

@@ -8,7 +8,6 @@ import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
 
 function App(props) {
-  //saving to localStorage on any state change
   useEffect(() => {
     window.localStorage.setItem("state", JSON.stringify(props.state));
   }, [props.state]);

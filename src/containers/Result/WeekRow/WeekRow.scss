@@ -14,8 +14,8 @@
   width: 100%;
   border: none;
   outline-color: black;
-  background: $input-color;
-  font-size: $default-font;
+  background: $cell-background-color;
+  font-size: $default-font-size;
   margin: 0;
   padding: 4px;
   font-size: 20px;
@@ -26,7 +26,7 @@
 
 @media only screen and (max-width: 910px) {
   .weekRow {
-    font-size: $default-font-mobile;
+    font-size: $default-font-size-mobile;
   }
   .weekRow-wrapper {
     padding: 0;

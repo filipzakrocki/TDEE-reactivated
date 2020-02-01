@@ -1,47 +1,46 @@
 @import "../../../styles/main.scss";
 
-
 .toggleRow {
-    width: 100%;
-    height: 40px;
+  width: 100%;
+  height: 40px;
 }
 
 .toggleRow-label {
-    text-align: left;
-    font-size: $default-font;
+  text-align: left;
+  font-size: $default-font-size;
 }
 
 .toggleRow-input {
-    text-align: left;
-    padding: 0 0 0 10px;
+  text-align: left;
+  padding: 0 0 0 10px;
 }
 
 .toggleRow-button {
-    width: 100%;
-    line-height: 1.75;
-    border: none;
-    outline: none;
-    background: white;
+  width: 100%;
+  line-height: 1.75;
+  border: none;
+  outline: none;
+  background: white;
 }
 
 .toggleRow-input input {
-    width: 100%;
-    text-align: center;
-    border: none;
-    border-radius: 2px;
-    outline: none;
-    line-height: 1.75;
+  width: 100%;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  line-height: 1.75;
 }
 
 .toggleRow-units {
-    font-size: $small-font;
+  font-size: $small-font-size;
 }
 
 @media only screen and (max-width: 910px) {
-    .toggleRow-label {
-        font-size: $default-font-mobile;
-    }
-    .toggleRow {
-        height: 20px;
-    }
-  } 
+  .toggleRow-label {
+    font-size: $default-font-size-mobile;
+  }
+  .toggleRow {
+    height: 20px;
+  }
+}
