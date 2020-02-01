@@ -7,14 +7,14 @@ const Donate = () => {
       <form
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"
-        target="_top"
+        target="_blank"
       >
         <input type="hidden" name="cmd" value="_donations" />
         <input type="hidden" name="business" value="filipzakrocki@gmail.com" />
         <input
           type="hidden"
           name="item_name"
-          value="for server and development"
+          value="for server and (self)development, thank you kindly"
         />
         <input type="hidden" name="currency_code" value="EUR" />
         <input
