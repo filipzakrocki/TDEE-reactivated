@@ -3,6 +3,7 @@ import "./SideBar.scss";
 
 import Clock from "../../components/SideBar/Clock/Clock";
 import Auth from "../../components/SideBar/Auth/Auth";
+import Donate from "../../components/SideBar/Donate/Donate";
 
 import Debug from "../../debug/debug";
 
@@ -12,6 +13,7 @@ const SideBar = () => {
       <Clock />
       <Debug />
       <Auth />
+      <Donate />
     </section>
   );
 };
