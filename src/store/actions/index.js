@@ -12,3 +12,5 @@ export {
   lockWeek,
   toggleMeasurementSystem
 } from "./calculator";
+
+export { auth, logOut, setPathRedirect, authCheckState } from "./auth";

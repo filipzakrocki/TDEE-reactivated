@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./WeekLabel.scss";
 
 const WeekLabel = props => {
-  const { startDate } = props;
+  const { startDate, clickHandler } = props;
 
   const startingDayOfTheWeek = new Date(startDate).getDay();
 
@@ -29,7 +29,7 @@ const WeekLabel = props => {
     : ["", "", "", "", "", "", ""];
 
   return (
-    <div className="weekLabel">
+    <div className="weekLabel" onClick={() => clickHandler}>
       <div className="weekLabel-wrapper">
         <div className="weekLabel-label"> Week</div>
         <div className="weekLabel-label noMobile"> Stats</div>

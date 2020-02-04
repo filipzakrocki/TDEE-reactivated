@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 
 //reducers
 import calculatorReducer from "./store/reducers/calculator";
+import authReducer from "./store/reducers/auth";
 
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -16,7 +17,8 @@ import ReduxThunk from "redux-thunk";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  calculator: calculatorReducer
+  calculator: calculatorReducer,
+  auth: authReducer
 });
 
 const store = createStore(

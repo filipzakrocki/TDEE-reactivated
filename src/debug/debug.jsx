@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
 const Debugg = props => {
-  const { state } = props;
-  const [user, setUser] = useState("");
+  const { state, user } = props;
+
+  console.log(user);
 
   const saveState = (userState, user) => {
     let address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
@@ -21,7 +22,6 @@ const Debugg = props => {
 
   return (
     <div>
-      <input type="text" value={user} onChange={e => setUser(e.target.value)} />
       <button
         onClick={() => {
           localStorage.clear();
@@ -41,7 +41,8 @@ const Debugg = props => {
 
 const mapStateToProps = state => {
   return {
-    state: state.calculator
+    state: state.calculator,
+    user: state.auth.localId
   };
 };
 

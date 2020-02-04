@@ -25,10 +25,8 @@ const Input = () => {
   return (
     <section className="input">
       {controlsPanel}
-      <button onClick={() => setControls(!controls)}>
-        {controls ? "Hide" : "Show"} the panels
-      </button>
-      <WeekLabel />
+
+      <WeekLabel clickHandler={() => setControls(!controls)} />
     </section>
   );
 };
