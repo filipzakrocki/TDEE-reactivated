@@ -25,7 +25,6 @@ const Input = () => {
   return (
     <section className="input">
       {controlsPanel}
-
       <WeekLabel clickHandler={() => setControls(!controls)} />
     </section>
   );
