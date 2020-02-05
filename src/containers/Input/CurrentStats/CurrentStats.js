@@ -35,7 +35,7 @@ const CurrentStats = props => {
 
   const setWeeksNeeded = () => {
     if (avgWeightOverTime) {
-      let weeksNeeded = Math.round(
+      const weeksNeeded = Math.round(
         ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
           goalWeight) /
           weeklyChange
