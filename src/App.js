@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import "./App.scss";
 
 import { connect } from "react-redux";
@@ -8,9 +9,11 @@ import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
 
 function App(props) {
+  const { state, user } = props;
+
   useEffect(() => {
-    window.localStorage.setItem("state", JSON.stringify(props.state));
-  }, [props.state]);
+    window.localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
 
   return (
     <div className="App">
@@ -27,7 +30,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    state: state.calculator
+    state: state.calculator,
+    user: state.auth.localId
   };
 };
 
