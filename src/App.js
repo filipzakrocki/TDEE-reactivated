@@ -13,7 +13,19 @@ function App(props) {
 
   useEffect(() => {
     window.localStorage.setItem("state", JSON.stringify(state));
-  }, [state]);
+    saveState(user, state);
+  }, [state, user]);
+
+  const saveState = (user, state) => {
+    if (user) {
+      try {
+        const address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
+        axios.put(address, state);
+      } catch (err) {
+        console.log("ENTRY FAILED " + err);
+      }
+    }
+  };
 
   return (
     <div className="App">

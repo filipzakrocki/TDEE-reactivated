@@ -26,14 +26,6 @@ const Donate = () => {
           title="PayPal - Thanks for the support!"
           alt="Donate with PayPal button"
         />
-
-        <img
-          alt=""
-          border="0"
-          src="https://www.paypal.com/en_IE/i/scr/pixel.gif"
-          width="1"
-          height="1"
-        />
       </form>
     </div>
   );
