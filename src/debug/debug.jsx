@@ -5,8 +5,6 @@ import axios from "axios";
 const Debugg = props => {
   const { state, user } = props;
 
-  console.log(user);
-
   const saveState = (userState, user) => {
     let address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
     axios.put(address, userState).then(res => console.log("SUCCESS"));
@@ -23,6 +21,7 @@ const Debugg = props => {
   return (
     <div>
       <button
+        style={{ width: "100%" }}
         onClick={() => {
           localStorage.clear();
           window.location.reload();
@@ -30,11 +29,15 @@ const Debugg = props => {
       >
         CLEAR THE STORAGE
       </button>
-      <button onClick={() => console.log(state)}>CONSOLE.LOG THE STATE</button>
-      <button onClick={() => saveState(state, user)}>
+      <button style={{ width: "100%" }} onClick={() => console.log(state)}>
+        CONSOLE.LOG THE STATE
+      </button>
+      <button style={{ width: "100%" }} onClick={() => saveState(state, user)}>
         SAVE STATE TO FIREBASE
       </button>
-      <button onClick={() => loadState(user)}>LOAD STATE FROM FIREBASE</button>
+      <button style={{ width: "100%" }} onClick={() => loadState(user)}>
+        LOAD STATE FROM FIREBASE
+      </button>
     </div>
   );
 };

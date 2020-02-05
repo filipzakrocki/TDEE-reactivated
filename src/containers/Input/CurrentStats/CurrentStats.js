@@ -34,26 +34,29 @@ const CurrentStats = props => {
   };
 
   const setWeeksNeeded = () => {
-    let weeksNeeded = Math.round(
-      ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
-        goalWeight) /
-        weeklyChange
-    );
-    return Math.abs(weeksNeeded);
+    if (avgWeightOverTime) {
+      let weeksNeeded = Math.round(
+        ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
+          goalWeight) /
+          weeklyChange
+      );
+      return Math.abs(weeksNeeded);
+    }
   };
 
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
     let avgTdee, modifiedTdeeArray, filteredArray;
-    if (avgTdeeOverTime.length === 1) {
+    if (avgTdeeOverTime && avgTdeeOverTime.length === 1) {
       return avgTdeeOverTime[0];
+    } else if (avgTdeeOverTime) {
+      filteredArray = avgTdeeOverTime.filter(el => el);
+      modifiedTdeeArray = filteredArray.slice(
+        filteredArray.length - weeksForAvg,
+        filteredArray.length
+      );
+      avgTdee =
+        modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
     }
-    filteredArray = avgTdeeOverTime.filter(el => el);
-    modifiedTdeeArray = filteredArray.slice(
-      filteredArray.length - weeksForAvg,
-      filteredArray.length
-    );
-    avgTdee =
-      modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
     return Math.ceil(avgTdee);
   };
 

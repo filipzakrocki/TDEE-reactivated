@@ -1,66 +1,101 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { auth, setPathRedirect } from "../../../store/actions/index";
+import axios from "axios";
+import { auth, setPathRedirect, logOut } from "../../../store/actions/index";
 import "./Auth.scss";
 
 const Auth = props => {
   // eslint-disable-next-line
-  const { loading, error, isAuthenticated, onAuth, setPathRedirect } = props;
+  const {
+    user,
+    loading,
+    error,
+    isAuthenticated,
+    onAuth,
+    logOut,
+    setPathRedirect
+  } = props;
 
-  const [isSignup, setIsSignup] = useState(true);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [isSignup, setIsSignup] = useState(false);
+  const [email, setEmail] = useState("fitness@fitness.pl");
+  const [password, setPassword] = useState("fitness");
 
   const onAuthHandler = event => {
     onAuth(email, password, isSignup);
   };
 
-  const form = isSignup ? (
-    <div className="Auth">
-      <h4>Signup</h4>
-      <div>
-        <input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="email"
-          type="text"
-        />
-        <input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="password"
-          type="text"
-        />
-        <input placeholder="repeat password" type="text" />
+  const onLogoutHandler = () => {
+    logOut();
+    window.location.reload();
+  };
+
+  const loadState = user => {
+    let address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
+    axios
+      .get(address)
+      .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
+      .then(res => window.location.reload());
+  };
+
+  let form = null;
+
+  if (isAuthenticated) {
+    form = (
+      <div className="Auth">
+        <h1>Logged in!</h1>
+        <button onClick={() => onLogoutHandler()}>Log out</button>
       </div>
-      <div>
-        <button onClick={() => onAuthHandler()}>Register</button>
-        <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
+    );
+  } else if (isSignup) {
+    form = (
+      <div className="Auth">
+        <h4>Signup</h4>
+        <div>
+          <input
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="email"
+            type="text"
+          />
+          <input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="password"
+            type="text"
+          />
+          <input placeholder="repeat password" type="text" />
+        </div>
+        <div>
+          <button onClick={() => onAuthHandler()}>Register</button>
+          <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
+        </div>
       </div>
-    </div>
-  ) : (
-    <div className="Auth">
-      <h4>Login</h4>
-      <div>
-        <input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="email"
-          type="text"
-        />
-        <input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="password"
-          type="text"
-        />
+    );
+  } else {
+    form = (
+      <div className="Auth">
+        <h4>Login</h4>
+        <div>
+          <input
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="email"
+            type="text"
+          />
+          <input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="password"
+            type="text"
+          />
+        </div>
+        <div>
+          <button onClick={() => onAuthHandler()}>Log in</button>
+          <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
+        </div>
       </div>
-      <div>
-        <button onClick={() => onAuthHandler()}>Log in</button>
-        <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
-      </div>
-    </div>
-  );
+    );
+  }
 
   return form;
 };
@@ -69,7 +104,8 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    isAuthenticated: state.auth.idToken !== null
+    isAuthenticated: state.auth.idToken !== null,
+    user: state.auth.localId
   };
 };
 
@@ -77,6 +113,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(auth(email, password, isSignup)),
+    logOut: () => dispatch(logOut()),
     onSetAuthRedirectPath: () => dispatch(setPathRedirect("/"))
   };
 };

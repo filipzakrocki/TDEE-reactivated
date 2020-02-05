@@ -23,7 +23,8 @@ export const authFail = error => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("state");
+  localStorage.removeItem("idToken");
   localStorage.removeItem("expirationDate");
   return {
     type: actionTypes.AUTH_LOGOUT
@@ -66,9 +67,15 @@ export const auth = (email, password, isSignup) => {
         localStorage.setItem("idToken", response.data.idToken);
         localStorage.setItem("localId", response.data.localId);
         localStorage.setItem("expirationDate", expirationDate);
+        const address = `https://tdee-fit.firebaseio.com/states/${response.data.localId}.json`;
+        axios
+          .get(address)
+          .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
+          .then(res => window.location.reload());
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
+
       .catch(error => {
         console.log(error.response.data.error.message);
         dispatch(authFail(error.response.data.error.message));
