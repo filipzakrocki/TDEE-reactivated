@@ -10,18 +10,22 @@ import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
 
 function App(props) {
-  const { state, user, onTryAutoSignup } = props;
+  const { state, user, isAuthenticated, onTryAutoSignup } = props;
 
   useEffect(() => {
     onTryAutoSignup();
   });
 
   useEffect(() => {
-    saveState(user, state);
+    if (isAuthenticated) {
+      saveStateToFirebase(user, state);
+    } else {
+      saveStateToLocalStorage();
+    }
     // eslint-disable-next-line
   }, [state]);
 
-  const saveState = user => {
+  const saveStateToFirebase = user => {
     if (user) {
       try {
         const address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
@@ -31,6 +35,10 @@ function App(props) {
         console.log("ENTRY FAILED " + err);
       }
     }
+  };
+
+  const saveStateToLocalStorage = () => {
+    localStorage.setItem('state', JSON.stringify(state))
   };
 
   return (
@@ -49,7 +57,8 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     state: state.calculator,
-    user: state.auth.localId
+    user: state.auth.localId,
+    isAuthenticated: state.auth.idToken !== null,
   };
 };
 

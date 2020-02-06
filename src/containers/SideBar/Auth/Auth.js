@@ -66,8 +66,8 @@ const Auth = props => {
           <input placeholder="repeat password" type="text" />
         </div>
         <div>
-          <button onClick={() => onAuthHandler()}>Register</button>
-          <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
+          <button onClick={() => onAuthHandler()}>Register me!</button>
+          <button onClick={() => setIsSignup(!isSignup)}>Switch to Login</button>
         </div>
       </div>
     );
@@ -90,8 +90,8 @@ const Auth = props => {
           />
         </div>
         <div>
-          <button onClick={() => onAuthHandler()}>Log in</button>
-          <button onClick={() => setIsSignup(!isSignup)}>Switch</button>
+          <button onClick={() => onAuthHandler()}>Log me in</button>
+          <button onClick={() => setIsSignup(!isSignup)}>Signup</button>
         </div>
       </div>
     );
