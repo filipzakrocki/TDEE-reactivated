@@ -19,7 +19,7 @@ const WeekRow = props => {
   const {
     weekNo,
     startDate,
-    startWeight,
+
     isMetricSystem,
     weekData,
     weekIndex,
@@ -118,7 +118,6 @@ const WeekRow = props => {
 const mapStateToProps = state => {
   return {
     weekData: state.calculator.weekData,
-    startWeight: state.calculator.startWeight,
     avgTdeeArray: state.calculator.avgTdeeArray,
     isMetricSystem: state.calculator.isMetricSystem
   };

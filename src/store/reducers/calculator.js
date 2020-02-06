@@ -42,9 +42,12 @@ const setStartWeight = (state, action) => {
     draft.startWeight = action.enteredWeight;
     draft.avgWeightOverTime = [action.enteredWeight];
     draft.avgTdeeOverTime = [action.startingTdee];
-    draft.isWeightLoss = action.enteredWeight > state.goalWeight
-    draft.weekData[0] = {avgKcal: action.startingTdee, avgWeight: action.enteredWeight}
-  })
+    draft.isWeightLoss = action.enteredWeight > state.goalWeight;
+    draft.weekData[0] = {
+      avgKcal: action.startingTdee,
+      avgWeight: action.enteredWeight
+    };
+  });
 };
 
 const setGoalWeight = (state, action) => {

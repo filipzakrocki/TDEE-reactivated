@@ -23,10 +23,11 @@ const Result = props => {
                 weekDays={week.days}
                 locked={week.locked}
               />
-            )
+            );
+          } else {
+            return null;
           }
-        })
-      }
+        })}
       <AddWeekBtn />
     </section>
   );

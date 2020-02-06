@@ -10,7 +10,7 @@ import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
 
 function App(props) {
-  const { state, user, isAuthenticated, onTryAutoSignup } = props;
+  const { state, user, token, isAuthenticated, onTryAutoSignup } = props;
 
   useEffect(() => {
     onTryAutoSignup();
@@ -18,27 +18,25 @@ function App(props) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      saveStateToFirebase(user, state);
+      saveStateToFirebase(user, state, token);
+      saveStateToLocalStorage();
     } else {
       saveStateToLocalStorage();
     }
     // eslint-disable-next-line
   }, [state]);
 
-  const saveStateToFirebase = user => {
+  const saveStateToFirebase = (user, state, token) => {
     if (user) {
       try {
-        const address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
+        const address = `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`;
         axios.patch(address, state);
-        console.log("ENTRY UPDATED");
-      } catch (err) {
-        console.log("ENTRY FAILED " + err);
-      }
+      } catch (err) {}
     }
   };
 
   const saveStateToLocalStorage = () => {
-    localStorage.setItem('state', JSON.stringify(state))
+    localStorage.setItem("state", JSON.stringify(state));
   };
 
   return (
@@ -58,7 +56,8 @@ const mapStateToProps = state => {
   return {
     state: state.calculator,
     user: state.auth.localId,
-    isAuthenticated: state.auth.idToken !== null,
+    token: state.auth.idToken,
+    isAuthenticated: state.auth.idToken !== null
   };
 };
 

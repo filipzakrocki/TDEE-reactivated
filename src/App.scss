@@ -9,6 +9,7 @@
 
 .side-bar {
   flex: 1;
+  min-width: 200px;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -17,6 +18,7 @@
 }
 
 .main-window {
-  flex: 4;
+  flex: 3;
+
   height: 100%;
 }

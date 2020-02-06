@@ -9,9 +9,8 @@ const AddWeekBtn = props => {
 
   const addWeekButtonHandler = weekNo => {
     addAnotherWeek(weekNo);
-    if (weekNo > 1) {
-      lockWeek(weekNo - 2);
-    }
+
+    lockWeek(weekNo - 1);
   };
 
   return (
