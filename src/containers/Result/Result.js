@@ -12,16 +12,21 @@ const Result = props => {
   return (
     <section className="result">
       {weekData &&
-        weekData.map((week, weekIndex) => (
-          <WeekRow
-            key={weekIndex}
-            weekNo={week.week}
-            startDate={startDate}
-            weekIndex={weekIndex}
-            weekDays={week.days}
-            locked={week.locked}
-          />
-        ))}
+        weekData.map((week, weekIndex) => {
+          if (weekIndex > 0) {
+            return (
+              <WeekRow
+                key={weekIndex}
+                weekNo={week.week}
+                startDate={startDate}
+                weekIndex={weekIndex}
+                weekDays={week.days}
+                locked={week.locked}
+              />
+            )
+          }
+        })
+      }
       <AddWeekBtn />
     </section>
   );

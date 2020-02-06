@@ -18,17 +18,35 @@ const initialState = {
   isMetricSystem: true,
   initialInputsLocked: false,
   tdee: 0,
-  weekData: []
+  weekData: [
+    {
+      week: 0,
+      days: [
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" }
+      ],
+      avgKcal: 0,
+      avgWeight: 0,
+      locked: false
+    }
+  ]
 };
 
 const setStartWeight = (state, action) => {
-  return updateObject(state, {
-    startWeight: action.enteredWeight,
-    avgWeightOverTime: [action.enteredWeight],
-    avgTdeeOverTime: [action.startingTdee],
-    isWeightLoss: action.enteredWeight > state.goalWeight
-  });
+  return produce(state, draft => {
+    draft.startWeight = action.enteredWeight;
+    draft.avgWeightOverTime = [action.enteredWeight];
+    draft.avgTdeeOverTime = [action.startingTdee];
+    draft.isWeightLoss = action.enteredWeight > state.goalWeight
+    draft.weekData[0] = {avgKcal: action.startingTdee, avgWeight: action.enteredWeight}
+  })
 };
+
 const setGoalWeight = (state, action) => {
   return updateObject(state, {
     goalWeight: action.enteredGoal,

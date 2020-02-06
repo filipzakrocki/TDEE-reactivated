@@ -65,8 +65,7 @@ const WeekRow = props => {
   const avgKcalForWeek = weekData[weekIndex].avgKcal;
   const avgWeightForWeek = weekData[weekIndex].avgWeight;
 
-  const avgPreviousWeight =
-    weekIndex > 0 ? findLastWeight(weekIndex, weekData) : startWeight;
+  const avgPreviousWeight = findLastWeight(weekIndex, weekData);
 
   const weightChange = avgWeightForWeek
     ? avgWeightForWeek - avgPreviousWeight
