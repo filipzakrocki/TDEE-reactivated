@@ -18,7 +18,6 @@ const Clock = props => {
 
   return (
     <div className="clock">
-      <h1>Hi %N</h1>
       <h2>It is {date.toLocaleTimeString()}.</h2>
       <h3>
         Today's date is {date.getDay()}.{date.getMonth()}.{date.getFullYear()}

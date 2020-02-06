@@ -13,11 +13,11 @@ const Result = props => {
     <section className="result">
       {weekData &&
         weekData.map((week, weekIndex) => {
-          if (weekIndex > 0) {
+          if (weekIndex) {
             return (
               <WeekRow
                 key={weekIndex}
-                weekNo={week.week}
+                weekNo={weekIndex}
                 startDate={startDate}
                 weekIndex={weekIndex}
                 weekDays={week.days}
