@@ -2,11 +2,10 @@
  Tool for accurate tracking of Total Daily Energy Expenditure based on daily caloric intake and weight
  
  TODOs:
- - ✅ Implement KG/LBS settings
+ 
  - Design and implement a sidebar (Should have the following sections: /about/register/login/save to server/save to local/load from local, load from server?)
+ 
  - Implement a replacement for the main two input columns that will give the user information - recommended daily TDEE consumption, weeks to goal, weight lost so far, MAYBE: average loss per week?
- - ✅ Incorporate registering and logging in - first with something easy like just name
- - ✅ Incorporate saving the data to server and loading it at will
  
  
  Must:
