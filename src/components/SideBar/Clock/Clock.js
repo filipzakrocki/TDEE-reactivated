@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Clock.scss";
 
 const Clock = props => {
-  const {
-    startDate,
-    startWeight,
-    avgWeight,
-    isWeightLoss,
-    isMetricSystem
-  } = props;
+  const { startDate, startWeight, avgWeight, isMetricSystem } = props;
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -25,16 +19,18 @@ const Clock = props => {
   const calculateDietLength = startDate => {
     const now = new Date().getTime();
     const dietStart = Date.parse(startDate);
-    return Math.round((now - dietStart) / (1000 * 60 * 60 * 24));
+    const amountOfDays = Math.round((now - dietStart) / (1000 * 60 * 60 * 24));
+    return Math.abs(amountOfDays);
   };
 
   calculateDietLength(startDate);
 
   const calculateOverallWeightChange = () => {
     const weightDifference = avgWeight === 0 ? 0 : startWeight - avgWeight;
-    return `${isWeightLoss ? "lost" : "gained"} ${weightDifference.toFixed(
-      2
-    )} ${isMetricSystem ? "kg" : "lbs"}`;
+    const absoluteWeightDifference = Math.abs(weightDifference);
+    return `${
+      startWeight > avgWeight ? "lost" : "gained"
+    } ${absoluteWeightDifference.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`;
   };
 
   return (
@@ -46,12 +42,7 @@ const Clock = props => {
       <h4>This is the {calculateDietLength(startDate)} day of your diet! </h4>
       <h4>
         You have{" "}
-        {calculateOverallWeightChange(
-          startWeight,
-          avgWeight,
-          isMetricSystem,
-          isWeightLoss
-        )}{" "}
+        {calculateOverallWeightChange(startWeight, avgWeight, isMetricSystem)}{" "}
         so far!
       </h4>
     </div>
