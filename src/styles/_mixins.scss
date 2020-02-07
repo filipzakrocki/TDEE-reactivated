@@ -14,7 +14,7 @@
 
 @mixin weekRow {
   flex: 1;
-  font-weight: 600;
+  height: 72px;
 }
 
 @mixin weekRow-label {
@@ -23,22 +23,20 @@
   outline-color: none;
   background: $main-background-color;
   font-size: $default-font-size;
-  margin: 0;
-  padding: 4px;
   text-align: center;
-  font-weight: 700;
   line-height: 1.5;
+  font-weight: 600;
+  overflow: hidden;
 }
 
 @mixin weekRow-data {
+  height: 50%;
   width: 100%;
+  font-weight: 500;
   border: none;
   outline-color: black;
-  background: $input-color;
   font-size: $default-font-size;
-  margin: 0;
-  padding: 4px;
+  background: $secondary-background-color;
   text-align: center;
-  font-weight: 700;
   line-height: 1.5;
 }

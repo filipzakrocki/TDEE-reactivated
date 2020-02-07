@@ -1,22 +1,11 @@
 @import "../../../../styles/main.scss";
 
 .weekRow-entry {
-  flex: 1;
-  font-weight: 600;
+  @include weekRow;
 }
 
 .weekRow-entry input {
-  width: 100%;
-  border: none;
-  outline-color: black;
-  background: $cell-background-color;
-  font-size: $default-font-size;
-  margin: 0;
-  padding: 4px;
-  font-size: 20px;
-  text-align: center;
-  font-weight: 700;
-  line-height: 1.5;
+  @include weekRow-data;
 }
 
 @include mobile-device {

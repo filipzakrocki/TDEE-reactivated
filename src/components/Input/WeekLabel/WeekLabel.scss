@@ -6,11 +6,12 @@
   position: relative;
   z-index: 2;
   display: block;
+  border-bottom: 1px solid black;
 }
 
 .weekLabel-wrapper {
   display: flex;
-  padding: 10px 10%;
+  padding: 10px 0;
   text-align: center;
 }
 

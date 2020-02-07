@@ -6,9 +6,12 @@ const WeekNumber = props => {
 
   return (
     <div className={`LabelCell ${hiddenInMobileView ? "mobileViewHide" : ""}`}>
-      <p>{top}</p>
-      {children}
-      <p>{bottom}</p>
+      <div>
+        {" "}
+        <p>{top}</p>
+        {children}
+        <p>{bottom}</p>
+      </div>
     </div>
   );
 };

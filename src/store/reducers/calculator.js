@@ -101,7 +101,7 @@ const setWeeklyKcalAndKg = (state, action) => {
 
 const setWeeklyTdee = (state, action) => {
   return produce(state, draft => {
-    draft.avgTdeeOverTime[action.weekIndex + 1] = action.tdee;
+    draft.avgTdeeOverTime[action.weekIndex] = action.tdee;
   });
 };
 
