@@ -18,6 +18,10 @@ const Debugg = props => {
       .then(res => window.location.reload());
   };
 
+  const importHandler = event => {
+    console.log(event);
+  };
+
   return (
     <div>
       <button
@@ -38,6 +42,15 @@ const Debugg = props => {
       <button style={{ width: "100%" }} onClick={() => loadState(user)}>
         LOAD STATE FROM FIREBASE
       </button>
+      <a
+        href={`data:${"text/json;charset=utf-8," +
+          encodeURIComponent(JSON.stringify(state))}`}
+        download={`${user || `tdeeExport`}.json`}
+        style={{ width: "100%" }}
+      >
+        <button style={{ width: "100%" }}>DOWNLOAD STATE JSON</button>
+      </a>
+      <input type="file" name="file" onChange={() => importHandler()}></input>
     </div>
   );
 };
