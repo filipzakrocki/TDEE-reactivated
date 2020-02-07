@@ -90,7 +90,7 @@ const setKcalAndKg = (state, action) => {
 
 const setWeeklyKcalAndKg = (state, action) => {
   return produce(state, draft => {
-    draft.avgWeightOverTime[action.weekIndex + 1] = action.weeklyWeight;
+    draft.avgWeightOverTime[action.weekIndex] = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
     if (action.weeklyWeight) {
