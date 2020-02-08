@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 
 import WeekRow from "./WeekRow/WeekRow";
 
-import AddWeekBtn from "../../components/AddWeekBtn/AddWeekBtn";
-
 const Result = props => {
   const { weekData, startDate } = props;
 
   const listOfWeeks = weekData.map((week, weekIndex) => {
-    if (week.week !== 0) {
+    if (weekIndex) {
       return (
         <WeekRow
           key={weekIndex}
@@ -27,10 +25,7 @@ const Result = props => {
   });
 
   return (
-    <section className="result">
-      {weekData && listOfWeeks.reverse()}
-      <AddWeekBtn />
-    </section>
+    <section className="result">{weekData && listOfWeeks.reverse()}</section>
   );
 };
 

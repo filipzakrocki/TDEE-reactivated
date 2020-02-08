@@ -14,15 +14,14 @@ function App(props) {
 
   useEffect(() => {
     onTryAutoSignup();
+    // eslint-disable-next-line
   });
 
   useEffect(() => {
     if (isAuthenticated) {
       saveStateToFirebase(user, state, token);
-      saveStateToLocalStorage();
-    } else {
-      saveStateToLocalStorage();
     }
+    saveStateToLocalStorage();
     // eslint-disable-next-line
   }, [state]);
 

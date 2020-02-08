@@ -45,7 +45,16 @@ const setStartWeight = (state, action) => {
     draft.isWeightLoss = action.enteredWeight > state.goalWeight;
     draft.weekData[0] = {
       avgKcal: action.startingTdee,
-      avgWeight: action.enteredWeight
+      avgWeight: action.enteredWeight,
+      days: [
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" },
+        { kg: "", kcal: "" }
+      ]
     };
   });
 };
