@@ -17,6 +17,11 @@
   height: 72px;
 }
 
+@mixin weekLabel-label {
+  flex: 1;
+  font-weight: 600;
+}
+
 @mixin weekRow-label {
   width: 100%;
   border: none;

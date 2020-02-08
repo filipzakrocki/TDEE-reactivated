@@ -16,7 +16,7 @@
 }
 
 .weekLabel-wrapper div {
-  flex: 1
+  @include weekLabel-label;
 }
 
 
