@@ -29,7 +29,7 @@ const WeekLabel = props => {
     : ["", "", "", "", "", "", ""];
 
   return (
-    <div className="weekLabel" onClick={() => clickHandler()}>
+    <div className="weekLabel" >
       <div className="weekLabel-wrapper">
         <div className="weekLabel-label"> Week</div>
         <div className="weekLabel-label noMobile"> Stats</div>

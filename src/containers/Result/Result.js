@@ -9,25 +9,26 @@ import AddWeekBtn from "../../components/AddWeekBtn/AddWeekBtn";
 const Result = props => {
   const { weekData, startDate } = props;
 
+  const listOfWeeks = weekData.map((week, weekIndex) => {
+    if (week.week !== 0) {
+      return (
+        <WeekRow
+          key={weekIndex}
+          weekNo={weekIndex}
+          startDate={startDate}
+          weekIndex={weekIndex}
+          weekDays={week.days}
+          locked={week.locked}
+        />
+      );
+    } else {
+      return null;
+    }
+  });
+
   return (
     <section className="result">
-      {weekData &&
-        weekData.map((week, weekIndex) => {
-          if (weekIndex) {
-            return (
-              <WeekRow
-                key={weekIndex}
-                weekNo={weekIndex}
-                startDate={startDate}
-                weekIndex={weekIndex}
-                weekDays={week.days}
-                locked={week.locked}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
+      {weekData && listOfWeeks.reverse()}
       <AddWeekBtn />
     </section>
   );

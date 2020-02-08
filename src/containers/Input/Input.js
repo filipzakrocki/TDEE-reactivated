@@ -6,6 +6,7 @@ import InitialInput from "./IntitialInputs/InitialInput";
 import InputColumn from "../../components/Input/InputColumn/InputColumn";
 import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
+import AddWeekBtn from './AddWeekBtn/AddWeekBtn'
 
 const Input = () => {
   //delegate to redux??
@@ -25,6 +26,7 @@ const Input = () => {
   return (
     <section className="input">
       {controlsPanel}
+      <AddWeekBtn/>
       <WeekLabel clickHandler={() => setControls(!controls)} />
     </section>
   );

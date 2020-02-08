@@ -2,11 +2,11 @@
 
 .weekLabel {
   background: $main-background-color;
-  height: 50px;
   position: relative;
   z-index: 2;
   display: block;
   border-bottom: 1px solid black;
+  justify-content: center;
 }
 
 .weekLabel-wrapper {
@@ -15,21 +15,16 @@
   text-align: center;
 }
 
-.weekLabel-dayLabel {
-  flex: 1;
+.weekLabel-wrapper div {
+  flex: 1
 }
 
-.weekLabel-label {
-  @include weekRow;
-}
 
 @media only screen and (max-width: 910px) {
   .weekLabel {
     font-size: $default-font-size-mobile;
   }
-  .weekLabel-wrapper {
-    padding: 10px 0;
-  }
+
   .noMobile {
     display: none;
   }

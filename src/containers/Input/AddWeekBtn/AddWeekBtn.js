@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./AddWeekBtn.scss";
 
-import { addAnotherWeek, lockWeek } from "../../store/actions/index";
+import { addAnotherWeek, lockWeek } from "../../../store/actions/index";
 
 const AddWeekBtn = props => {
   const { weekNo, addAnotherWeek, lockWeek } = props;
