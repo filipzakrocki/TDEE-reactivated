@@ -103,7 +103,7 @@ const Auth = props => {
           value={password}
           onChange={e => setPassword(e.target.value)}
           placeholder="password"
-          type="text"
+          type="password"
         />
       </div>
       <div className={"buttonWrapper"}>
