@@ -1,5 +1,12 @@
 @import "../../../styles/main.scss";
 
+.addWeekBtn-wrapper {
+  width: 100%;
+  text-align: center;
+
+}
+
+
 .addWeekBtn {
-  @include smallButton;
+  @include bigButton;
 }

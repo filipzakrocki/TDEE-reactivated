@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.scss";
 
@@ -8,6 +8,8 @@ import { authCheckState } from "./store/actions/index";
 import Input from "./containers/Input/Input";
 import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
+
+import Faq from "./components/SideBar/Faq/Faq";
 
 function App(props) {
   const { state, user, token, isAuthenticated, onTryAutoSignup } = props;
@@ -25,6 +27,8 @@ function App(props) {
     // eslint-disable-next-line
   }, [state]);
 
+  const [faqOpened, toggleFaq] = useState(false);
+
   const saveStateToFirebase = (user, state, token) => {
     if (user) {
       try {
@@ -40,8 +44,9 @@ function App(props) {
 
   return (
     <div className="App">
+      {faqOpened && <Faq toggleFaq={() => toggleFaq(false)} />}
       <div className="side-bar">
-        <SideBar />
+        <SideBar toggleFaq={() => toggleFaq(!faqOpened)} />
       </div>
       <div className="main-window">
         <Input />

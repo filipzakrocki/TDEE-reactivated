@@ -1,19 +1,37 @@
-.Auth {
+@import "../../../styles/main.scss";
+
+.auth {
   width: 100%;
   text-align: center;
-  margin: 20px auto;
-  outline: none;
   color: white;
 }
-.Auth input {
+
+.auth h4 {
+  margin: 3px;
+  font-size: $title-font-size;
+}
+
+.auth input {
   width: 100%;
+  border: none;
+  margin: 3px 0;
+  font-size: $default-font-size;
+  padding: 5px;
+  line-height: 1.5;
   text-align: center;
   outline: none;
 }
-.Auth button {
-  width: 50%;
+
+.auth .buttonWrapper {
+  width: 100%;
+  display: flex;
   text-align: center;
-  outline: none;
-  background: black;
-  color: white;
+  justify-content: center;
+}
+
+.auth button {
+  @include smallButton;
+  flex: 1;
+  margin: 5px;
+  font-size: $small-font-size;
 }

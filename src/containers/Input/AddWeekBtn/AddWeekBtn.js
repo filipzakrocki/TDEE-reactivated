@@ -13,9 +13,11 @@ const AddWeekBtn = props => {
   };
 
   return (
+    <div className='addWeekBtn-wrapper'>
     <button onClick={() => addWeekButtonHandler(weekNo)} className="addWeekBtn">
       Start another week
     </button>
+    </div>
   );
 };
 

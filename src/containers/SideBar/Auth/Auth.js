@@ -17,8 +17,9 @@ const Auth = props => {
   } = props;
 
   const [isSignup, setIsSignup] = useState(false);
-  const [email, setEmail] = useState("fitness@fitness.pl");
-  const [password, setPassword] = useState("fitness");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
 
   const onAuthHandler = event => {
     onAuth(email, password, isSignup);
@@ -37,64 +38,91 @@ const Auth = props => {
       .then(res => window.location.reload());
   };
 
-  let form = null;
+  const passwordReset = () => {
+    const address = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyA4HYKs2DfID24rFu9iBftSXa9w8QnSE4A`;
+    const payload = {
+      requestType: "PASSWORD_RESET",
+      email: email
+    };
+    axios.post(address, payload);
+  };
 
+  const formWhenAuthenticated = (
+    <div className="auth">
+      <h4>Logged in!</h4>
+      <button onClick={() => onLogoutHandler()}>Log out</button>
+    </div>
+  );
+
+  const signupForm = (
+    <div className="auth">
+      <h4>Signup</h4>
+      <div>
+        <input
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="email"
+          type="text"
+        />
+        <input
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="password (min. 6 characters)"
+          type="password"
+        />
+        <input
+          value={passwordCheck}
+          onChange={e => setPasswordCheck(e.target.value)}
+          placeholder="repeat password"
+          type="password"
+        />
+      </div>
+      <div className={"buttonWrapper"}>
+        <button onClick={() => setIsSignup(!isSignup)}>Switch to Login</button>
+        <button
+          disabled={password !== passwordCheck || password.length < 6}
+          onClick={() => onAuthHandler()}
+        >
+          Register me!
+        </button>
+      </div>
+    </div>
+  );
+
+  const loginForm = (
+    <div className="auth">
+      <h4>Login</h4>
+      <div>
+        <input
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="email"
+          type="text"
+        />
+        <input
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="password"
+          type="text"
+        />
+      </div>
+      <div className={"buttonWrapper"}>
+        <button disabled={!email || password} onClick={() => passwordReset()}>
+          Password Reset
+        </button>
+        <button onClick={() => setIsSignup(!isSignup)}>Switch to Signup</button>
+        <button onClick={() => onAuthHandler()}>Log me in!</button>
+      </div>
+    </div>
+  );
+
+  let form = null;
   if (isAuthenticated) {
-    form = (
-      <div className="Auth">
-        <h1>Logged in!</h1>
-        <button onClick={() => onLogoutHandler()}>Log out</button>
-      </div>
-    );
+    form = formWhenAuthenticated;
   } else if (isSignup) {
-    form = (
-      <div className="Auth">
-        <h4>Signup</h4>
-        <div>
-          <input
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="email"
-            type="text"
-          />
-          <input
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="password"
-            type="text"
-          />
-          <input placeholder="repeat password" type="text" />
-        </div>
-        <div>
-          <button onClick={() => onAuthHandler()}>Register me!</button>
-          <button onClick={() => setIsSignup(!isSignup)}>Switch to Login</button>
-        </div>
-      </div>
-    );
+    form = signupForm;
   } else {
-    form = (
-      <div className="Auth">
-        <h4>Login</h4>
-        <div>
-          <input
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="email"
-            type="text"
-          />
-          <input
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="password"
-            type="text"
-          />
-        </div>
-        <div>
-          <button onClick={() => onAuthHandler()}>Log me in</button>
-          <button onClick={() => setIsSignup(!isSignup)}>Signup</button>
-        </div>
-      </div>
-    );
+    form = loginForm;
   }
 
   return form;

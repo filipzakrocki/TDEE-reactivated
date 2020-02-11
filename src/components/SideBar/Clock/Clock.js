@@ -23,7 +23,26 @@ const Clock = props => {
     return Math.abs(amountOfDays);
   };
 
-  calculateDietLength(startDate);
+  const setCurrentDate = () => {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    const daysOfTheWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    const dayOfTheWeek = daysOfTheWeek[now.getDay()];
+    const today = `${dayOfTheWeek}, ${day < 10 ? "0" + day : day}.${
+      month < 10 ? "0" + month : month
+    }.${year}`;
+    return today;
+  };
 
   const calculateOverallWeightChange = () => {
     const weightDifference = avgWeight === 0 ? 0 : startWeight - avgWeight;
@@ -39,18 +58,17 @@ const Clock = props => {
     <div className="clock">
       <h3>Hello!</h3>
       <h1>It is {date.toLocaleTimeString()}</h1>
-      <h3>
-        Today's date is {date.getDay()}.{date.getMonth()}.{date.getFullYear()}.
-      </h3>
-      <h3>
-        This is the {startDate && calculateDietLength(startDate)} day of your
-        diet!{" "}
-      </h3>
-      <h3>
-        You have
-        {calculateOverallWeightChange()}
-        so far!
-      </h3>
+      <h3>Today's date is {setCurrentDate()}</h3>
+      {startDate && (
+        <h3>This is the day {calculateDietLength(startDate)} of your diet! </h3>
+      )}
+      {avgWeight !== 0 && (
+        <h3>
+          You have
+          {calculateOverallWeightChange()}
+          so far!
+        </h3>
+      )}
     </div>
   );
 };

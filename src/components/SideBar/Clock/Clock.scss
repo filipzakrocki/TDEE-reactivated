@@ -1,3 +1,5 @@
+@import "../../../styles/main.scss";
+
 .clock {
   width: 100%;
   text-align: center;
@@ -8,11 +10,12 @@
 
 .clock h1 {
   width: 100%;
-  margin-bottom: 20px;
-  font-size: 2.5vw;
+  margin: 10px auto;
+  font-size: $large-font-size;
 }
+
 .clock h3 {
   width: 100%;
-  margin-bottom: 10px;
-  font-size: 1vw;
+  margin: 10px auto;
+  font-size: $title-font-size;
 }

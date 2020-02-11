@@ -25,7 +25,14 @@ const Input = () => {
   return (
     <section className="input">
       {/* <CompactView /> */}
-      {controlsPanel}
+      <InputColumnWrapper>
+        <InputColumn>
+          <InitialInput />
+        </InputColumn>
+        <InputColumn>
+          <CurrentStats />
+        </InputColumn>
+      </InputColumnWrapper>
       <AddWeekBtn />
       <WeekLabel />
     </section>
