@@ -19,7 +19,6 @@ const CurrentStats = props => {
     weeksForAvg,
     weeklyChange,
     goalWeight,
-    tdee,
     setAvgTdee
   } = props;
 
@@ -125,10 +124,8 @@ const mapStateToProps = state => {
     weeklyChange: state.calculator.weeklyChange,
     goalWeight: state.calculator.goalWeight,
     isMetricSystem: state.calculator.isMetricSystem,
-    tdee: state.calculator.tdee,
     weekData: state.calculator.weekData,
-    avgWeight: state.calculator.avgWeight,
-    tdee: state.calculator.tdee
+    avgWeight: state.calculator.avgWeight
   };
 };
 
