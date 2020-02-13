@@ -40,7 +40,7 @@ const SideBar = props => {
   };
 
   const loadFromServerHandler = () => {
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .get(address)
       .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
