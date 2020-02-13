@@ -10,7 +10,9 @@ export {
   addAnotherWeek,
   setWeeklyTdee,
   lockWeek,
-  toggleMeasurementSystem
+  toggleMeasurementSystem,
+  toggleCompactView,
+  setAvgTdee
 } from "./calculator";
 
 export { auth, logOut, setPathRedirect, authCheckState } from "./auth";

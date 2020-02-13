@@ -3,10 +3,13 @@
 .addWeekBtn-wrapper {
   width: 100%;
   text-align: center;
-
+  display: flex;
 }
 
-
 .addWeekBtn {
+  @include bigButton;
+}
+
+.compactViewBtn {
   @include bigButton;
 }

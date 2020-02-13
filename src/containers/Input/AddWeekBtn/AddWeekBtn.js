@@ -2,10 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import "./AddWeekBtn.scss";
 
-import { addAnotherWeek, lockWeek } from "../../../store/actions/index";
+import {
+  addAnotherWeek,
+  toggleCompactView,
+  lockWeek
+} from "../../../store/actions/index";
 
 const AddWeekBtn = props => {
-  const { weekNo, addAnotherWeek, lockWeek } = props;
+  const { weekNo, addAnotherWeek, lockWeek, toggleCompactView } = props;
 
   const addWeekButtonHandler = weekNo => {
     addAnotherWeek(weekNo);
@@ -13,10 +17,16 @@ const AddWeekBtn = props => {
   };
 
   return (
-    <div className='addWeekBtn-wrapper'>
-    <button onClick={() => addWeekButtonHandler(weekNo)} className="addWeekBtn">
-      Start another week
-    </button>
+    <div className="addWeekBtn-wrapper">
+      <button
+        onClick={() => addWeekButtonHandler(weekNo)}
+        className="addWeekBtn"
+      >
+        Start a new week
+      </button>
+      <button className="compactViewBtn" onClick={() => toggleCompactView()}>
+        Toggle Compact View
+      </button>
     </div>
   );
 };
@@ -30,7 +40,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAnotherWeek: weekNo => dispatch(addAnotherWeek(weekNo)),
-    lockWeek: weekIndex => dispatch(lockWeek(weekIndex))
+    lockWeek: weekIndex => dispatch(lockWeek(weekIndex)),
+    toggleCompactView: () => dispatch(toggleCompactView())
   };
 };
 

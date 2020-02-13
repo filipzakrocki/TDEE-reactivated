@@ -18,6 +18,7 @@ const initialState = {
   isMetricSystem: true,
   initialInputsLocked: false,
   tdee: 0,
+  isCompactView: false,
   weekData: [
     {
       week: 0,
@@ -114,6 +115,12 @@ const setWeeklyTdee = (state, action) => {
   });
 };
 
+const setAvgTdee = (state, action) => {
+  return produce(state, draft => {
+    draft.tdee = action.avgTdee;
+  });
+};
+
 const addAnotherWeek = (state, action) => {
   return produce(state, draft => {
     draft.weekData = [...state.weekData, action.weekEntry];
@@ -141,6 +148,12 @@ const toggleMeasurementSystem = (state, action) => {
     draft.weeklyChange = (
       state.weeklyChange * (state.isMetricSystem ? 2.20462262 : 0.45359237)
     ).toFixed(2);
+  });
+};
+
+const toggleCompactView = (state, action) => {
+  return produce(state, draft => {
+    draft.isCompactView = !state.isCompactView;
   });
 };
 
@@ -173,6 +186,10 @@ const reducer = (state = localStorageState || initialState, action) => {
       return setWeeklyTdee(state, action);
     case actionTypes.TOGGLE_MEASUREMENT_SYSTEM:
       return toggleMeasurementSystem(state, action);
+    case actionTypes.TOGGLE_COMPACT_VIEW:
+      return toggleCompactView(state, action);
+    case actionTypes.SET_AVG_TDEE:
+      return setAvgTdee(state, action);
     default:
       return state;
   }

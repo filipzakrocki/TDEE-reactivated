@@ -133,6 +133,13 @@ export const lockWeek = weekIndex => {
   };
 };
 
+export const setAvgTdee = avgTdee => {
+  return {
+    type: actionTypes.SET_AVG_TDEE,
+    avgTdee: avgTdee
+  };
+};
+
 export const setStartDate = startDate => {
   let date = startDate;
   if (!startDate) {
@@ -151,40 +158,8 @@ export const setStartDate = startDate => {
   };
 };
 
-// export const fetchPokemon = pokemonQuery => {
-//   return async dispatch => {
-//     let params;
-//     //default path
-//     let query = "https://api.pokemontcg.io/v1/cards";
-//     document.title = `Pokedex${": " + pokemonQuery}`;
-
-//     dispatch(fetchStarted());
-//     dispatch(clearLoadedImages());
-
-//     //query builder if input is present
-//     if (pokemonQuery) {
-//       let array = pokemonQuery.split(" ").map((string, index) => {
-//         let modStr = string.replace(">", "=gt").replace("<", "=lt");
-//         if (index > 0) {
-//           return `&${modStr}`;
-//         }
-//         if (!modStr.includes("=")) {
-//           return `name=${string}`;
-//         }
-//         return modStr;
-//       });
-//       params = `?${array.join("")}`;
-//       query = `https://api.pokemontcg.io/v1/cards` + params;
-//     }
-
-//     try {
-//       const results = await axios.get(query);
-//       const cardsArray = await results.data.cards;
-//       dispatch(setResults(cardsArray));
-//       dispatch(fetchFinished());
-//     } catch (error) {
-//       dispatch(setError(error));
-//       dispatch(fetchFinished());
-//     }
-//   };
-// };
+export const toggleCompactView = () => {
+  return {
+    type: actionTypes.TOGGLE_COMPACT_VIEW
+  };
+};

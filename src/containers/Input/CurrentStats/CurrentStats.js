@@ -2,6 +2,7 @@ import React from "react";
 import "./CurrentStats.scss";
 
 import { connect } from "react-redux";
+import { setAvgTdee } from "../../../store/actions/index";
 
 import InputRowTitle from "../../../components/Input/InputRowTitle/InputRowTitle";
 import InputRow from "../../../components/Input/InputRow/InputRow";
@@ -17,7 +18,9 @@ const CurrentStats = props => {
     isMetricSystem,
     weeksForAvg,
     weeklyChange,
-    goalWeight
+    goalWeight,
+    tdee,
+    setAvgTdee
   } = props;
 
   const totalLoss = startWeight - avgWeight;
@@ -50,13 +53,15 @@ const CurrentStats = props => {
       return avgTdeeOverTime[0];
     } else if (avgTdeeOverTime) {
       filteredArray = avgTdeeOverTime.filter(el => el);
-      modifiedTdeeArray = filteredArray.slice(
-        filteredArray.length - weeksForAvg,
-        filteredArray.length
-      );
+      const firstIndex =
+        filteredArray.length - weeksForAvg < 0
+          ? 0
+          : filteredArray.length - weeksForAvg;
+      modifiedTdeeArray = filteredArray.slice(firstIndex, filteredArray.length);
       avgTdee =
         modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
     }
+    setAvgTdee(Math.ceil(avgTdee));
     return Math.ceil(avgTdee);
   };
 
@@ -100,7 +105,6 @@ const CurrentStats = props => {
         <InputRow
           value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg) +
             dailyKcalChange}`}
-          onChange={null}
           type="number"
           label="Recommended daily intake"
           units="kcal"
@@ -123,8 +127,15 @@ const mapStateToProps = state => {
     isMetricSystem: state.calculator.isMetricSystem,
     tdee: state.calculator.tdee,
     weekData: state.calculator.weekData,
-    avgWeight: state.calculator.avgWeight
+    avgWeight: state.calculator.avgWeight,
+    tdee: state.calculator.tdee
   };
 };
 
-export default connect(mapStateToProps)(CurrentStats);
+const mapDispatchToProps = dispatch => {
+  return {
+    setAvgTdee: avgTdee => dispatch(setAvgTdee(avgTdee))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentStats);

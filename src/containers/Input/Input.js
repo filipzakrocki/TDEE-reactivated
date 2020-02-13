@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import "./Input.scss";
 
 import CurrentStats from "./CurrentStats/CurrentStats";
@@ -10,8 +11,12 @@ import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
 import AddWeekBtn from "./AddWeekBtn/AddWeekBtn";
 
-const Input = () => {
-  const controlsPanel = (
+const Input = props => {
+  const { isCompactView } = props;
+
+  const inputPanels = isCompactView ? (
+    <CompactView />
+  ) : (
     <InputColumnWrapper>
       <InputColumn>
         <InitialInput />
@@ -24,19 +29,17 @@ const Input = () => {
 
   return (
     <section className="input">
-      {/* <CompactView /> */}
-      <InputColumnWrapper>
-        <InputColumn>
-          <InitialInput />
-        </InputColumn>
-        <InputColumn>
-          <CurrentStats />
-        </InputColumn>
-      </InputColumnWrapper>
+      {inputPanels}
       <AddWeekBtn />
       <WeekLabel />
     </section>
   );
 };
 
-export default Input;
+const mapStateToProps = state => {
+  return {
+    isCompactView: state.calculator.isCompactView
+  };
+};
+
+export default connect(mapStateToProps)(Input);
