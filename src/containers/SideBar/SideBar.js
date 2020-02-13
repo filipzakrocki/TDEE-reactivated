@@ -35,12 +35,12 @@ const SideBar = props => {
   };
 
   const saveToServerHandler = () => {
-    let address = `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios.put(address, state).then(res => console.log("SUCCESS"));
   };
 
   const loadFromServerHandler = () => {
-    let address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json`;
     axios
       .get(address)
       .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
