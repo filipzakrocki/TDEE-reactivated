@@ -43,7 +43,7 @@ const InitialInput = props => {
         <InputRow
           changeHandler={setStartDate}
           value={startDate}
-          readOnly={initialInputsLocked}
+          // readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
         />
@@ -56,7 +56,7 @@ const InitialInput = props => {
         <InputRow
           changeHandler={setStartWeight}
           value={startWeight}
-          readOnly={initialInputsLocked}
+          // readOnly={initialInputsLocked}
           step={0.1}
           minValue={1}
           type="number"
@@ -127,8 +127,10 @@ const mapDispatchToProps = dispatch => {
     setStartWeight: (enteredWeight, isMetricSystem) =>
       dispatch(setStartWeight(enteredWeight, isMetricSystem)),
     setGoalWeight: enteredGoal => dispatch(setGoalWeight(enteredGoal)),
-    setDailyKcalChange: (kcalChange, isMetricSystem) => dispatch(setDailyKcalChange(kcalChange, isMetricSystem)),
-    setWeeklyChange: (weeklyChange, isMetricSystem )=> dispatch(setWeeklyChange(weeklyChange, isMetricSystem )),
+    setDailyKcalChange: (kcalChange, isMetricSystem) =>
+      dispatch(setDailyKcalChange(kcalChange, isMetricSystem)),
+    setWeeklyChange: (weeklyChange, isMetricSystem) =>
+      dispatch(setWeeklyChange(weeklyChange, isMetricSystem)),
     setStartDate: startDate => dispatch(setStartDate(startDate)),
     setWeeksForAverage: numberOfWeeks =>
       dispatch(setWeeksForAverage(numberOfWeeks)),
