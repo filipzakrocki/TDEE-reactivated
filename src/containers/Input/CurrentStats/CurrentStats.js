@@ -47,19 +47,37 @@ const CurrentStats = props => {
   };
 
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
-    let avgTdee, modifiedTdeeArray, filteredArray;
-    if (avgTdeeOverTime && avgTdeeOverTime.length === 1) {
+    let avgTdee, modifiedTdeeArray, filteredArray, clonedArray;
+
+    //removing last week - the week that is currently edited
+    clonedArray = [...avgTdeeOverTime];
+    if (clonedArray.length === 1) {
       return avgTdeeOverTime[0];
-    } else if (avgTdeeOverTime) {
-      filteredArray = avgTdeeOverTime.filter(el => el);
-      const firstIndex =
-        filteredArray.length - weeksForAvg < 0
-          ? 0
-          : filteredArray.length - weeksForAvg;
-      modifiedTdeeArray = filteredArray.slice(firstIndex, filteredArray.length);
-      avgTdee =
-        modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
     }
+    clonedArray.pop();
+
+    // removing all the non-values
+    filteredArray = clonedArray.filter(el => el);
+
+    //checking if there is only one value and returning it
+    if (filteredArray.length === 1) {
+      return filteredArray[0];
+    }
+
+    // setting the range from the TDEE array to calculate the average with weeksForAverage variable
+    const firstIndex =
+      filteredArray.length - weeksForAvg < 0
+        ? 0
+        : filteredArray.length - weeksForAvg;
+
+    // creating a new array which is a slice of the old one
+    modifiedTdeeArray = filteredArray.slice(firstIndex, filteredArray.length);
+    console.log(modifiedTdeeArray);
+    //calculating the average
+    avgTdee =
+      modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
+
+    //updating the average on redux and returning it here
     setAvgTdee(Math.ceil(avgTdee));
     return Math.ceil(avgTdee);
   };
