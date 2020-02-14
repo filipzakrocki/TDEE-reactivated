@@ -12,24 +12,36 @@ import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputC
 import AddWeekBtn from "./AddWeekBtn/AddWeekBtn";
 
 const Input = props => {
-  const { isCompactView } = props;
-
-  const inputPanels = isCompactView ? (
-    <CompactView />
-  ) : (
-    <InputColumnWrapper>
-      <InputColumn>
-        <InitialInput />
-      </InputColumn>
-      <InputColumn>
-        <CurrentStats />
-      </InputColumn>
-    </InputColumnWrapper>
-  );
+  const {
+    isCompactView,
+    tdee,
+    dailyKcalChange,
+    weeklyChange,
+    isMetricSystem,
+    isWeightLoss
+  } = props;
 
   return (
     <section className="input">
-      {inputPanels}
+      <div className={isCompactView ? "" : "hidden"}>
+        <CompactView
+          tdee={tdee}
+          dailyKcalChange={dailyKcalChange}
+          weeklyChange={weeklyChange}
+          isMetricSystem={isMetricSystem}
+          isWeightLoss={isWeightLoss}
+        />
+      </div>
+      <div className={isCompactView ? "hidden" : ""}>
+        <InputColumnWrapper>
+          <InputColumn>
+            <InitialInput />
+          </InputColumn>
+          <InputColumn>
+            <CurrentStats />
+          </InputColumn>
+        </InputColumnWrapper>
+      </div>
       <AddWeekBtn />
       <WeekLabel />
     </section>
@@ -38,7 +50,12 @@ const Input = props => {
 
 const mapStateToProps = state => {
   return {
-    isCompactView: state.calculator.isCompactView
+    isCompactView: state.calculator.isCompactView,
+    tdee: state.calculator.tdee,
+    dailyKcalChange: state.calculator.dailyKcalChange,
+    weeklyChange: state.calculator.weeklyChange,
+    isMetricSystem: state.calculator.isMetricSystem,
+    isWeightLoss: state.calculator.isWeightLoss
   };
 };
 
