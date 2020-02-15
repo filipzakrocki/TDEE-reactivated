@@ -1,12 +1,6 @@
 # tdee-reactivated
  Tool for accurate tracking of Total Daily Energy Expenditure based on daily caloric intake and weight
  
- TODOs:
- 
- - Design and implement a sidebar (Should have the following sections: /about/register/login/save to server/save to local/load from local, load from server?)
- 
- - Implement a replacement for the main two input columns that will give the user information - recommended daily TDEE consumption, weeks to goal, weight lost so far, MAYBE: average loss per week?
- 
  
  Must:
 - ✅ calculate the initial TDEE
@@ -17,13 +11,17 @@
 - ✅ calculate weekly weight delta and average TDEE
 - ✅ Weeks should be numbered and have their own date
 - ✅ support KGs/Lbs
+- ✅ store the data in the LocalStorage
+- ✅ design and implement a sidebar
+- ✅ design and implement a Compact View 
  
  Should:
  - ✅ allow the user to pick amount of weeks for TDEE average
  - ✅ store the data on the firebase server
  
  Could:
- - Pull the daily kcal from MyFitnessPal API
  - ✅ utilize logins (facebook?)
  - export data as json
  - allow importing of data
+ - Pull the daily kcal from MyFitnessPal API
+
