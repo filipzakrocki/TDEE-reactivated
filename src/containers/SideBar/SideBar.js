@@ -6,7 +6,7 @@ import axios from "axios";
 import Clock from "../../components/SideBar/Clock/Clock";
 import Donate from "../../components/SideBar/Donate/Donate";
 import SaveMenu from "../../components/SideBar/SaveMenu/SaveMenu";
-import Faq from "../../components/SideBar/Faq/Faq";
+import Logo from "../../components/SideBar/Logo/Logo";
 import Auth from "./Auth/Auth";
 
 const SideBar = props => {
@@ -49,6 +49,7 @@ const SideBar = props => {
 
   return (
     <section className={"sideBar"}>
+      <Logo />
       <Clock
         startDate={startDate}
         startWeight={startWeight}

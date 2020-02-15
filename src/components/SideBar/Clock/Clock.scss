@@ -3,19 +3,21 @@
 .clock {
   width: 100%;
   text-align: center;
-  margin: 20px auto;
+  margin: 0 auto;
   outline: none;
   color: white;
 }
 
 .clock h1 {
   width: 100%;
-  margin: 10px auto;
+  margin: 0 auto 10px;
+  padding: 0 5px;
   font-size: $large-font-size;
 }
 
 .clock h3 {
   width: 100%;
   margin: 10px auto;
+  padding: 0 5px;
   font-size: $title-font-size;
 }

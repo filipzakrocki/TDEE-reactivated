@@ -19,7 +19,7 @@ const CurrentStats = props => {
     weeksForAvg,
     weeklyChange,
     goalWeight,
-    setAvgTdee
+    setTdee
   } = props;
 
   const totalLoss = startWeight - avgWeight;
@@ -52,6 +52,7 @@ const CurrentStats = props => {
     //removing last week - the week that is currently edited
     clonedArray = [...avgTdeeOverTime];
     if (clonedArray.length === 1) {
+      setTdee(avgTdeeOverTime[0]);
       return avgTdeeOverTime[0];
     }
     clonedArray.pop();
@@ -61,6 +62,7 @@ const CurrentStats = props => {
 
     //checking if there is only one value and returning it
     if (filteredArray.length === 1) {
+      setTdee(filteredArray[0]);
       return filteredArray[0];
     }
 
@@ -78,7 +80,7 @@ const CurrentStats = props => {
       modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
 
     //updating the average on redux and returning it here
-    setAvgTdee(Math.ceil(avgTdee));
+    setTdee(Math.ceil(avgTdee));
     return Math.ceil(avgTdee);
   };
 
@@ -149,7 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setAvgTdee: avgTdee => dispatch(setAvgTdee(avgTdee))
+    setTdee: avgTdee => dispatch(setAvgTdee(avgTdee))
   };
 };
 

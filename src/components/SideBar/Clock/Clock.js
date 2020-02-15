@@ -56,7 +56,6 @@ const Clock = props => {
 
   return (
     <div className="clock">
-      <h3>Hello!</h3>
       <h1>It is {date.toLocaleTimeString()}</h1>
       <h3>Today's date is {setCurrentDate()}</h3>
       {startDate && (

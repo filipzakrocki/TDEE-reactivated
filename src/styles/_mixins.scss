@@ -49,8 +49,9 @@
 @mixin bigButton {
   font-size: $title-font-size;
   border: none;
+  border: 1px solid black;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 8px;
   margin: 10px auto;
   background: $button-color;
   outline: none;
@@ -69,9 +70,10 @@
 @mixin smallButton {
   font-size: $default-font-size;
   border: none;
+  border: 1px solid black;
   outline: none;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 8px;
   margin: 10px auto;
   background: $button-color;
   box-shadow: 0 5px #666;
@@ -82,6 +84,6 @@
     transform: translateY(4px);
   }
   &:hover {
-    background-color: lighten($button-color, 5%);
+    background-color: darken($button-color, 10%);
   }
 }
