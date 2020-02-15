@@ -74,7 +74,7 @@ const CurrentStats = props => {
 
     // creating a new array which is a slice of the old one
     modifiedTdeeArray = filteredArray.slice(firstIndex, filteredArray.length);
-    console.log(modifiedTdeeArray);
+
     //calculating the average
     avgTdee =
       modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;

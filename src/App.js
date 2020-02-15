@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import mfp from "mfp";
 import "./App.scss";
 
 import { connect } from "react-redux";
@@ -26,6 +27,11 @@ function App(props) {
     saveStateToLocalStorage();
     // eslint-disable-next-line
   }, [state]);
+
+  mfp.fetchSingleDate("sxerrs", "2020-02-15", ["calories"], data => {
+    console.log("MFP operational");
+    console.log(data);
+  });
 
   const [faqOpened, toggleFaq] = useState(false);
 
