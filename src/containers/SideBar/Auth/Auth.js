@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { auth, setPathRedirect, logOut } from "../../../store/actions/index";
+import { auth, logOut } from "../../../store/actions/index";
 import "./Auth.scss";
 
 const Auth = props => {
   // eslint-disable-next-line
-  const {
-    user,
-    loading,
-    error,
-    isAuthenticated,
-    onAuth,
-    logOut,
-    setPathRedirect
-  } = props;
+  const { user, loading, error, isAuthenticated, onAuth, logOut } = props;
 
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
@@ -28,14 +20,6 @@ const Auth = props => {
   const onLogoutHandler = () => {
     logOut();
     window.location.reload();
-  };
-
-  const loadState = user => {
-    let address = `https://tdee-fit.firebaseio.com/states/${user}.json`;
-    axios
-      .get(address)
-      .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
-      .then(res => window.location.reload());
   };
 
   const passwordReset = () => {
@@ -141,8 +125,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(auth(email, password, isSignup)),
-    logOut: () => dispatch(logOut()),
-    onSetAuthRedirectPath: () => dispatch(setPathRedirect("/"))
+    logOut: () => dispatch(logOut())
   };
 };
 
