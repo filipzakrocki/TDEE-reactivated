@@ -38,6 +38,13 @@ const Auth = props => {
     </div>
   );
 
+  const formWhenError = (
+    <div className="auth">
+      <h4>{error}</h4>
+      <button onClick={() => onLogoutHandler()}>Try again</button>
+    </div>
+  );
+
   const signupForm = (
     <div className="auth">
       <h4>Signup</h4>
@@ -101,7 +108,10 @@ const Auth = props => {
   );
 
   let form = null;
-  if (isAuthenticated) {
+
+  if (error) {
+    form = formWhenError;
+  } else if (isAuthenticated) {
     form = formWhenAuthenticated;
   } else if (isSignup) {
     form = signupForm;

@@ -25,7 +25,9 @@ const SideBar = props => {
 
   //Save Menu handlers
   const saveToLocalHandler = () => {
+    const timeStamp = new Date().toUTCString();
     localStorage.setItem("localState", JSON.stringify(state));
+    localStorage.setItem("localStateTimestamp", JSON.stringify(timeStamp));
   };
 
   const loadFromLocalHandler = () => {
@@ -35,15 +37,24 @@ const SideBar = props => {
   };
 
   const saveToServerHandler = () => {
+    const timeStamp = new Date().toUTCString();
     let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
-    axios.put(address, state).then(res => console.log("SUCCESS"));
+    axios
+      .put(address, { state, timeStamp })
+      .then(res => console.log("SUCCESS"));
   };
 
   const loadFromServerHandler = () => {
     let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .get(address)
-      .then(res => localStorage.setItem("state", JSON.stringify(res.data)))
+      .then(res => {
+        localStorage.setItem("state", JSON.stringify(res.data.state));
+        localStorage.setItem(
+          "serverStateTimestamp",
+          JSON.stringify(res.data.timeStamp)
+        );
+      })
       .then(res => window.location.reload());
   };
 
