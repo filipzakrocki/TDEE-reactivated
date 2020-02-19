@@ -11,21 +11,20 @@ const SaveMenu = props => {
     toggleFaq
   } = props;
 
-  const localSaveDateDisplay = () => {
-    const localSaveDate = localStorage.getItem("localStateTimestamp");
-    return `Last save: ${localSaveDate || "---"}`;
-  };
-
   return (
     <div className="saveMenu">
       <button onClick={saveToLocalHandler}>Save to Local</button>
-      <button title={localSaveDateDisplay()} onClick={loadFromLocalHandler}>
+      <button title={"null"} onClick={loadFromLocalHandler}>
         Load from Local
       </button>
       <button disabled={!isAuthenticated} onClick={saveToServerHandler}>
         Save to Server
       </button>
-      <button disabled={!isAuthenticated} onClick={loadFromServerHandler}>
+      <button
+        title={"null"}
+        disabled={!isAuthenticated}
+        onClick={loadFromServerHandler}
+      >
         Load from Server
       </button>
       <button onClick={toggleFaq}>FAQ</button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./SideBar.scss";
 import axios from "axios";
@@ -41,20 +41,16 @@ const SideBar = props => {
     let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .put(address, { state, timeStamp })
-      .then(res => console.log("SUCCESS"));
+      .then(res => localStorage.setItem("serverStateTimestamp", timeStamp));
   };
 
   const loadFromServerHandler = () => {
     let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .get(address)
-      .then(res => {
-        localStorage.setItem("state", JSON.stringify(res.data.state));
-        localStorage.setItem(
-          "serverStateTimestamp",
-          JSON.stringify(res.data.timeStamp)
-        );
-      })
+      .then(res =>
+        localStorage.setItem("state", JSON.stringify(res.data.state))
+      )
       .then(res => window.location.reload());
   };
 
