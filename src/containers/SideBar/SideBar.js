@@ -27,7 +27,7 @@ const SideBar = props => {
   const saveToLocalHandler = () => {
     const timeStamp = new Date().toUTCString();
     localStorage.setItem("localState", JSON.stringify(state));
-    localStorage.setItem("localStateTimestamp", JSON.stringify(timeStamp));
+    localStorage.setItem("localStateTimestamp", timeStamp);
   };
 
   const loadFromLocalHandler = () => {
