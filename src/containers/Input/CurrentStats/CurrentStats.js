@@ -129,6 +129,7 @@ const CurrentStats = props => {
           type="number"
           label="Recommended daily intake"
           units="kcal"
+          readOnly={true}
         />
       </InputTable>
     </div>

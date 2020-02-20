@@ -98,7 +98,7 @@ export const setWeeklyTdee = (weeklyTdee, weekIndex) => {
   return {
     type: actionTypes.SET_WEEKLY_TDEE,
     weekIndex: weekIndex,
-    tdee: Math.ceil(weeklyTdee)
+    tdee: weeklyTdee
   };
 };
 
