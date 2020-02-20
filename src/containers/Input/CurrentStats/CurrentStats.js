@@ -22,8 +22,6 @@ const CurrentStats = props => {
     setTdee
   } = props;
 
-  const totalLoss = startWeight - avgWeight;
-
   const setCurrentDate = () => {
     const now = new Date();
     const day = now.getDate();
@@ -46,9 +44,19 @@ const CurrentStats = props => {
     }
   };
 
+  const totalChange = () => {
+    if (avgWeight > startWeight) {
+      return (avgWeight - startWeight).toFixed(2);
+    }
+    if (avgWeight) {
+      return (startWeight - avgWeight).toFixed(2);
+    } else {
+      return 0;
+    }
+  };
+
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
     let avgTdee, modifiedTdeeArray, filteredArray, clonedArray;
-
     //removing last week - the week that is currently edited
     clonedArray = [...avgTdeeOverTime];
     if (clonedArray.length === 1) {
@@ -56,29 +64,23 @@ const CurrentStats = props => {
       return avgTdeeOverTime[0];
     }
     clonedArray.pop();
-
     // removing all the non-values
     filteredArray = clonedArray.filter(el => el);
-
     //checking if there is only one value and returning it
     if (filteredArray.length === 1) {
       setTdee(filteredArray[0]);
       return filteredArray[0];
     }
-
     // setting the range from the TDEE array to calculate the average with weeksForAverage variable
     const firstIndex =
       filteredArray.length - weeksForAvg < 0
         ? 0
         : filteredArray.length - weeksForAvg;
-
     // creating a new array which is a slice of the old one
     modifiedTdeeArray = filteredArray.slice(firstIndex, filteredArray.length);
-
     //calculating the average
     avgTdee =
       modifiedTdeeArray.reduce((a, b) => a + b, 0) / modifiedTdeeArray.length;
-
     //updating the average on redux and returning it here
     setTdee(Math.ceil(avgTdee));
     return Math.ceil(avgTdee);
@@ -102,7 +104,7 @@ const CurrentStats = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
-          value={Math.abs(totalLoss.toFixed(2))}
+          value={Math.abs(totalChange())}
           readOnly={true}
           type="number"
           label={`You have ${avgWeight < startWeight ? "lost" : "gained"}`}

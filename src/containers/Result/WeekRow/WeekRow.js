@@ -19,7 +19,6 @@ const WeekRow = props => {
   const {
     weekNo,
     startDate,
-
     isMetricSystem,
     weekData,
     weekIndex,
@@ -32,7 +31,9 @@ const WeekRow = props => {
   } = props;
 
   useEffect(() => {
-    setWeeklyKcalAndKg(weekDays, weekIndex);
+    if (!locked) {
+      setWeeklyKcalAndKg(weekDays, weekIndex);
+    }
   });
 
   useEffect(() => {
