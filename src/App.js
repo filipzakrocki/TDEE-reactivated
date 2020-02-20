@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import mfp from "mfp";
+
 import "./App.scss";
 
 import { connect } from "react-redux";
@@ -15,6 +15,8 @@ import Faq from "./components/SideBar/Faq/Faq";
 function App(props) {
   const { state, user, token, isAuthenticated, onTryAutoSignup } = props;
 
+  const [faqOpened, toggleFaq] = useState(false);
+
   useEffect(() => {
     onTryAutoSignup();
     // eslint-disable-next-line
@@ -28,19 +30,14 @@ function App(props) {
     // eslint-disable-next-line
   }, [state]);
 
-  mfp.fetchSingleDate("sxerrs", "2020-02-15", ["calories"], data => {
-    console.log("MFP operational");
-    console.log(data);
-  });
-
-  const [faqOpened, toggleFaq] = useState(false);
-
   const saveStateToFirebase = (user, state, token) => {
     if (user) {
       try {
         const address = `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`;
         axios.patch(address, state);
-      } catch (err) {}
+      } catch (err) {
+        // display error
+      }
     }
   };
 

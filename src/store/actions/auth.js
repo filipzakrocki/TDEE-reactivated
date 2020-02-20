@@ -26,6 +26,7 @@ export const logOut = () => {
   localStorage.removeItem("state");
   localStorage.removeItem("idToken");
   localStorage.removeItem("expirationDate");
+  localStorage.removeItem("serverStateTimestamp");
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -77,13 +78,11 @@ export const auth = (email, password, isSignup) => {
             )
             .then(res => window.location.reload());
         }
+
         // get the manualStateSaveTimestamp
         const address = `https://tdee-fit.firebaseio.com/manualStates/${response.data.localId}/timeStamp.json?auth=${response.data.idToken}`;
         axios.get(address).then(res => {
-          localStorage.setItem(
-            "serverStateTimestamp",
-            JSON.stringify(res.data)
-          );
+          localStorage.setItem("serverStateTimestamp", res.data);
         });
 
         dispatch(authSuccess(response.data.idToken, response.data.localId));
