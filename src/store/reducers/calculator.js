@@ -104,7 +104,11 @@ const setWeeklyKcalAndKg = (state, action) => {
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
     if (action.weeklyWeight) {
-      draft.avgWeight = action.weeklyWeight;
+      const avgWeightOverTimeWithoutNulls = draft.avgWeightOverTime.filter(
+        e => e
+      );
+      draft.avgWeight =
+        avgWeightOverTimeWithoutNulls[avgWeightOverTimeWithoutNulls.length - 1];
     }
   });
 };

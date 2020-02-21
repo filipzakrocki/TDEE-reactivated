@@ -31,10 +31,8 @@ const WeekRow = props => {
   } = props;
 
   useEffect(() => {
-    if (!locked) {
-      setWeeklyKcalAndKg(weekDays, weekIndex);
-    }
-  });
+    setWeeklyKcalAndKg(weekDays, weekIndex);
+  }, [setWeeklyKcalAndKg, weekDays, weekIndex]);
 
   useEffect(() => {
     setWeeklyTdee(weeklyTdee, weekIndex);
