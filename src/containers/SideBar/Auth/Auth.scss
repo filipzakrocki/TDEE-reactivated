@@ -12,7 +12,7 @@
 }
 
 .auth input {
-  width: 95%;
+  width: 75%;
   border: none;
   margin: 5px 0;
   font-size: $default-font-size;
@@ -23,7 +23,8 @@
 }
 
 .auth .buttonWrapper {
-  width: 100%;
+  width: 75%;
+  margin: auto;
   display: flex;
   text-align: center;
   justify-content: center;

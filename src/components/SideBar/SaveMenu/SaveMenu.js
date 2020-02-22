@@ -26,14 +26,23 @@ const SaveMenu = props => {
         <p>Load from Local</p>
         <p className="saveLabel">{localStateTimestamp}</p>
       </button>
-      <button disabled={!isAuthenticated} onClick={saveToServerHandler}>
+      <button
+        disabled={!isAuthenticated}
+        title={!isAuthenticated ? "Log in to use" : ""}
+        onClick={saveToServerHandler}
+      >
         Save to Server
       </button>
-      <button disabled={!isAuthenticated} onClick={loadFromServerHandler}>
+      <button
+        disabled={!isAuthenticated}
+        title={!isAuthenticated ? "Log in to use" : ""}
+        onClick={loadFromServerHandler}
+      >
         <p>Load from Server</p>
         <p className="saveLabel">{serverStateTimestamp}</p>
       </button>
       <button onClick={toggleFaq}>FAQ</button>
+      <button onClick={toggleFaq}>Clear all Saved Information</button>
     </div>
   );
 };
