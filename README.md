@@ -2,7 +2,6 @@
  Tool for accurate tracking of Total Daily Energy Expenditure based on daily caloric intake and weight change
  
  Todo:
- - feedback for saves and loads
  - FAQ written up
  - 'goal met' scenario
  - Compact View revamp
@@ -27,5 +26,6 @@ Done:
 - ✅ utilize logins with firebase
 - ✅ get a logo
 - ✅ error handlers for login failures
+- ✅ feedback for saves and loads
 
 
