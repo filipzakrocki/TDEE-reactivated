@@ -2,6 +2,7 @@
  Tool for accurate tracking of Total Daily Energy Expenditure based on daily caloric intake and weight change
  
  Todo:
+ - Reset Data button (should reset manual local and manual server saves)
  - FAQ written up
  - 'goal met' scenario
  - Compact View revamp
