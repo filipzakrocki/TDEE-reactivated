@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./AddWeekBtn.scss";
+import "./MiddlePanel.scss";
 
 import {
   addAnotherWeek,
@@ -8,7 +8,7 @@ import {
   lockWeek
 } from "../../../store/actions/index";
 
-const AddWeekBtn = props => {
+const MiddlePanel = props => {
   const { weekNo, addAnotherWeek, lockWeek, toggleCompactView } = props;
 
   const addWeekButtonHandler = weekNo => {
@@ -17,17 +17,19 @@ const AddWeekBtn = props => {
   };
 
   return (
-    <div className="addWeekBtn-wrapper">
-      <button
-        onClick={() => addWeekButtonHandler(weekNo)}
-        className="addWeekBtn"
-      >
-        Start a new week
-      </button>
-      <button className="compactViewBtn" onClick={() => toggleCompactView()}>
-        Toggle Compact View
-      </button>
-    </div>
+    <>
+      <div className="middlePanel-wrapper">
+        <button
+          onClick={() => addWeekButtonHandler(weekNo)}
+          className="addWeekBtn"
+        >
+          Start a new week
+        </button>
+        <button className="compactViewBtn" onClick={() => toggleCompactView()}>
+          Toggle Compact View
+        </button>
+      </div>
+    </>
   );
 };
 
@@ -45,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddWeekBtn);
+export default connect(mapStateToProps, mapDispatchToProps)(MiddlePanel);

@@ -57,6 +57,9 @@ const CurrentStats = props => {
 
   const setAvgTDEE = (avgTdeeOverTime, weeksForAvg) => {
     let avgTdee, modifiedTdeeArray, filteredArray, clonedArray;
+    if (!avgTdeeOverTime) {
+      return 0;
+    }
     //removing last week - the week that is currently edited
     clonedArray = [...avgTdeeOverTime];
     if (clonedArray.length === 1) {

@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import "./SideBar.scss";
 import axios from "axios";
 
-import Clock from "../../components/SideBar/Clock/Clock";
-import Donate from "../../components/SideBar/Donate/Donate";
-import SaveMenu from "../../components/SideBar/SaveMenu/SaveMenu";
 import Logo from "../../components/SideBar/Logo/Logo";
+import Clock from "../../components/SideBar/Clock/Clock";
+import Error from "../../components/SideBar/Error/Error";
+import SaveMenu from "../../components/SideBar/SaveMenu/SaveMenu";
 import Auth from "./Auth/Auth";
+import Donate from "../../components/SideBar/Donate/Donate";
 
 const SideBar = props => {
   const {
@@ -33,17 +34,20 @@ const SideBar = props => {
 
   const loadFromLocalHandler = () => {
     const localState = localStorage.getItem("localState");
-    localStorage.setItem("state", localState);
-    window.location.reload();
+    if (localState) {
+      localStorage.setItem("state", localState);
+      window.location.reload();
+    }
   };
 
   const saveToServerHandler = () => {
     const timeStamp = new Date().toUTCString();
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    let address = `https://atdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .put(address, { state, timeStamp })
       .then(res => localStorage.setItem("serverStateTimestamp", timeStamp))
-      .then(res => window.location.reload());
+      .then(res => window.location.reload())
+      .catch(err => console.log(err));
   };
 
   const loadFromServerHandler = () => {
@@ -53,7 +57,22 @@ const SideBar = props => {
       .then(res =>
         localStorage.setItem("state", JSON.stringify(res.data.state))
       )
-      .then(res => window.location.reload());
+      .then(res => window.location.reload())
+      .catch(err => console.log(err));
+  };
+
+  const clearData = () => {
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    axios
+      .delete(address)
+      .then(res => {
+        localStorage.removeItem("localState");
+        localStorage.removeItem("localStateTimestamp");
+        localStorage.removeItem("state");
+        localStorage.removeItem("serverStateTimestamp");
+      })
+      .then(res => window.location.reload())
+      .catch(err => console.log(err));
   };
 
   return (
@@ -66,7 +85,7 @@ const SideBar = props => {
         isWeightLoss={isWeightLoss}
         isMetricSystem={isMetricSystem}
       />
-
+      <Error />
       <SaveMenu
         user={user}
         saveToLocalHandler={saveToLocalHandler}
@@ -74,9 +93,11 @@ const SideBar = props => {
         saveToServerHandler={saveToServerHandler}
         loadFromServerHandler={loadFromServerHandler}
         isAuthenticated={isAuthenticated}
+        clearData={clearData}
         toggleFaq={toggleFaq}
       />
       <Auth />
+
       <Donate />
     </section>
   );

@@ -8,7 +8,8 @@ const SaveMenu = props => {
     saveToServerHandler,
     loadFromServerHandler,
     isAuthenticated,
-    toggleFaq
+    toggleFaq,
+    clearData
   } = props;
 
   const [localStateTimestamp] = useState(
@@ -18,6 +19,15 @@ const SaveMenu = props => {
   const [serverStateTimestamp] = useState(
     localStorage.getItem("serverStateTimestamp") || `---`
   );
+
+  const deleteDataPrompt = () => {
+    const isConfirmed = window.confirm(
+      "This will clear ALL your Local and Server data"
+    );
+    if (isConfirmed) {
+      clearData();
+    }
+  };
 
   return (
     <div className="saveMenu">
@@ -42,7 +52,7 @@ const SaveMenu = props => {
         <p className="saveLabel">{serverStateTimestamp}</p>
       </button>
       <button onClick={toggleFaq}>FAQ</button>
-      <button onClick={toggleFaq}>Clear all Saved Information</button>
+      <button onClick={deleteDataPrompt}>Clear all Data</button>
     </div>
   );
 };

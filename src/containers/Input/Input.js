@@ -9,7 +9,7 @@ import CompactView from "./CompactView/CompactView";
 import InputColumn from "../../components/Input/InputColumn/InputColumn";
 import WeekLabel from "../../components/Input/WeekLabel/WeekLabel";
 import InputColumnWrapper from "../../components/Input/InputColumnWrapper/InputColumnWrapper";
-import AddWeekBtn from "./AddWeekBtn/AddWeekBtn";
+import MiddlePanel from "./MiddlePanel/MiddlePanel";
 
 const Input = props => {
   const {
@@ -42,7 +42,7 @@ const Input = props => {
           </InputColumn>
         </InputColumnWrapper>
       </div>
-      <AddWeekBtn />
+      <MiddlePanel />
       <WeekLabel />
     </section>
   );
