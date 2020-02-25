@@ -42,7 +42,7 @@ const SideBar = props => {
 
   const saveToServerHandler = () => {
     const timeStamp = new Date().toUTCString();
-    let address = `https://atdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .put(address, { state, timeStamp })
       .then(res => localStorage.setItem("serverStateTimestamp", timeStamp))
