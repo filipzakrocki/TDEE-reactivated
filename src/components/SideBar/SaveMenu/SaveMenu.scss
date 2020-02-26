@@ -19,6 +19,10 @@
   height: 40px;
 }
 
+.saveMenu button[disabled] {
+  background: darken(lightgray, 10%);
+}
+
 @include mobile-device {
   .saveMenu {
     flex-direction: row;

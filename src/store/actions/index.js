@@ -15,4 +15,10 @@ export {
   setAvgTdee
 } from "./calculator";
 
-export { auth, logOut, setPathRedirect, authCheckState } from "./auth";
+export {
+  auth,
+  logOut,
+  setPathRedirect,
+  authCheckState,
+  authFail
+} from "./auth";

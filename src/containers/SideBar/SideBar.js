@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./SideBar.scss";
 import axios from "axios";
@@ -24,30 +24,40 @@ const SideBar = props => {
     toggleFaq
   } = props;
 
+  const [dataSaveError, setDataSaveError] = useState("");
+
   //Save Menu handlers
   const saveToLocalHandler = () => {
-    const timeStamp = new Date().toUTCString();
-    localStorage.setItem("localState", JSON.stringify(state));
-    localStorage.setItem("localStateTimestamp", timeStamp);
-    window.location.reload();
+    try {
+      const timeStamp = new Date().toUTCString();
+      localStorage.setItem("localState", JSON.stringify(state));
+      localStorage.setItem("localStateTimestamp", timeStamp);
+      window.location.reload();
+    } catch (err) {
+      setDataSaveError(err.message);
+    }
   };
 
   const loadFromLocalHandler = () => {
-    const localState = localStorage.getItem("localState");
-    if (localState) {
-      localStorage.setItem("state", localState);
-      window.location.reload();
+    try {
+      const localState = localStorage.getItem("localState");
+      if (localState) {
+        localStorage.setItem("state", localState);
+        window.location.reload();
+      }
+    } catch (err) {
+      setDataSaveError(err.message);
     }
   };
 
   const saveToServerHandler = () => {
     const timeStamp = new Date().toUTCString();
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    let address = `ahttps://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .put(address, { state, timeStamp })
       .then(res => localStorage.setItem("serverStateTimestamp", timeStamp))
       .then(res => window.location.reload())
-      .catch(err => console.log(err));
+      .catch(err => setDataSaveError(err.message));
   };
 
   const loadFromServerHandler = () => {
@@ -58,21 +68,19 @@ const SideBar = props => {
         localStorage.setItem("state", JSON.stringify(res.data.state))
       )
       .then(res => window.location.reload())
-      .catch(err => console.log(err));
+      .catch(err => setDataSaveError(err.message));
   };
 
   const clearData = () => {
+    localStorage.removeItem("localState");
+    localStorage.removeItem("localStateTimestamp");
+    localStorage.removeItem("state");
+    localStorage.removeItem("serverStateTimestamp");
     let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
     axios
       .delete(address)
-      .then(res => {
-        localStorage.removeItem("localState");
-        localStorage.removeItem("localStateTimestamp");
-        localStorage.removeItem("state");
-        localStorage.removeItem("serverStateTimestamp");
-      })
-      .then(res => window.location.reload())
-      .catch(err => console.log(err));
+      .catch(err => setDataSaveError(err.message))
+      .finally(window.location.reload());
   };
 
   return (
@@ -85,7 +93,7 @@ const SideBar = props => {
         isWeightLoss={isWeightLoss}
         isMetricSystem={isMetricSystem}
       />
-      <Error />
+      <Error errorMessage={dataSaveError} />
       <SaveMenu
         user={user}
         saveToLocalHandler={saveToLocalHandler}
@@ -97,7 +105,6 @@ const SideBar = props => {
         toggleFaq={toggleFaq}
       />
       <Auth />
-
       <Donate />
     </section>
   );

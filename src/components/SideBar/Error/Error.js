@@ -1,10 +1,14 @@
 import React from "react";
 import "./Error.scss";
 
-export default function Error() {
+const Error = props => {
+  const { errorMessage } = props;
+
   return (
     <div className="error">
-      <p>{}</p>
+      <p>{errorMessage}</p>
     </div>
   );
-}
+};
+
+export default Error;
