@@ -92,8 +92,8 @@ const setStartDate = (state, action) => {
 const setKcalAndKg = (state, action) => {
   return produce(state, draft => {
     draft.weekData[action.week].days[action.day] = {
-      kg: Number(action.kg),
-      kcal: Number(action.kcal)
+      kg: Number(action.kg) || "",
+      kcal: Number(action.kcal) || ""
     };
   });
 };
