@@ -2,7 +2,7 @@
  Tool for accurate tracking of Total Daily Energy Expenditure based on daily caloric intake and weight change
  
  Todo:
- - catch failed requests
+
  - FAQ written up
  - 'goal met' scenario
  - Compact View revamp
@@ -29,5 +29,6 @@ Done:
 - ✅ error handlers for login failures
 - ✅ feedback for saves and loads
 - ✅ reset Data button (should reset manual local and manual server saves)
+- ✅ catch failed requests
 
 
