@@ -9,6 +9,7 @@ import { authCheckState } from "./store/actions/index";
 import Input from "./containers/Input/Input";
 import Result from "./containers/Result/Result";
 import SideBar from "./containers/SideBar/SideBar";
+import Floater from "./components/Floater/Floater";
 
 import Faq from "./components/SideBar/Faq/Faq";
 
@@ -55,6 +56,7 @@ function App(props) {
         <Input />
         <Result />
       </div>
+      <Floater />
     </div>
   );
 }
