@@ -76,11 +76,16 @@ const SideBar = props => {
     localStorage.removeItem("localStateTimestamp");
     localStorage.removeItem("state");
     localStorage.removeItem("serverStateTimestamp");
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
-    axios
-      .delete(address)
-      .catch(err => setDataSaveError(err.message))
-      .finally(window.location.reload());
+    Promise.all([
+      axios.delete(
+        `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`
+      ),
+      axios.delete(
+        `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`
+      )
+    ])
+      .then(window.location.reload())
+      .catch(err => setDataSaveError(err.message));
   };
 
   return (
