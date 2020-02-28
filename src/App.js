@@ -34,7 +34,7 @@ function App(props) {
   const saveStateToFirebase = (user, state, token) => {
     if (user) {
       try {
-        const address = `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`;
+        const address = `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}&uid=${user}`;
         axios.patch(address, state);
       } catch (err) {
         // display error

@@ -52,7 +52,7 @@ const SideBar = props => {
 
   const saveToServerHandler = () => {
     const timeStamp = new Date().toUTCString();
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}&uid=${user}`;
     axios
       .put(address, { state, timeStamp })
       .then(res => localStorage.setItem("serverStateTimestamp", timeStamp))
@@ -61,7 +61,7 @@ const SideBar = props => {
   };
 
   const loadFromServerHandler = () => {
-    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`;
+    let address = `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}&uid=${user}`;
     axios
       .get(address)
       .then(res =>
@@ -78,10 +78,10 @@ const SideBar = props => {
     localStorage.removeItem("serverStateTimestamp");
     Promise.all([
       axios.delete(
-        `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}`
+        `https://tdee-fit.firebaseio.com/states/${user}.json?auth=${token}&uid=${user}`
       ),
       axios.delete(
-        `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}`
+        `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}&uid=${user}`
       )
     ])
       .then(window.location.reload())

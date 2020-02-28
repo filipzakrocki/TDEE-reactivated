@@ -70,7 +70,7 @@ export const auth = (email, password, isSignup) => {
         localStorage.setItem("expirationDate", expirationDate);
         //CONDITIONALLY ONLY ON LOGIN
         if (!isSignup) {
-          const address = `https://tdee-fit.firebaseio.com/states/${response.data.localId}.json?auth=${response.data.idToken}`;
+          const address = `https://tdee-fit.firebaseio.com/states/${response.data.localId}.json?auth=${response.data.idToken}&uid=${response.data.localId}`;
           axios
             .get(address)
             .then(res =>
@@ -80,7 +80,7 @@ export const auth = (email, password, isSignup) => {
         }
 
         // get the manualStateSaveTimestamp
-        const address = `https://tdee-fit.firebaseio.com/manualStates/${response.data.localId}/timeStamp.json?auth=${response.data.idToken}`;
+        const address = `https://tdee-fit.firebaseio.com/manualStates/${response.data.localId}/timeStamp.json?auth=${response.data.idToken}&uid=${response.data.localId}`;
         axios.get(address).then(res => {
           localStorage.setItem("serverStateTimestamp", res.data);
         });
