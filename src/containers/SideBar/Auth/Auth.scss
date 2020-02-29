@@ -4,19 +4,19 @@
   width: 100%;
   text-align: center;
   color: white;
+  height: 20vh;
 }
 
 .auth h4 {
-  margin: 3px;
   font-size: $title-font-size;
+  padding-bottom: 5px;
 }
 
 .auth input {
   width: 75%;
   border: none;
-  margin: 5px 0;
+  margin: 3px 0;
   font-size: $default-font-size;
-  padding: 5px;
   line-height: 1.5;
   text-align: center;
   outline: none;
@@ -32,7 +32,15 @@
 
 .auth button {
   @include smallButton;
+  padding: 3px 3px;
   flex: 1;
-  margin: 5px;
+  margin: 3px;
+  font-size: $small-font-size;
+}
+
+.auth .logout-button {
+  @include smallButton;
+  padding: 10px 10px;
+  width: 50%;
   font-size: $small-font-size;
 }

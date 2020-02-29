@@ -34,7 +34,9 @@ const Auth = props => {
   const formWhenAuthenticated = (
     <div className="auth">
       <h4>Logged in!</h4>
-      <button onClick={() => onLogoutHandler()}>Log out</button>
+      <button className={"logout-button"} onClick={() => onLogoutHandler()}>
+        Log out
+      </button>
     </div>
   );
 

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./Clock.scss";
 
+import Error from "../Error/Error";
+
 const Clock = props => {
-  const { startDate, startWeight, avgWeight, isMetricSystem } = props;
+  const {
+    startDate,
+    startWeight,
+    avgWeight,
+    isMetricSystem,
+    errorMessage
+  } = props;
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -68,6 +76,7 @@ const Clock = props => {
           so far!
         </h3>
       )}
+      <Error errorMessage={errorMessage} />
     </div>
   );
 };

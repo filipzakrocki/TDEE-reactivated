@@ -5,7 +5,6 @@ import axios from "axios";
 
 import Logo from "../../components/SideBar/Logo/Logo";
 import Clock from "../../components/SideBar/Clock/Clock";
-import Error from "../../components/SideBar/Error/Error";
 import SaveMenu from "../../components/SideBar/SaveMenu/SaveMenu";
 import Auth from "./Auth/Auth";
 import Donate from "../../components/SideBar/Donate/Donate";
@@ -97,8 +96,9 @@ const SideBar = props => {
         avgWeight={avgWeight}
         isWeightLoss={isWeightLoss}
         isMetricSystem={isMetricSystem}
+        errorMessage={dataSaveError}
       />
-      <Error errorMessage={dataSaveError} />
+
       <SaveMenu
         user={user}
         saveToLocalHandler={saveToLocalHandler}

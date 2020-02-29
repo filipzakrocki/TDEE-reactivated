@@ -49,7 +49,11 @@ const SaveMenu = props => {
         onClick={loadFromServerHandler}
       >
         <p>Load from Server</p>
-        <p className="saveLabel">{serverStateTimestamp || "---"}</p>
+        <p className="saveLabel">
+          {serverStateTimestamp && isAuthenticated
+            ? serverStateTimestamp
+            : "---"}
+        </p>
       </button>
       <button onClick={toggleFaq}>FAQ</button>
       <button onClick={deleteDataPrompt}>Clear all Data</button>
