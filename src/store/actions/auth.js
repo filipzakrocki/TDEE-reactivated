@@ -68,22 +68,28 @@ export const auth = (email, password, isSignup) => {
         localStorage.setItem("idToken", response.data.idToken);
         localStorage.setItem("localId", response.data.localId);
         localStorage.setItem("expirationDate", expirationDate);
+
         //CONDITIONALLY ONLY ON LOGIN
         if (!isSignup) {
-          const address = `https://tdee-fit.firebaseio.com/states/${response.data.localId}.json?auth=${response.data.idToken}&uid=${response.data.localId}`;
-          axios
-            .get(address)
-            .then(res =>
-              localStorage.setItem("state", JSON.stringify(res.data))
-            )
+          const stateRequest = axios.get(
+            `https://tdee-fit.firebaseio.com/states/${response.data.localId}.json?auth=${response.data.idToken}&uid=${response.data.localId}`
+          );
+          const serverTimeStampRequest = axios.get(
+            `https://tdee-fit.firebaseio.com/manualStates/${response.data.localId}/timeStamp.json?auth=${response.data.idToken}&uid=${response.data.localId}`
+          );
+          Promise.all([stateRequest, serverTimeStampRequest])
+            .then(([stateResult, serverTimeStampResult]) => {
+              console.log(stateResult);
+              console.log(serverTimeStampResult);
+              localStorage.setItem("state", JSON.stringify(stateResult.data));
+              if (serverTimeStampResult.data)
+                localStorage.setItem(
+                  "serverStateTimestamp",
+                  serverTimeStampResult.data
+                );
+            })
             .then(res => window.location.reload());
         }
-
-        // get the manualStateSaveTimestamp
-        const address = `https://tdee-fit.firebaseio.com/manualStates/${response.data.localId}/timeStamp.json?auth=${response.data.idToken}&uid=${response.data.localId}`;
-        axios.get(address).then(res => {
-          localStorage.setItem("serverStateTimestamp", res.data);
-        });
 
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));

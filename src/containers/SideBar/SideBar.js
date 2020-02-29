@@ -83,7 +83,7 @@ const SideBar = props => {
         `https://tdee-fit.firebaseio.com/manualStates/${user}.json?auth=${token}&uid=${user}`
       )
     ])
-      .then(window.location.reload())
+      .then(res => window.location.reload())
       .catch(err => setDataSaveError(err.message));
   };
 
