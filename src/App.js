@@ -15,6 +15,7 @@ import Faq from "./components/SideBar/Faq/Faq";
 
 function App(props) {
   const { state, user, token, isAuthenticated, onTryAutoSignup } = props;
+
   const [faqOpened, toggleFaq] = useState(false);
 
   useEffect(() => {
