@@ -51,14 +51,15 @@ export const auth = (email, password, isSignup) => {
   return dispatch => {
     //... authenticate user
     dispatch(authStart());
+
     const authData = {
       email: email,
       password: password,
       returnSecureToken: true
     };
     let url = isSignup
-      ? "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4HYKs2DfID24rFu9iBftSXa9w8QnSE4A"
-      : "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4HYKs2DfID24rFu9iBftSXa9w8QnSE4A";
+      ? `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_API_KEY}`
+      : `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_API_KEY}`;
     axios
       .post(url, authData)
       .then(response => {

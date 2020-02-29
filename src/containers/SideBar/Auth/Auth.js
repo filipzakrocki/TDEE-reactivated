@@ -23,7 +23,7 @@ const Auth = props => {
   };
 
   const passwordReset = () => {
-    const address = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyA4HYKs2DfID24rFu9iBftSXa9w8QnSE4A`;
+    const address = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${process.env.REACT_APP_API_KEY}`;
     const payload = {
       requestType: "PASSWORD_RESET",
       email: email
