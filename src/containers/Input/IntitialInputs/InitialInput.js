@@ -43,7 +43,6 @@ const InitialInput = props => {
         <InputRow
           changeHandler={setStartDate}
           value={startDate}
-          // readOnly={initialInputsLocked}
           type="date"
           label="Start Date"
         />
@@ -55,10 +54,8 @@ const InitialInput = props => {
         />
         <InputRow
           changeHandler={setStartWeight}
-          value={startWeight}
-          // readOnly={initialInputsLocked}
+          value={startWeight || ""}
           step={0.1}
-          minValue={1}
           type="number"
           label="Starting Weight"
           isMetricSystem={isMetricSystem}
@@ -66,7 +63,7 @@ const InitialInput = props => {
         />
         <InputRow
           changeHandler={setGoalWeight}
-          value={goalWeight}
+          value={goalWeight || ""}
           type="number"
           step={0.5}
           minValue={1}
@@ -77,7 +74,7 @@ const InitialInput = props => {
         <InputRow
           changeHandler={setWeeklyChange}
           step={0.05}
-          value={weeklyChange}
+          value={weeklyChange || ""}
           isWeightLoss={isWeightLoss}
           type="number"
           label={"Weekly Weight Change"}
@@ -86,7 +83,7 @@ const InitialInput = props => {
         />
         <InputRow
           changeHandler={setDailyKcalChange}
-          value={dailyKcalChange}
+          value={dailyKcalChange || ""}
           isWeightLoss={isWeightLoss}
           type="number"
           step={10}
@@ -95,7 +92,7 @@ const InitialInput = props => {
         />
         <InputRow
           changeHandler={setWeeksForAverage}
-          value={weeksForAvg}
+          value={weeksForAvg || ""}
           type="number"
           step={1}
           min={1}

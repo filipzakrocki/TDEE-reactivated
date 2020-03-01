@@ -100,35 +100,39 @@ const CurrentStats = props => {
           label="Today's Date"
         />
         <InputRow
-          value={avgWeight || startWeight}
+          value={avgWeight || startWeight || ""}
           readOnly={true}
           type="number"
           label="Your average weight"
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
-          value={Math.abs(totalChange())}
+          value={Math.abs(totalChange()) || ""}
           readOnly={true}
           type="number"
           label={`You have ${avgWeight < startWeight ? "lost" : "gained"}`}
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
-          value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg)}`}
+          value={`${
+            setAvgTDEE(avgTdeeOverTime, weeksForAvg)
+              ? setAvgTDEE(avgTdeeOverTime, weeksForAvg)
+              : ""
+          }`}
           readOnly={true}
           type="number"
           label="Your average TDEE"
           units="kcal"
         />
         <InputRow
-          value={`${setWeeksNeeded()}`}
+          value={`${setWeeksNeeded() || ""}`}
           readOnly={true}
           type="number"
           label="Weeks to goal"
         />
         <InputRow
           value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg) +
-            dailyKcalChange}`}
+            dailyKcalChange || ""}`}
           type="number"
           label="Recommended daily intake"
           units="kcal"

@@ -30,7 +30,6 @@ const InputRow = props => {
       <td className="inputRow-label">{label}</td>
       <td className="inputRow-input">
         <input
-        lang="en-150"
           onChange={handleChange}
           disabled={disabled}
           value={value}
