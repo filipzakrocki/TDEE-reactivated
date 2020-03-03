@@ -10,7 +10,6 @@ import InputTable from "../../../components/Input/InputTable/InputTable";
 
 const CurrentStats = props => {
   const {
-    avgWeightOverTime,
     startWeight,
     avgTdeeOverTime,
     dailyKcalChange,
@@ -34,11 +33,9 @@ const CurrentStats = props => {
   };
 
   const setWeeksNeeded = () => {
-    if (avgWeightOverTime) {
+    if (avgWeight || startWeight) {
       const weeksNeeded = Math.round(
-        ((avgWeightOverTime[avgWeightOverTime.length - 1] || startWeight) -
-          goalWeight) /
-          weeklyChange
+        ((avgWeight || startWeight) - goalWeight) / weeklyChange
       );
       return Math.abs(weeksNeeded);
     }
@@ -145,7 +142,6 @@ const CurrentStats = props => {
 
 const mapStateToProps = state => {
   return {
-    avgWeightOverTime: state.calculator.avgWeightOverTime,
     startWeight: state.calculator.startWeight,
     avgTdeeOverTime: state.calculator.avgTdeeOverTime,
     dailyKcalChange: state.calculator.dailyKcalChange,

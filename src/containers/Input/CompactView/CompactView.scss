@@ -3,12 +3,15 @@
 .compactView {
   width: 100%;
   background: $secondary-background-color;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  padding: 2vh;
 }
 
 .compactView h1 {
   color: white;
   font-size: 2vh;
-  margin: 2vh 2vh;
+}
+
+.compactView .compactView-emphasis {
+  font-size: 3.5vh;
 }

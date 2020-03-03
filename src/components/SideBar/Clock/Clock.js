@@ -69,7 +69,7 @@ const Clock = props => {
       {startDate && (
         <h3>This is the day {calculateDietLength(startDate)} of your diet! </h3>
       )}
-      {avgWeight !== 0 && (
+      {avgWeight !== startWeight && (
         <h3>
           You have
           {calculateOverallWeightChange()}

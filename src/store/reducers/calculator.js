@@ -103,7 +103,7 @@ const setWeeklyKcalAndKg = (state, action) => {
     draft.avgWeightOverTime[action.weekIndex] = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgWeight = action.weeklyWeight;
     draft.weekData[action.weekIndex].avgKcal = action.weeklyKcal;
-    if (action.weeklyWeight) {
+    if (action.weeklyWeight || action.weeklyWeight === 0) {
       const avgWeightOverTimeWithoutNulls = draft.avgWeightOverTime.filter(
         e => e
       );
@@ -143,15 +143,21 @@ const lockWeek = (state, action) => {
 const toggleMeasurementSystem = (state, action) => {
   return produce(state, draft => {
     draft.isMetricSystem = !state.isMetricSystem;
-    draft.startWeight = (
-      state.startWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
-    ).toFixed(2);
-    draft.goalWeight = (
-      state.goalWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
-    ).toFixed(2);
-    draft.weeklyChange = (
-      state.weeklyChange * (state.isMetricSystem ? 2.20462262 : 0.45359237)
-    ).toFixed(2);
+    draft.startWeight = Number(
+      (
+        state.startWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+      ).toFixed(2)
+    );
+    draft.goalWeight = Number(
+      (
+        state.goalWeight * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+      ).toFixed(2)
+    );
+    draft.weeklyChange = Number(
+      (
+        state.weeklyChange * (state.isMetricSystem ? 2.20462262 : 0.45359237)
+      ).toFixed(2)
+    );
   });
 };
 

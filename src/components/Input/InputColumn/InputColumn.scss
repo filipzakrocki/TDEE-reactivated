@@ -1,19 +1,14 @@
 @import "../../../styles/main.scss";
 
 .inputColumn {
-  flex: 2;
   border-radius: 20px;
-  padding: 10px;
-  border: $secondary-background-color 1px solid;
+  padding: 10px 0;
   background: $secondary-background-color;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  margin: 0 20px;
+  color: white;
 }
 
-@media only screen and (max-width: 910px) {
+@include mobile-device {
   .inputColumn {
-    margin: 10px 20px;
+    margin: 10px 0;
   }
 }

@@ -14,11 +14,20 @@ const CompactView = props => {
     <div className={"compactView"}>
       {tdee ? (
         <>
-          <h1>Based on your input your TDEE is at: {tdee} kcal</h1>
           <h1>
             To {isWeightLoss ? "lose" : "gain"} {Math.abs(weeklyChange)}
-            {isMetricSystem ? "kg" : "lbs"} per week, you have to eat
-            approximately: {tdee + dailyKcalChange} kcal per day
+            {isMetricSystem ? " kg" : " lbs"} per week, you have to eat
+            approximately:
+          </h1>
+          <h1>
+            {tdee}{" "}
+            {dailyKcalChange < 1
+              ? `- ${Math.abs(dailyKcalChange)} = `
+              : `+ ${Math.abs(dailyKcalChange)} = `}
+            <span className="compactView-emphasis">
+              {tdee + dailyKcalChange}
+            </span>{" "}
+            kcal per day
           </h1>
         </>
       ) : (
