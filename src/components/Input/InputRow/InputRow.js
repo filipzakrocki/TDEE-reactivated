@@ -20,7 +20,7 @@ const InputRow = props => {
       (isWeightLoss && e.target.value > 0) ||
       (!isWeightLoss && e.target.value < 0)
     ) {
-      e.target.value = 0;
+      e.target.value = -1 * e.target.value;
     }
     changeHandler(e.target.value, isMetricSystem);
   };
