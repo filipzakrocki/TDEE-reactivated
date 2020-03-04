@@ -55,6 +55,9 @@ const Clock = props => {
   const calculateOverallWeightChange = () => {
     const weightDifference = avgWeight === 0 ? 0 : startWeight - avgWeight;
     const absoluteWeightDifference = Math.abs(weightDifference);
+    if (!absoluteWeightDifference) {
+      return false;
+    }
     return `${
       startWeight > avgWeight ? " lost" : " gained"
     } ${absoluteWeightDifference.toFixed(2)} ${
@@ -69,7 +72,7 @@ const Clock = props => {
       {startDate && (
         <h3>This is the day {calculateDietLength(startDate)} of your diet! </h3>
       )}
-      {avgWeight !== startWeight && (
+      {calculateOverallWeightChange() && (
         <h3>
           You have
           {calculateOverallWeightChange()}
