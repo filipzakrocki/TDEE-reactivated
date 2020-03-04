@@ -12,8 +12,13 @@ const MiddlePanel = props => {
   const { weekNo, addAnotherWeek, lockWeek, toggleCompactView } = props;
 
   const addWeekButtonHandler = weekNo => {
-    addAnotherWeek(weekNo);
-    lockWeek(weekNo - 1);
+    const isConfirmed = window.confirm(
+      "Are you sure you want to start a new week? Warning: weeks cannot be removed"
+    );
+    if (isConfirmed) {
+      addAnotherWeek(weekNo);
+      lockWeek(weekNo - 1);
+    }
   };
 
   return (

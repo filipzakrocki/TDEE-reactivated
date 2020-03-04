@@ -18,7 +18,10 @@ const Input = props => {
     dailyKcalChange,
     weeklyChange,
     isMetricSystem,
-    isWeightLoss
+    isWeightLoss,
+    avgWeight,
+    goalWeight,
+    startWeight
   } = props;
 
   return (
@@ -30,6 +33,9 @@ const Input = props => {
           weeklyChange={weeklyChange}
           isMetricSystem={isMetricSystem}
           isWeightLoss={isWeightLoss}
+          avgWeight={avgWeight}
+          goalWeight={goalWeight}
+          startWeight={startWeight}
         />
       </div>
       <div className={isCompactView ? "hidden" : ""}>
@@ -55,7 +61,10 @@ const mapStateToProps = state => {
     dailyKcalChange: state.calculator.dailyKcalChange,
     weeklyChange: state.calculator.weeklyChange,
     isMetricSystem: state.calculator.isMetricSystem,
-    isWeightLoss: state.calculator.isWeightLoss
+    isWeightLoss: state.calculator.isWeightLoss,
+    avgWeight: state.calculator.avgWeight,
+    goalWeight: state.calculator.goalWeight,
+    startWeight: state.calculator.startWeight
   };
 };
 
