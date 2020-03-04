@@ -1,6 +1,11 @@
+@import "../../../styles/main.scss";
+
 .donate {
   text-align: center;
   min-height: 43px;
+  @include mobile-device {
+    margin: 10px 0;
+  }
 }
 
 .logo {

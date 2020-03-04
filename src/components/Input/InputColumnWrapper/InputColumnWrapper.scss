@@ -9,5 +9,6 @@
 @include mobile-device {
   .inputColumnWrapper {
     flex-direction: column;
+    padding: 0 10px;
   }
 }

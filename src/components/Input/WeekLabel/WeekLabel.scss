@@ -7,6 +7,9 @@
   display: block;
   border-bottom: 1px solid black;
   justify-content: center;
+  @include mobile-device {
+    font-size: $small-font-size;
+  }
 }
 
 .weekLabel-wrapper {
@@ -19,12 +22,7 @@
   @include weekLabel-label;
 }
 
-
-@media only screen and (max-width: 910px) {
-  .weekLabel {
-    font-size: $default-font-size-mobile;
-  }
-
+@include mobile-device {
   .noMobile {
     display: none;
   }

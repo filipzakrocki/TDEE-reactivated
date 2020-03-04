@@ -5,10 +5,7 @@
   padding: 10px 0;
   background: $secondary-background-color;
   color: white;
-}
-
-@include mobile-device {
-  .inputColumn {
+  @include mobile-device {
     margin: 10px 0;
   }
 }

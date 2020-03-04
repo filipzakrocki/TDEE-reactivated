@@ -39,7 +39,7 @@ const WeekLabel = props => {
           </div>
         ))}
         <div className="weekLabel-label noMobile"> Avg.</div>
-        <div className="weekLabel-label noMobile"> ∆</div>
+        <div className="weekLabel-label "> ∆</div>
         <div className="weekLabel-label"> TDEE</div>
       </div>
     </div>

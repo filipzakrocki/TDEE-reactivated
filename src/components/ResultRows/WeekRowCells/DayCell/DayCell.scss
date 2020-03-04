@@ -7,9 +7,3 @@
 .weekRow-entry input {
   @include weekRow-data;
 }
-
-@include mobile-device {
-  .weekRow-entry input {
-    font-size: $default-font-size-mobile;
-  }
-}

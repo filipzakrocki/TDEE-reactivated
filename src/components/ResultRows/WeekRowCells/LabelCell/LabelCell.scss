@@ -3,6 +3,9 @@
 .LabelCell {
   @include weekRow;
   @include weekRow-label;
+  @include mobile-device {
+    font-size: $small-font-size;
+  }
 }
 
 .LabelCell div {

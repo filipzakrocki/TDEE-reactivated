@@ -5,6 +5,9 @@
   text-align: center;
   color: white;
   height: 20vh;
+  @include mobile-device {
+    height: auto;
+  }
 }
 
 .auth h4 {

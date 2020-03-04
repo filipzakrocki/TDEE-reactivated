@@ -32,6 +32,9 @@
   line-height: 1.5;
   font-weight: 600;
   overflow: hidden;
+  @include mobile-device {
+    font-size: $small-font-size;
+  }
 }
 
 @mixin weekRow-data {
@@ -44,6 +47,9 @@
   background: $secondary-background-color;
   text-align: center;
   line-height: 1.5;
+  @include mobile-device {
+    font-size: $small-font-size;
+  }
 }
 
 @mixin bigButton {

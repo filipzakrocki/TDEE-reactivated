@@ -7,6 +7,10 @@
   top: 0;
   z-index: 2;
   transition: 0.2s;
+  @include mobile-device {
+    position: static;
+    z-index: 1;
+  }
 }
 
 .initialInput-table {
