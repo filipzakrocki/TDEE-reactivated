@@ -3,7 +3,7 @@
  
  Todo:
 
- - FAQ written up
+
  - 'goal met' scenario
  - Compact View revamp
  - mobile responsiveness adjustments
@@ -30,5 +30,6 @@ Done:
 - ✅ feedback for saves and loads
 - ✅ reset Data button (should reset manual local and manual server saves)
 - ✅ catch failed requests
+- ✅ FAQ written up
 
 
