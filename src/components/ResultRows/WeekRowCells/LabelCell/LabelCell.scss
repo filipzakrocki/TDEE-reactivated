@@ -13,15 +13,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: $default-font-size;
-  @media (max-width: 1200px) and (min-width: 910px) {
-    p {
-      font-size: 14px;
-    }
-  }
 }
 
-​ .mobileViewHide {
+.mobileViewHide {
   @include mobile-device-no-display;
 }
 
