@@ -5,7 +5,6 @@ const WeekNumber = props => {
   let { top, bottom, children, hiddenInMobileView, isValue } = props;
 
   let classes = "";
-  console.log(top);
 
   if (isValue && top[0] === "-") {
     classes = "red";
