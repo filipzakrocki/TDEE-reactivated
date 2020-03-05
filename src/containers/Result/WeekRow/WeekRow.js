@@ -105,6 +105,7 @@ const WeekRow = props => {
         top={`${avgWeightForWeek.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`}
         bottom={`${Math.ceil(avgKcalForWeek)} kcal`}
         hiddenInMobileView
+        noWrap
       />
       <LabelCell
         top={`${weightChange.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`}

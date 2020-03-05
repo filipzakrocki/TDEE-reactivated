@@ -17,6 +17,11 @@
   }
 }
 
+.noWrap p {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .mobileViewHide {
   @include mobile-device-no-display;
 }
