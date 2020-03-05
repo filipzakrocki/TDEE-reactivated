@@ -18,3 +18,11 @@
 .mobileViewHide {
   @include mobile-device-no-display;
 }
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

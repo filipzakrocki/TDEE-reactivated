@@ -35,6 +35,7 @@
 
 .auth button {
   @include smallButton;
+  font-weight: 600;
   padding: 3px 3px;
   flex: 1;
   margin: 3px;
@@ -43,6 +44,7 @@
 
 .auth .logout-button {
   @include smallButton;
+  font-weight: 600;
   padding: 10px 10px;
   width: 50%;
   font-size: $small-font-size;

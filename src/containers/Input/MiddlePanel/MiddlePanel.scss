@@ -9,6 +9,10 @@
 
 .addWeekBtn {
   @include bigButton;
+  @include mobile-device {
+    width: 50%;
+    margin: 10px;
+  }
 }
 
 .compactViewBtn {

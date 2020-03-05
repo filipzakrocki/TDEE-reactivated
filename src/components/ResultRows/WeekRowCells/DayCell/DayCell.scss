@@ -2,8 +2,10 @@
 
 .weekRow-entry {
   @include weekRow;
+  color: white;
 }
 
 .weekRow-entry input {
   @include weekRow-data;
+  color: white;
 }

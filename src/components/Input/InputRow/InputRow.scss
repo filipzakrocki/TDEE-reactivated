@@ -9,6 +9,9 @@
 .inputRow-label {
   text-align: left;
   font-size: $default-font-size;
+  @include mobile-device {
+    height: 30px;
+  }
 }
 
 .inputRow-input {
@@ -29,7 +32,7 @@
   font-size: $small-font-size;
 }
 
-@media only screen and (max-width: 910px) {
+@include mobile-device {
   .inputRow-label {
     font-size: $default-font-size-mobile;
   }

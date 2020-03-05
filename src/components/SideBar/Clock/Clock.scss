@@ -7,6 +7,10 @@
   margin: 0 auto;
   outline: none;
   color: white;
+  @include mobile-device {
+    min-height: 175px;
+    height: auto;
+  }
 }
 
 .clock h1 {

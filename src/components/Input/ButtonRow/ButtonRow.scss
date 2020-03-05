@@ -8,6 +8,10 @@
 .toggleRow-label {
   text-align: left;
   font-size: $default-font-size;
+  font-weight: 500;
+  @include mobile-device {
+    height: 30px;
+  }
 }
 
 .toggleRow-input {

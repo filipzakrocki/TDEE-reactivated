@@ -2,14 +2,23 @@ import React from "react";
 import "./LabelCell.scss";
 
 const WeekNumber = props => {
-  let { top, bottom, children, hiddenInMobileView } = props;
+  let { top, bottom, children, hiddenInMobileView, isValue } = props;
+
+  let classes = "";
+  console.log(top);
+
+  if (isValue && top[0] === "-") {
+    classes = "red";
+  } else if (isValue) {
+    classes = "green";
+  }
 
   return (
-    <div className={`LabelCell ${hiddenInMobileView ? "mobileViewHide" : ""}`}>
+    <div className={`LabelCell ${hiddenInMobileView ? "mobileViewHide" : ""} `}>
       <div>
-        <p>{top}</p>
+        <p className={classes}>{top}</p>
         {children}
-        <p>{bottom}</p>
+        <p className={classes}>{bottom}</p>
       </div>
     </div>
   );

@@ -108,6 +108,7 @@ const WeekRow = props => {
       />
       <LabelCell
         top={`${weightChange.toFixed(2)} ${isMetricSystem ? "kg" : "lbs"}`}
+        isValue
       />
       <LabelCell top={Math.ceil(weeklyTdee) + " KCAL"} />
     </WeekRowWrapper>
