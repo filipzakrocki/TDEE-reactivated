@@ -51,5 +51,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA4HYKs2DfID24rFu9iBftSXa9w8QnSE4A",
+        authDomain: "tdee-fit.firebaseapp.com",
+        databaseURL: "https://tdee-fit.firebaseio.com",
+        projectId: "tdee-fit",
+        storageBucket: "tdee-fit.appspot.com",
+        messagingSenderId: "381101710364",
+        appId: "1:381101710364:web:2099f1155066ad893413d9"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
