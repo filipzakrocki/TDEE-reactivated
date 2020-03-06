@@ -8,4 +8,5 @@
 .weekRow-entry input {
   @include weekRow-data;
   color: white;
+  cursor: pointer;
 }
