@@ -12,6 +12,7 @@ const InputRow = props => {
     label,
     isMetricSystem,
     units,
+    tooltip,
     isWeightLoss
   } = props;
 
@@ -27,7 +28,10 @@ const InputRow = props => {
 
   return (
     <tr className="inputRow">
-      <td className="inputRow-label">{label}</td>
+      {/* <td className="inputRow-label">{label}</td> */}
+      <td className="inputRow-label">
+        <label title={tooltip}>{label}</label>
+      </td>
       <td className="inputRow-input">
         <input
           onChange={handleChange}

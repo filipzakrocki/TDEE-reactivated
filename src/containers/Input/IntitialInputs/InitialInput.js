@@ -41,18 +41,21 @@ const InitialInput = props => {
       <InputRowTitle>Initial Input</InputRowTitle>
       <InputTable>
         <InputRow
+          tooltip={"The day your diet starts"}
           changeHandler={setStartDate}
           value={startDate}
           type="date"
           label="Start Date"
         />
         <ButtonRow
+          tooltip={"Choose between Kg/Lbs"}
           disabled={initialInputsLocked}
           label={"Measurement System"}
           changeHandler={toggleMeasurementSystem}
           value={isMetricSystem}
         />
         <InputRow
+          tooltip={"Your starting weight"}
           changeHandler={setStartWeight}
           value={startWeight || ""}
           step={0.1}
@@ -62,6 +65,7 @@ const InitialInput = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
+          tooltip={"what is your goal weight?"}
           changeHandler={setGoalWeight}
           value={goalWeight || ""}
           type="number"
@@ -72,6 +76,7 @@ const InitialInput = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
+          tooltip={"Your loss/gain per week"}
           changeHandler={setWeeklyChange}
           step={0.05}
           value={weeklyChange || ""}
@@ -82,21 +87,22 @@ const InitialInput = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
+          tooltip={"Daily Kcal modifier"}
           changeHandler={setDailyKcalChange}
           value={dailyKcalChange || ""}
           isWeightLoss={isWeightLoss}
           type="number"
           step={10}
-          label={`Rquired Daily Kcal change`}
+          label={`Required Daily Kcal change`}
           units="kcal"
         />
         <InputRow
+          tooltip={"For best results use 2 or 3!"}
           changeHandler={setWeeksForAverage}
           value={weeksForAvg || ""}
           type="number"
           step={1}
           min={1}
-          max={4}
           label={`Calculate last # weeks`}
           units="weeks"
         />

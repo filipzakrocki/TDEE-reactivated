@@ -91,12 +91,14 @@ const CurrentStats = props => {
       <InputRowTitle children={"Current Stats"} />
       <InputTable>
         <InputRow
+          tooltip={"Today is:"}
           value={setCurrentDate()}
           readOnly={true}
           type="date"
           label="Today's Date"
         />
         <InputRow
+          tooltip={"Average weight for this week"}
           value={avgWeight || startWeight || ""}
           readOnly={true}
           type="number"
@@ -104,6 +106,7 @@ const CurrentStats = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
+          tooltip={"The difference so far"}
           value={Math.abs(totalChange()) || ""}
           readOnly={true}
           type="number"
@@ -111,6 +114,7 @@ const CurrentStats = props => {
           units={isMetricSystem ? "kg" : "lbs"}
         />
         <InputRow
+          tooltip={"Here is how much Kcal you use per day!"}
           value={`${
             setAvgTDEE(avgTdeeOverTime, weeksForAvg)
               ? setAvgTDEE(avgTdeeOverTime, weeksForAvg)
@@ -122,12 +126,16 @@ const CurrentStats = props => {
           units="kcal"
         />
         <InputRow
+          tooltip={"Weeks until goal"}
           value={`${setWeeksNeeded() || ""}`}
           readOnly={true}
           type="number"
           label="Weeks to goal"
         />
         <InputRow
+          tooltip={
+            "How many Kcal you have to consume per day to reach your goal"
+          }
           value={`${setAvgTDEE(avgTdeeOverTime, weeksForAvg) +
             dailyKcalChange || ""}`}
           type="number"

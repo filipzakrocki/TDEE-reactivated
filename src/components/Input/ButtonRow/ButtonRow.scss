@@ -9,6 +9,9 @@
   text-align: left;
   font-size: $default-font-size;
   font-weight: 500;
+  &:hover {
+    color: #c7ea46;
+  }
   @include mobile-device {
     height: 30px;
   }
@@ -25,6 +28,9 @@
   border: none;
   outline: none;
   background: white;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .toggleRow-input input {

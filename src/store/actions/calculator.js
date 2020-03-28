@@ -18,9 +18,11 @@ export const setGoalWeight = enteredGoal => {
 };
 
 export const setWeeksForAverage = numberOfWeeks => {
-  if (numberOfWeeks > 4) {
-    numberOfWeeks = 4;
-  } else if (numberOfWeeks < 1) {
+  // if (numberOfWeeks > 4) {
+  //   numberOfWeeks = 4;
+  // } else
+
+  if (numberOfWeeks < 1) {
     numberOfWeeks = 1;
   }
 
