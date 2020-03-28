@@ -97,7 +97,7 @@ const InitialInput = props => {
           units="kcal"
         />
         <InputRow
-          tooltip={"For best results use 2 or 3!"}
+          tooltip={"For best results use 2 or 3 weeks!"}
           changeHandler={setWeeksForAverage}
           value={weeksForAvg || ""}
           type="number"
