@@ -80,8 +80,6 @@ export const auth = (email, password, isSignup) => {
           );
           Promise.all([stateRequest, serverTimeStampRequest])
             .then(([stateResult, serverTimeStampResult]) => {
-              console.log(stateResult);
-              console.log(serverTimeStampResult);
               localStorage.setItem("state", JSON.stringify(stateResult.data));
               if (serverTimeStampResult.data)
                 localStorage.setItem(
