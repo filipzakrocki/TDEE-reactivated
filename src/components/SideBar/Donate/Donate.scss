@@ -8,6 +8,89 @@
   }
 }
 
+.donate__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.donate__warning-btn {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #e67e22;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background: darken(#e67e22, 8%);
+  }
+  &:focus {
+    outline: 2px solid #e67e22;
+    outline-offset: 2px;
+  }
+}
+
 .logo {
   max-width: 100px;
+}
+
+.donate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.donate-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.donate-modal__content {
+  position: relative;
+  max-width: 360px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+.donate-modal__title {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  color: $font-color;
+  text-align: left;
+}
+
+.donate-modal__text {
+  margin: 0 0 16px;
+  font-size: $default-font-size;
+  line-height: 1.45;
+  color: $font-color;
+  text-align: left;
+}
+
+.donate-modal__steps {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  font-size: $default-font-size;
+  line-height: 1.5;
+  color: $font-color;
+  text-align: left;
+  list-style-position: outside;
+}
+
+.donate-modal__close {
+  @include smallButton;
 }

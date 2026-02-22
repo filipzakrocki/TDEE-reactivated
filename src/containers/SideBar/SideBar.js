@@ -114,7 +114,7 @@ const SideBar = props => {
         toggleFaq={toggleFaq}
       />
       <Auth />
-      <Donate />
+      <Donate isAuthenticated={isAuthenticated} />
     </section>
   );
 };
